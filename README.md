@@ -1,7 +1,7 @@
 
 # Malashkevich Mikhail 253505
 
-![habita_big_logo](https://github.com/MiksaMalaksa/Habita/assets/112797903/a1e1cefd-35ee-48a8-9ae0-1945e56dd19d)
+![habita_big_logo](https://github.com/MiksaMalaksa/Habita/assets/112797903/4310f858-e84f-4f3f-a2e0-09023d146c99)
 
 # What is it?
 Habita is an app aimed at habit "programs."  Such habit programs act like to-do lists with some features and time restrictions set by the user. Habits on such programs can be different types; some of them have time limits during the day, some of them require multiple times completion during the day, and there are also habits that can be finished only in a period of time when the user starts the timer, and if you overmake yourself, they are presented in different types of charts. An app can work both locally and online; in future versions, it might be used in implementing some sorts of competitions, where you can compete with your friends to see who can perform a habit the longest. One more difference between programs and other to-do lists is that programs can be mutuble or immutuble for a chosen period of time. In the case where the user chooses an immutable program but then decides to change it, he will have to start from scratch or bear with it.
@@ -100,7 +100,8 @@ class User {
 }
 ```
 # Umls
-![Screenshot 2024-02-26 212048](https://github.com/MiksaMalaksa/Habita/assets/112797903/ca8a9642-6e7c-4be8-954a-e026106900c4)
-![Screenshot 2024-02-26 212100](https://github.com/MiksaMalaksa/Habita/assets/112797903/1d03033a-3f70-4b5e-a1de-bceb25fc4cf1)
-![Screenshot 2024-02-26 212107](https://github.com/MiksaMalaksa/Habita/assets/112797903/af802291-0b56-4d99-9878-4ad6d840ff4a)
-![Screenshot 2024-02-26 212038](https://github.com/MiksaMalaksa/Habita/assets/112797903/aed6ef70-2d24-4a7b-9f7b-55cc2f02ac0d)
+![Screenshot 2024-02-26 212048](https://github.com/MiksaMalaksa/Habita/assets/112797903/4867d9a2-5919-4f27-8673-fbb6c7890e9b)
+![Screenshot 2024-02-26 212100](https://github.com/MiksaMalaksa/Habita/assets/112797903/498b95a7-8db6-4b11-9878-d97179b62cd8)
+![Screenshot 2024-02-26 212107](https://github.com/MiksaMalaksa/Habita/assets/112797903/9380abdd-6947-4853-bc67-2214b1a58893)
+![Screenshot 2024-02-26 212038](https://github.com/MiksaMalaksa/Habita/assets/112797903/cf0d4e09-ae98-492a-b267-9b3561000302)
+
