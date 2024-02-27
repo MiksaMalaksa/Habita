@@ -16,14 +16,17 @@ Habita is an app aimed at habit "programs."  Such habit programs act like to-do
 ## Habit program screen
 - CRUD of habit program (if program is changeable)
 - Types of habits like: timer, multiple, to-do, steps, notes, steps, water
+- By highlighting you can change positions of habits in list
+- In mutuable programs you can add, delete, change habit fields through program
+- In imuatable and in muatable you can pin your habits 
 
 ## Stats and home screens
-- FLcharts for habits stats (stats screen)
-- Short stats and deadlines of habits (home screen)
+- On home screen there is info about streak of done days and pinned habbits 
+- On stats screen there are charts showing completion procentage of current day, and overall stats of overcommed habits typed timer
 
 # Future plans
 - Online versus mode with friends, where you can bet on something
-- Start welcom screen
+- Start welcome screen
 - Custom avatar creator like in duolingo
 
 # Techologies and architecture
@@ -102,8 +105,5 @@ class User {
 }
 ```
 # Umls
-![Screenshot 2024-02-26 212048](https://github.com/MiksaMalaksa/Habita/assets/112797903/4867d9a2-5919-4f27-8673-fbb6c7890e9b)
-![Screenshot 2024-02-26 212100](https://github.com/MiksaMalaksa/Habita/assets/112797903/498b95a7-8db6-4b11-9878-d97179b62cd8)
-![Screenshot 2024-02-26 212107](https://github.com/MiksaMalaksa/Habita/assets/112797903/9380abdd-6947-4853-bc67-2214b1a58893)
-![Screenshot 2024-02-26 212038](https://github.com/MiksaMalaksa/Habita/assets/112797903/cf0d4e09-ae98-492a-b267-9b3561000302)
+![Screenshot 2024-02-27 134018](https://github.com/MiksaMalaksa/Habita/assets/112797903/7e81cd50-ba75-4fbc-b964-57ff187c5320)
 
