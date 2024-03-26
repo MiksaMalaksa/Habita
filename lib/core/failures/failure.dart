@@ -2,12 +2,11 @@ import 'package:habita/core/exceptions/exceptions.dart';
 import 'package:habita/core/failures/ifailure.dart';
 
 class ServerFailure extends Failure {
-  final String message;
+  const ServerFailure({required String message}) : super(message: message);
 
-  ServerFailure.fromException(ServerException exception)
-      : message = exception.message;
-
-  ServerFailure({required this.message});
+  factory ServerFailure.fromException(ServerException exception) {
+    return ServerFailure(message: exception.message);
+  }
 
   @override
   List<String> get props => [message];

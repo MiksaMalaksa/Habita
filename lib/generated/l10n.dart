@@ -50,16 +50,6 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
-  /// `You have pushed the button this many times:`
-  String get pushed {
-    return Intl.message(
-      'You have pushed the button this many times:',
-      name: 'pushed',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Sign Up!`
   String get signUp {
     return Intl.message(
@@ -120,10 +110,10 @@ class S {
     );
   }
 
-  /// ` Sign In`
+  /// `Sign In!`
   String get signIn {
     return Intl.message(
-      ' Sign In',
+      'Sign In!',
       name: 'signIn',
       desc: '',
       args: [],

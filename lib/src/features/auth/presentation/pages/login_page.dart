@@ -1,9 +1,12 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:habita/generated/l10n.dart';
+import 'package:habita/src/features/auth/presentation/pages/signup_page.dart';
 import 'package:habita/src/features/auth/presentation/widgets/auth_button.dart';
 import 'package:habita/src/features/auth/presentation/widgets/auth_field.dart';
 
 class LoginPage extends StatefulWidget {
+  static route() => MaterialPageRoute(builder: (context) => const LoginPage());
   const LoginPage({super.key});
 
   @override
@@ -35,6 +38,10 @@ class LoginState extends State<LoginPage> {
     final theme = Theme.of(context);
 
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Center(
@@ -64,11 +71,14 @@ class LoginState extends State<LoginPage> {
                   icon: Icons.password,
                   controller: passwordTextController,
                   isObscure: hidePassword,
+                  page: 'login',
                 ),
                 const SizedBox(
                   height: 20,
                 ),
-                const AuthButton(),
+                AuthButton(
+                  onTap: () => {},
+                ),
                 const SizedBox(
                   height: 20,
                 ),
@@ -78,7 +88,10 @@ class LoginState extends State<LoginPage> {
                       style: textTheme.titleMedium,
                       children: [
                         TextSpan(
-                            text: S.of(context).signIn,
+                            text: " ${S.of(context).signUp}",
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () => Navigator.of(context)
+                                  .push(SignUpPage.route()),
                             style: textTheme.titleMedium!.copyWith(
                                 color: theme.colorScheme.primary,
                                 fontWeight: FontWeight.bold)),

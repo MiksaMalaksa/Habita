@@ -34,9 +34,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "noAccount":
             MessageLookupByLibrary.simpleMessage("Do not have an account?"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
-        "pushed": MessageLookupByLibrary.simpleMessage(
-            "You have pushed the button this many times:"),
-        "signIn": MessageLookupByLibrary.simpleMessage(" Sign In"),
+        "signIn": MessageLookupByLibrary.simpleMessage("Sign In!"),
         "signUp": MessageLookupByLibrary.simpleMessage("Sign Up!"),
         "submit": MessageLookupByLibrary.simpleMessage("Submit")
       };

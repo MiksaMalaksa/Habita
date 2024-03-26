@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:habita/generated/l10n.dart';
-import 'package:habita/src/features/auth/presentation/widgets/eye_button.dart';
+import 'package:habita/src/features/auth/presentation/pages/login_page.dart';
+import 'package:habita/src/features/auth/presentation/pages/signup_page.dart';
 
 class AuthField extends StatelessWidget {
   final String hintText;
   final TextEditingController controller;
+  final String page;
   final IconData icon;
   final bool isObscure;
   const AuthField(
@@ -12,7 +14,8 @@ class AuthField extends StatelessWidget {
       required this.hintText,
       required this.controller,
       required this.icon,
-      this.isObscure = false});
+      this.isObscure = false,
+      this.page = ''});
 
   @override
   Widget build(BuildContext context) {
@@ -33,9 +36,22 @@ class AuthField extends StatelessWidget {
       //*Deco
       decoration: InputDecoration(
           suffixIcon: hintText == S.of(context).password
-              ? ObscurePassword(
-                  icon: eyeIcon,
-                )
+              ? IconButton(
+                  onPressed: () {
+                    if (page == 'login') {
+                      context
+                          .findAncestorStateOfType<LoginState>()
+                          ?.obscurePassword();
+                    } else if (page == 'signUp') {
+                      context
+                          .findAncestorStateOfType<SignUpState>()
+                          ?.obscurePassword();
+                    }
+                  },
+                  icon: Icon(
+                    eyeIcon,
+                    color: Theme.of(context).iconTheme.color,
+                  ))
               : null,
           prefixIcon: Icon(icon),
           prefixIconColor: theme.iconTheme.color,

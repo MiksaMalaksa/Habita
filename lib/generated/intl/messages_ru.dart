@@ -33,9 +33,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "name": MessageLookupByLibrary.simpleMessage("Имя"),
         "noAccount": MessageLookupByLibrary.simpleMessage("Нет аккаунта?"),
         "password": MessageLookupByLibrary.simpleMessage("Пароль"),
-        "pushed":
-            MessageLookupByLibrary.simpleMessage("Ты нажал вот сколько раз:"),
-        "signIn": MessageLookupByLibrary.simpleMessage(" Войти"),
+        "signIn": MessageLookupByLibrary.simpleMessage("Войти!"),
         "signUp": MessageLookupByLibrary.simpleMessage("Регистрация!"),
         "submit": MessageLookupByLibrary.simpleMessage("Подтвердить")
       };

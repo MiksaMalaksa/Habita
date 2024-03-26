@@ -33,9 +33,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "name": MessageLookupByLibrary.simpleMessage("Jméno"),
         "noAccount": MessageLookupByLibrary.simpleMessage("Nemáte účet?"),
         "password": MessageLookupByLibrary.simpleMessage("Heslo"),
-        "pushed": MessageLookupByLibrary.simpleMessage(
-            "You have pushed the button this many times:"),
-        "signIn": MessageLookupByLibrary.simpleMessage(" Přihlásit se"),
+        "signIn": MessageLookupByLibrary.simpleMessage("Přihlásit se!"),
         "signUp": MessageLookupByLibrary.simpleMessage("Registrace!"),
         "submit": MessageLookupByLibrary.simpleMessage("Potvrďte")
       };

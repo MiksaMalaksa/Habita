@@ -1,12 +1,11 @@
 {
-  "pushed": "You have pushed the button this many times:",
   "signUp": "Sign Up!",
   "email": "Email",
   "name": "Name",
   "password": "Password",
   "submit": "Submit",
   "haveAccountMessage": "Already have an account?",
-  "signIn": " Sign In",
+  "signIn": "Sign In!",
   "incorrectPassword": "Password can not be less then 6!",
   "hintMissing": "{hintText} is missing!",
   "noAccount": "Do not have an account?"

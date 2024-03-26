@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:habita/generated/l10n.dart';
 
 class AuthButton extends StatelessWidget {
-  const AuthButton({super.key});
+  final VoidCallback onTap;
+  const AuthButton({super.key,required this.onTap});
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return InkWell(
-      onTap: () {},
+      onTap: onTap,
       child: Container(
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(7),

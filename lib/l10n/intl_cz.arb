@@ -1,12 +1,11 @@
 {
-  "pushed": "You have pushed the button this many times:",
   "signUp": "Registrace!",
   "email": "E-mailem",
   "name": "Jméno",
   "password": "Heslo",
   "submit": "Potvrďte",
   "haveAccountMessage": "Máte již účet?",
-  "signIn": " Přihlásit se",
+  "signIn": "Přihlásit se!",
   "incorrectPassword": "Délka hesla musí být alespoň 6!  ",
   "hintMissing": "Nesprávně zadané jméno!",
   "noAccount": "Nemáte účet?"
