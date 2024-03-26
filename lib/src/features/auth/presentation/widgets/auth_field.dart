@@ -37,7 +37,9 @@ class AuthField extends StatelessWidget {
       decoration: InputDecoration(
           suffixIcon: hintText == S.of(context).password
               ? IconButton(
-                  onPressed: () {
+                  onPressed: 
+                  
+                  () {
                     if (page == 'login') {
                       context
                           .findAncestorStateOfType<LoginState>()

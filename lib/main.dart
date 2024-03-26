@@ -1,38 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:habita/core/supabase_keys/supa_keys.dart';
 import 'package:habita/generated/l10n.dart';
-//import 'package:habita/init_dependencies.dart';
-import 'package:habita/src/features/auth/data/data_sources/auth_datasource_impl.dart';
-import 'package:habita/src/features/auth/data/repositories/auth_remo_impl.dart';
-import 'package:habita/src/features/auth/domain/usecases/signup_usecase.dart';
+import 'package:habita/init_dependencies.dart';
 import 'package:habita/src/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:habita/src/features/auth/presentation/pages/login_page.dart';
 import 'package:habita/src/themes/app_theme_provider.dart';
 import 'package:provider/provider.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  //initialise();
-  final supabase = await Supabase.initialize(
-      url: SupabaseKeys.supaUrl, anonKey: SupabaseKeys.supaAnonKey);
-
-  runApp(MultiBlocProvider(providers: [
-    Provider(
-        create: (_) => AuthBloc(
-            userSignUp: UserSignUp(
-                repository: AuthRepoImpl(
-                    datasource: AuthDatasourceImpl(client: supabase.client)))))
-  ], child: const MyApp()));
+  await initialise();
+  runApp(MultiBlocProvider(
+      providers: [Provider(create: (_) => sl<AuthBloc>())],
+      child: const Habita()));
 }
 
-//!first of all settings screen -> signs -> bottom bar
-//!init -> didChangeDep(sub to inh) --> (delete from widget tree) --> deactivated then it can be disposed or back
+class Habita extends StatefulWidget {
+  const Habita({super.key});
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  @override
+  State<Habita> createState() => _HabitaState();
+}
+
+class _HabitaState extends State<Habita> {
+  
+  @override
+  void initState() {
+    super.initState();
+    context.read<AuthBloc>().add(AuthUserLoggedIn());
+  }
 
   @override
   Widget build(BuildContext context) {

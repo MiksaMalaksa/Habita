@@ -5,28 +5,25 @@ import 'package:habita/src/features/auth/domain/entities/user.dart';
 import 'package:habita/src/features/auth/domain/repositories/iauth_repo.dart';
 
 
-class UserSignUp implements Usecase<User, UserSignUpParams> {
+class UserSignIn implements Usecase<User, UserSignInParams> {
   final IAuthRepo repository;
 
-  const UserSignUp({required this.repository});
+  const UserSignIn({required this.repository});
 
   @override
-  Future<Either<Failure, User>> call(UserSignUpParams params) async {
-    return await repository.signUp(
-      name: params.name,
+  Future<Either<Failure, User>> call(UserSignInParams params) async {
+    return await repository.signIn(
       email: params.email,
       password: params.password,
     );
   }
 }
 
-class UserSignUpParams {
-  final String name;
+class UserSignInParams {
   final String email;
   final String password;
 
-  UserSignUpParams({
-    required this.name,
+  UserSignInParams({
     required this.email,
     required this.password,
   });
