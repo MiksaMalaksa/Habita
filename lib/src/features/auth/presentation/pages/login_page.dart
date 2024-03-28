@@ -9,6 +9,7 @@ import 'package:habita/src/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:habita/src/features/auth/presentation/pages/signup_page.dart';
 import 'package:habita/src/features/auth/presentation/widgets/auth_button.dart';
 import 'package:habita/src/features/auth/presentation/widgets/auth_field.dart';
+import 'package:habita/src/features/auth/presentation/widgets/auth_password_field.dart';
 
 class LoginPage extends StatefulWidget {
   static route() => MaterialPageRoute(builder: (context) => const LoginPage());
@@ -53,7 +54,7 @@ class LoginState extends State<LoginPage> {
           child: BlocConsumer<AuthBloc, AuthState>(
             listener: (context, state) {
               if (state is AuthError) {
-                showSnackBar(context: context, content: state.errorMessage);
+                showSnackBar(context: context, content: S.of(context).loginError);
               } else if (state is AuthLoaded) {
                 Navigator.of(context)
                     .pushAndRemoveUntil(PageManager.route(), (route) => false);
@@ -61,7 +62,7 @@ class LoginState extends State<LoginPage> {
             },
             builder: (context, state) {
               if (state is AuthProcessing) {
-                const Loader();
+                return const Loader();
               }
               return Form(
                 key: formKey,
@@ -84,13 +85,10 @@ class LoginState extends State<LoginPage> {
                     const SizedBox(
                       height: 17,
                     ),
-                    AuthField(
-                      hintText: S.of(context).password,
-                      icon: Icons.password,
-                      controller: passwordTextController,
-                      isObscure: hidePassword,
-                      page: 'login',
-                    ),
+                    PasswordField(
+                        controller: passwordTextController,
+                        hintText: S.of(context).password,
+                        icon: Icons.password),
                     const SizedBox(
                       height: 20,
                     ),

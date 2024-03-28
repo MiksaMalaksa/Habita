@@ -30,6 +30,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "hintMissing": m0,
         "incorrectPassword": MessageLookupByLibrary.simpleMessage(
             "Délka hesla musí být alespoň 6!  "),
+        "incorrectSigningUp":
+            MessageLookupByLibrary.simpleMessage("Incorrect data was passed!"),
+        "loginError": MessageLookupByLibrary.simpleMessage(
+            "Takový účet neexistuje, zkuste to znovu!"),
         "name": MessageLookupByLibrary.simpleMessage("Jméno"),
         "noAccount": MessageLookupByLibrary.simpleMessage("Nemáte účet?"),
         "password": MessageLookupByLibrary.simpleMessage("Heslo"),

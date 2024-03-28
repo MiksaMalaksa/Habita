@@ -149,6 +149,26 @@ class S {
       args: [],
     );
   }
+
+  /// `No such account, try again!`
+  String get loginError {
+    return Intl.message(
+      'No such account, try again!',
+      name: 'loginError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Něco se pokazilo!`
+  String get incorrectSigningUp {
+    return Intl.message(
+      'Něco se pokazilo!',
+      name: 'incorrectSigningUp',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

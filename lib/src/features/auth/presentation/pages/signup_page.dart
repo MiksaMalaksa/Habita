@@ -8,6 +8,7 @@ import 'package:habita/src/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:habita/src/features/auth/presentation/pages/login_page.dart';
 import 'package:habita/src/features/auth/presentation/widgets/auth_button.dart';
 import 'package:habita/src/features/auth/presentation/widgets/auth_field.dart';
+import 'package:habita/src/features/auth/presentation/widgets/auth_password_field.dart';
 
 class SignUpPage extends StatefulWidget {
   static route() => MaterialPageRoute(builder: (context) => const SignUpPage());
@@ -54,12 +55,12 @@ class SignUpState extends State<SignUpPage> {
           child: BlocConsumer<AuthBloc, AuthState>(
             listener: (context, state) {
               if (state is AuthError) {
-                showSnackBar(context: context, content: state.errorMessage);
+                showSnackBar(context: context, content: S.of(context).incorrectSigningUp);
               }
             },
             builder: (context, state) {
               if (state is AuthProcessing) {
-                const Loader();
+                return const Loader();
               }
               return Form(
                 key: formKey,
@@ -92,13 +93,10 @@ class SignUpState extends State<SignUpPage> {
                       const SizedBox(
                         height: 17,
                       ),
-                      AuthField(
-                        hintText: S.of(context).password,
-                        icon: Icons.password,
-                        controller: passwordTextController,
-                        isObscure: hidePassword,
-                        page: 'signUp',
-                      ),
+                      PasswordField(
+                          controller: passwordTextController,
+                          hintText: S.of(context).password,
+                          icon: Icons.password),
                       const SizedBox(
                         height: 20,
                       ),

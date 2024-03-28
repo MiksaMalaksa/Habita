@@ -8,5 +8,7 @@
   "signIn": "Войти!",
   "incorrectPassword": "Длина пароля должна быть не меннее 6!",
   "hintMissing": "Некорректно введенное имя!",
-  "noAccount": "Нет аккаунта?"
+  "noAccount": "Нет аккаунта?",
+  "loginError": "Такого аккаунта нет, попробуйте еще раз!",
+  "incorrectSigningUp": "Something went wrong!"
 }

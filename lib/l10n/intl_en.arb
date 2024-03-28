@@ -8,5 +8,7 @@
   "signIn": "Sign In!",
   "incorrectPassword": "Password can not be less then 6!",
   "hintMissing": "{hintText} is missing!",
-  "noAccount": "Do not have an account?"
+  "noAccount": "Do not have an account?",
+  "loginError": "No such account, try again!",
+  "incorrectSigningUp": "Něco se pokazilo!"
 }

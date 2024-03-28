@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:habita/src/features/settings/presentation/widgets/profile_container.dart';
 
 class ProfilePage extends StatefulWidget {
   static route() => MaterialPageRoute(
@@ -13,13 +14,15 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Text(
-          'Settings will be here',
-          style: Theme.of(context).textTheme.titleMedium,
-        ),
+    return const Scaffold(
+        body: SingleChildScrollView(
+      padding:  EdgeInsets.all(10),
+      child: Column(
+        children: [
+          ProfileContainer()
+        ],
       ),
-    );
+    ));
   }
 }
+

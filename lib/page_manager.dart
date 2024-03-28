@@ -4,6 +4,8 @@ import 'package:habita/src/features/habits/presentation/habit_page.dart';
 import 'package:habita/src/features/home/presentation/home_page.dart';
 import 'package:habita/src/features/settings/presentation/profile_page.dart';
 import 'package:habita/src/features/stats/presentation/stats_page.dart';
+import 'package:fluttericon/rpg_awesome_icons.dart';
+import 'package:habita/src/features/versus/presentation/versus_page.dart';
 
 class PageManager extends StatefulWidget {
   static route() =>
@@ -19,6 +21,7 @@ class _PageManagerState extends State<PageManager> {
     HomePage(),
     StatsPage(),
     HabitPage(),
+    VersusPage(),
     ProfilePage(),
   ];
 
@@ -43,6 +46,7 @@ class _PageManagerState extends State<PageManager> {
             _bottomBarItem(label: 'Home', icon: Icons.home),
             _bottomBarItem(label: 'Stats', icon: Icons.bar_chart_sharp),
             _bottomBarItem(label: 'Program', icon: Icons.calendar_month),
+            _bottomBarItem(label: 'Versus', icon: RpgAwesome.broadsword),
             _bottomBarItem(label: 'Profile', icon: Icons.person),
           ]),
     );

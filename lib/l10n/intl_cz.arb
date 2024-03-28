@@ -8,5 +8,7 @@
   "signIn": "Přihlásit se!",
   "incorrectPassword": "Délka hesla musí být alespoň 6!  ",
   "hintMissing": "Nesprávně zadané jméno!",
-  "noAccount": "Nemáte účet?"
+  "noAccount": "Nemáte účet?",
+  "loginError": "Takový účet neexistuje, zkuste to znovu!",
+  "incorrectSigningUp": "Incorrect data was passed!"
 }
