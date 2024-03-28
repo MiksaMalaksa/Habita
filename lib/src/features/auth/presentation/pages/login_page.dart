@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:habita/core/common/widgets/loader.dart';
 import 'package:habita/core/utils/show_snackbar.dart';
 import 'package:habita/generated/l10n.dart';
+import 'package:habita/page_manager.dart';
 import 'package:habita/src/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:habita/src/features/auth/presentation/pages/signup_page.dart';
 import 'package:habita/src/features/auth/presentation/widgets/auth_button.dart';
@@ -53,16 +54,14 @@ class LoginState extends State<LoginPage> {
             listener: (context, state) {
               if (state is AuthError) {
                 showSnackBar(context: context, content: state.errorMessage);
+              } else if (state is AuthLoaded) {
+                Navigator.of(context)
+                    .pushAndRemoveUntil(PageManager.route(), (route) => false);
               }
             },
             builder: (context, state) {
               if (state is AuthProcessing) {
                 const Loader();
-              }
-              if (state is AuthLoaded) {
-                return const Center(
-                  child: Text('Finally'),
-                );
               }
               return Form(
                 key: formKey,
