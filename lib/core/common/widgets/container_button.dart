@@ -22,7 +22,7 @@ class ContainerButton extends StatelessWidget {
         child: IconButton(
           onPressed: onPressed,
           icon: Icon(icon),
-          color: Theme.of(context).iconTheme.color,
+          color: Colors.white,
         ),
       ),
     );

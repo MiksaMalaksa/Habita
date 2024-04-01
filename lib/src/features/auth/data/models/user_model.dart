@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:habita/src/features/auth/domain/entities/user.dart';
+import 'package:habita/core/common/entities/user.dart';
 
 class UserModel extends User {
   UserModel({

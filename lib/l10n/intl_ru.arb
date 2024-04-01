@@ -10,5 +10,6 @@
   "hintMissing": "Некорректно введенное имя!",
   "noAccount": "Нет аккаунта?",
   "loginError": "Такого аккаунта нет, попробуйте еще раз!",
-  "incorrectSigningUp": "Что-то пошло не так!"
+  "incorrectSigningUp": "Что-то пошло не так!",
+  "customization": "Кастомизация:"
 }

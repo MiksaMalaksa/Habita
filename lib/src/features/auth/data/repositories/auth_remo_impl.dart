@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:habita/src/features/auth/domain/entities/user.dart';
+import 'package:habita/core/common/entities/user.dart';
 import 'package:habita/core/exceptions/exceptions.dart';
 import 'package:habita/core/failures/failure.dart';
 import 'package:habita/core/failures/ifailure.dart';

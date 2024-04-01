@@ -44,6 +44,7 @@ class AuthDatasourceImpl implements IAuthDataSource {
       final response = await client.auth.signUp(
         password: password,
         email: email,
+        emailRedirectTo: 'io.supabase.flutterquickstart://login-callback/',
         data: {'name': name},
       );
 

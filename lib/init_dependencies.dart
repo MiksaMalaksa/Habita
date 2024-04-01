@@ -1,5 +1,6 @@
 //!sl - serviceLocator
 import 'package:get_it/get_it.dart';
+import 'package:habita/core/common/cubits/app_user/app_user_cubit.dart';
 import 'package:habita/core/supabase_keys/supa_keys.dart';
 import 'package:habita/src/features/auth/data/data_sources/auth_datasource_impl.dart';
 import 'package:habita/src/features/auth/data/data_sources/iauth_datasource.dart';
@@ -19,6 +20,9 @@ Future<void> initialise() async {
   final supabase = await Supabase.initialize(
       url: SupabaseKeys.supaUrl, anonKey: SupabaseKeys.supaAnonKey);
   sl.registerLazySingleton(() => supabase.client);
+
+  //!core
+  sl.registerLazySingleton(() => AppUserCubit());
 }
 
 void _initAuth() {
@@ -29,6 +33,6 @@ void _initAuth() {
   sl.registerFactory(() => UserSignIn(repository: sl()));
   sl.registerFactory(() => CurrentUser(repository: sl()));
   //*Bloc
-  sl.registerLazySingleton(
-      () => AuthBloc(userSignUp: sl(), userSignIn: sl(), currentUser: sl()));
+  sl.registerLazySingleton(() => AuthBloc(
+      userSignUp: sl(), userSignIn: sl(), currentUser: sl(), userCubit: sl()));
 }

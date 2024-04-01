@@ -169,6 +169,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Customization:`
+  String get customization {
+    return Intl.message(
+      'Customization:',
+      name: 'customization',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

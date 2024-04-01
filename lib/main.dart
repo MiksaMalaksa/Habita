@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:habita/core/common/cubits/app_user/app_user_cubit.dart';
 import 'package:habita/generated/l10n.dart';
 import 'package:habita/init_dependencies.dart';
+import 'package:habita/page_manager.dart';
 import 'package:habita/src/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:habita/src/features/auth/presentation/pages/login_page.dart';
 import 'package:habita/src/themes/app_theme_provider.dart';
@@ -11,9 +13,19 @@ import 'package:provider/provider.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initialise();
-  runApp(MultiBlocProvider(
-      providers: [Provider(create: (_) => sl<AuthBloc>())],
-      child: const Habita()));
+  runApp(
+    MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (_) => sl<AppUserCubit>(),
+        ),
+        BlocProvider(
+          create: (_) => sl<AuthBloc>(),
+        ),
+      ],
+      child: const Habita(),
+    ),
+  );
 }
 
 class Habita extends StatefulWidget {
@@ -24,7 +36,12 @@ class Habita extends StatefulWidget {
 }
 
 class _HabitaState extends State<Habita> {
-  
+
+
+  void setLocale(){
+
+  }
+
   @override
   void initState() {
     super.initState();
@@ -51,7 +68,6 @@ class _HabitaState extends State<Habita> {
           supportedLocales: S.delegate.supportedLocales,
           //*Set locale depanding on system ones, first in priority is choosed
           //*for the app locale, otherwise english
-          //!change for backend priority
           localeListResolutionCallback: (deviceLocales, supportedLocales) {
             final supportedCodes = supportedLocales.map((e) => e.languageCode);
             if (deviceLocales != null) {
@@ -64,7 +80,17 @@ class _HabitaState extends State<Habita> {
             return const Locale('en');
           },
           debugShowCheckedModeBanner: false,
-          home: const LoginPage(),
+          home: BlocSelector<AppUserCubit, AppUserState, bool>(
+            selector: (state) {
+              return state is AppUserLoggedIn;
+            },
+            builder: (context, isLogged) {
+              if (isLogged) {
+                return const PageManager();
+              }
+              return const LoginPage();
+            },
+          ),
         ),
       ),
     );

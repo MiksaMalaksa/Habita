@@ -4,6 +4,7 @@ import 'package:habita/src/themes/combinations/indigo.dart';
 import 'package:habita/src/themes/combinations/purple_theme.dart';
 import 'package:habita/src/themes/combinations/red_blue_theme.dart';
 import 'package:habita/src/themes/combinations/sakura_theme.dart';
+import 'package:fluttericon/entypo_icons.dart';
 
 //!custom icons
 class AppTheme {
@@ -23,6 +24,10 @@ List<AppTheme> appThemes = [
     mode: ThemeMode.dark,
     icon: Icons.brightness_2_rounded,
   ),
+   AppTheme(
+    mode: ThemeMode.system,
+    icon: Entypo.cog,
+  )
 ];
 
 //!In drop box there aree the names of themes and + theme mode = current comb
