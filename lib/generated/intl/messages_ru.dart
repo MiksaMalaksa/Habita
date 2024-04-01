@@ -31,7 +31,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "incorrectPassword": MessageLookupByLibrary.simpleMessage(
             "Длина пароля должна быть не меннее 6!"),
         "incorrectSigningUp":
-            MessageLookupByLibrary.simpleMessage("Something went wrong!"),
+            MessageLookupByLibrary.simpleMessage("Что-то пошло не так!"),
         "loginError": MessageLookupByLibrary.simpleMessage(
             "Такого аккаунта нет, попробуйте еще раз!"),
         "name": MessageLookupByLibrary.simpleMessage("Имя"),

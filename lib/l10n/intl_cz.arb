@@ -10,5 +10,5 @@
   "hintMissing": "Nesprávně zadané jméno!",
   "noAccount": "Nemáte účet?",
   "loginError": "Takový účet neexistuje, zkuste to znovu!",
-  "incorrectSigningUp": "Incorrect data was passed!"
+  "incorrectSigningUp": "Něco se pokazilo"
 }

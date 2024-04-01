@@ -10,5 +10,5 @@
   "hintMissing": "Некорректно введенное имя!",
   "noAccount": "Нет аккаунта?",
   "loginError": "Такого аккаунта нет, попробуйте еще раз!",
-  "incorrectSigningUp": "Something went wrong!"
+  "incorrectSigningUp": "Что-то пошло не так!"
 }

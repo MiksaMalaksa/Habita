@@ -10,5 +10,5 @@
   "hintMissing": "{hintText} is missing!",
   "noAccount": "Do not have an account?",
   "loginError": "No such account, try again!",
-  "incorrectSigningUp": "Něco se pokazilo!"
+  "incorrectSigningUp": "Something went wrong!"
 }

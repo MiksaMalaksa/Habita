@@ -160,10 +160,10 @@ class S {
     );
   }
 
-  /// `Něco se pokazilo!`
+  /// `Something went wrong!`
   String get incorrectSigningUp {
     return Intl.message(
-      'Něco se pokazilo!',
+      'Something went wrong!',
       name: 'incorrectSigningUp',
       desc: '',
       args: [],
