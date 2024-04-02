@@ -1,6 +1,6 @@
 import 'package:flex_color_scheme/flex_color_scheme.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
+import 'package:habita/core/constants/font_family.dart';
 
 //*Red and blue theme style
 final redBlueColoringLight = FlexThemeData.light(
@@ -27,7 +27,7 @@ final redBlueColoringLight = FlexThemeData.light(
   visualDensity: FlexColorScheme.comfortablePlatformDensity,
   useMaterial3: true,
   swapLegacyOnMaterial3: true,
-  fontFamily: GoogleFonts.nunito().fontFamily,
+  fontFamily: textTheme,
 );
 
 final redBlueColoringDark = FlexThemeData.dark(
@@ -53,5 +53,5 @@ final redBlueColoringDark = FlexThemeData.dark(
   visualDensity: FlexColorScheme.comfortablePlatformDensity,
   useMaterial3: true,
   swapLegacyOnMaterial3: true,
-  fontFamily: GoogleFonts.nunito().fontFamily,
+  fontFamily: textTheme,
 );

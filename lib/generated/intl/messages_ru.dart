@@ -24,7 +24,10 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-        "customization": MessageLookupByLibrary.simpleMessage("Кастомизация:"),
+        "additionalSettings":
+            MessageLookupByLibrary.simpleMessage("Дополнительно"),
+        "customization": MessageLookupByLibrary.simpleMessage("Кастомизация"),
+        "dark": MessageLookupByLibrary.simpleMessage("Темная"),
         "email": MessageLookupByLibrary.simpleMessage("Электронная почта"),
         "haveAccountMessage":
             MessageLookupByLibrary.simpleMessage("Уже существует аккаунт?"),
@@ -33,13 +36,16 @@ class MessageLookup extends MessageLookupByLibrary {
             "Длина пароля должна быть не меннее 6!"),
         "incorrectSigningUp":
             MessageLookupByLibrary.simpleMessage("Что-то пошло не так!"),
+        "light": MessageLookupByLibrary.simpleMessage("Светлая"),
         "loginError": MessageLookupByLibrary.simpleMessage(
             "Такого аккаунта нет, попробуйте еще раз!"),
         "name": MessageLookupByLibrary.simpleMessage("Имя"),
         "noAccount": MessageLookupByLibrary.simpleMessage("Нет аккаунта?"),
         "password": MessageLookupByLibrary.simpleMessage("Пароль"),
+        "profile": MessageLookupByLibrary.simpleMessage("Профиль"),
         "signIn": MessageLookupByLibrary.simpleMessage("Войти!"),
         "signUp": MessageLookupByLibrary.simpleMessage("Регистрация!"),
-        "submit": MessageLookupByLibrary.simpleMessage("Подтвердить")
+        "submit": MessageLookupByLibrary.simpleMessage("Подтвердить"),
+        "system": MessageLookupByLibrary.simpleMessage("Системная")
       };
 }

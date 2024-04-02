@@ -24,10 +24,18 @@ List<AppTheme> appThemes = [
     mode: ThemeMode.dark,
     icon: Icons.brightness_2_rounded,
   ),
-   AppTheme(
+  AppTheme(
     mode: ThemeMode.system,
     icon: Entypo.cog,
   )
+];
+
+List<String> colorCombinations = [
+  'Habita',
+  'Indigo',
+  'Purple',
+  'Red-Blue',
+  'Sakura'
 ];
 
 //!In drop box there aree the names of themes and + theme mode = current comb

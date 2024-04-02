@@ -11,5 +11,10 @@
   "noAccount": "Do not have an account?",
   "loginError": "No such account, try again!",
   "incorrectSigningUp": "Something went wrong!",
-  "customization": "Customization:"
+  "customization": "Customization",
+  "light": "Light",
+  "dark": "Dark",
+  "system": "System",
+  "profile": "Profile",
+  "additionalSettings": "Additional settings"
 }

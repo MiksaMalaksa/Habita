@@ -13,6 +13,8 @@ class ContainerButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: MediaQuery.of(context).size.width *0.13,
+      height: MediaQuery.of(context).size.width *0.13,
       decoration: BoxDecoration(
         color: backcolor,
         borderRadius: BorderRadius.circular(20),

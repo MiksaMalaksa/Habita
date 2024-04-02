@@ -1,6 +1,6 @@
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:habita/core/constants/font_family.dart';
 
 //*Habita bright pink & yellow colors
 final habitaColoringLight = FlexThemeData.light(
@@ -25,7 +25,7 @@ final habitaColoringLight = FlexThemeData.light(
   visualDensity: FlexColorScheme.comfortablePlatformDensity,
   useMaterial3: true,
   swapLegacyOnMaterial3: true,
-  fontFamily: GoogleFonts.nunito().fontFamily,
+  fontFamily: textTheme,
 );
 
 final habitaColoringDark = FlexThemeData.dark(
@@ -51,5 +51,5 @@ final habitaColoringDark = FlexThemeData.dark(
   visualDensity: FlexColorScheme.comfortablePlatformDensity,
   useMaterial3: true,
   swapLegacyOnMaterial3: true,
-  fontFamily: GoogleFonts.nunito().fontFamily,
+  fontFamily: textTheme,
 );

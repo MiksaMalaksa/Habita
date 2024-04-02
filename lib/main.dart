@@ -32,14 +32,19 @@ class Habita extends StatefulWidget {
   const Habita({super.key});
 
   @override
-  State<Habita> createState() => _HabitaState();
+  HabitaState createState() => HabitaState();
+
+  static HabitaState? of(BuildContext context) =>
+      context.findAncestorStateOfType<HabitaState>();
 }
 
-class _HabitaState extends State<Habita> {
+class HabitaState extends State<Habita> {
+  Locale? currentLocale;
 
-
-  void setLocale(){
-
+  void setLocale(Locale newLocale) {
+    setState(() {
+      currentLocale = newLocale;
+    });
   }
 
   @override
@@ -70,15 +75,18 @@ class _HabitaState extends State<Habita> {
           //*for the app locale, otherwise english
           localeListResolutionCallback: (deviceLocales, supportedLocales) {
             final supportedCodes = supportedLocales.map((e) => e.languageCode);
-            if (deviceLocales != null) {
+            if (deviceLocales != null && currentLocale == null) {
               for (final locale in deviceLocales) {
                 if (supportedCodes.contains(locale.languageCode)) {
                   return locale;
                 }
               }
+            } else {
+              return currentLocale;
             }
             return const Locale('en');
           },
+          locale: currentLocale,
           debugShowCheckedModeBanner: false,
           home: BlocSelector<AppUserCubit, AppUserState, bool>(
             selector: (state) {

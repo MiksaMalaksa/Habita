@@ -1,19 +1,50 @@
+import 'package:country_flags/country_flags.dart';
+import 'package:flutter/material.dart';
 
+class CustomizationDropDown<T> extends StatefulWidget {
+  final List<T> entries;
+  final List<Widget>? icons;
+  final void Function(String value) onChoosed;
+  const CustomizationDropDown(
+      {super.key, required this.entries, required this.onChoosed, this.icons});
 
-// import 'package:flutter/material.dart';
+  @override
+  State<CustomizationDropDown<T>> createState() => _DropDownState<T>();
+}
 
-// class DropDown extends StatefulWidget {
-//   final List<String> entries;
-//   final VoidCa
-//   const DropDown({super.key,});
+var ok = CountryFlag.fromCountryCode('cz') as Icon;
 
-//   @override
-//   State<DropDown> createState() => _DropDownState();
-// }
+class _DropDownState<T> extends State<CustomizationDropDown<T>> {
+  late T dropdownValue;
 
-// class _DropDownState extends State<DropDown> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return DropdownMenu(dropdownMenuEntries: dropdownMenuEntries);
-//   }
-// }
+  @override
+  void initState() {
+    super.initState();
+    dropdownValue = widget.entries.first;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return DropdownMenu<T>(
+        initialSelection: widget.entries.first,
+        width: MediaQuery.of(context).size.width * 0.9,
+        onSelected: (T? value) {
+          if (value != null) {
+            setState(() {
+              dropdownValue = value;
+              widget.onChoosed(value.toString());
+            });
+          }
+        },
+        dropdownMenuEntries:
+            widget.entries.asMap().entries.map<DropdownMenuEntry<T>>((entry) {
+          int index = entry.key;
+          T value = entry.value;
+          return DropdownMenuEntry(
+            value: value,
+            leadingIcon: widget.icons == null ? null : widget.icons![index],
+            label: value.toString(),
+          );
+        }).toList());
+  }
+}

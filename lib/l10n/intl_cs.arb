@@ -11,5 +11,10 @@
   "noAccount": "Nemáte účet?",
   "loginError": "Takový účet neexistuje, zkuste to znovu!",
   "incorrectSigningUp": "Něco se pokazilo",
-  "customization": "Přizpůsobení:"
+  "customization": "Přizpůsobení",
+  "light": "Světlo",
+  "dark": "Temný",
+  "system": "Systém",
+  "profile": "Profil",
+  "additionalSettings": "Další nastavení"
 }

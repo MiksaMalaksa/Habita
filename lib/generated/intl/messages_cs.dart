@@ -1,5 +1,5 @@
 // DO NOT EDIT. This is code generated via package:intl/generate_localized.dart
-// This is a library that provides messages for a cz locale. All the
+// This is a library that provides messages for a cs locale. All the
 // messages from the main program should be duplicated here with the same
 // function name.
 
@@ -18,13 +18,16 @@ final messages = new MessageLookup();
 typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 
 class MessageLookup extends MessageLookupByLibrary {
-  String get localeName => 'cz';
+  String get localeName => 'cs';
 
   static String m0(hintText) => "Nesprávně zadané jméno!";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-        "customization": MessageLookupByLibrary.simpleMessage("Přizpůsobení:"),
+        "additionalSettings":
+            MessageLookupByLibrary.simpleMessage("Další nastavení"),
+        "customization": MessageLookupByLibrary.simpleMessage("Přizpůsobení"),
+        "dark": MessageLookupByLibrary.simpleMessage("Temný"),
         "email": MessageLookupByLibrary.simpleMessage("E-mailem"),
         "haveAccountMessage":
             MessageLookupByLibrary.simpleMessage("Máte již účet?"),
@@ -33,13 +36,16 @@ class MessageLookup extends MessageLookupByLibrary {
             "Délka hesla musí být alespoň 6!  "),
         "incorrectSigningUp":
             MessageLookupByLibrary.simpleMessage("Něco se pokazilo"),
+        "light": MessageLookupByLibrary.simpleMessage("Světlo"),
         "loginError": MessageLookupByLibrary.simpleMessage(
             "Takový účet neexistuje, zkuste to znovu!"),
         "name": MessageLookupByLibrary.simpleMessage("Jméno"),
         "noAccount": MessageLookupByLibrary.simpleMessage("Nemáte účet?"),
         "password": MessageLookupByLibrary.simpleMessage("Heslo"),
+        "profile": MessageLookupByLibrary.simpleMessage("Profil"),
         "signIn": MessageLookupByLibrary.simpleMessage("Přihlásit se!"),
         "signUp": MessageLookupByLibrary.simpleMessage("Registrace!"),
-        "submit": MessageLookupByLibrary.simpleMessage("Potvrďte")
+        "submit": MessageLookupByLibrary.simpleMessage("Potvrďte"),
+        "system": MessageLookupByLibrary.simpleMessage("Systém")
       };
 }

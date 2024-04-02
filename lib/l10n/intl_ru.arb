@@ -11,5 +11,10 @@
   "noAccount": "Нет аккаунта?",
   "loginError": "Такого аккаунта нет, попробуйте еще раз!",
   "incorrectSigningUp": "Что-то пошло не так!",
-  "customization": "Кастомизация:"
+  "customization": "Кастомизация",
+  "light": "Светлая",
+  "dark": "Темная",
+  "system": "Системная",
+  "profile": "Профиль",
+  "additionalSettings": "Дополнительно"
 }

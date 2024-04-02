@@ -24,7 +24,10 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-        "customization": MessageLookupByLibrary.simpleMessage("Customization:"),
+        "additionalSettings":
+            MessageLookupByLibrary.simpleMessage("Additional settings"),
+        "customization": MessageLookupByLibrary.simpleMessage("Customization"),
+        "dark": MessageLookupByLibrary.simpleMessage("Dark"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
         "haveAccountMessage":
             MessageLookupByLibrary.simpleMessage("Already have an account?"),
@@ -33,14 +36,17 @@ class MessageLookup extends MessageLookupByLibrary {
             "Password can not be less then 6!"),
         "incorrectSigningUp":
             MessageLookupByLibrary.simpleMessage("Something went wrong!"),
+        "light": MessageLookupByLibrary.simpleMessage("Light"),
         "loginError":
             MessageLookupByLibrary.simpleMessage("No such account, try again!"),
         "name": MessageLookupByLibrary.simpleMessage("Name"),
         "noAccount":
             MessageLookupByLibrary.simpleMessage("Do not have an account?"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
+        "profile": MessageLookupByLibrary.simpleMessage("Profile"),
         "signIn": MessageLookupByLibrary.simpleMessage("Sign In!"),
         "signUp": MessageLookupByLibrary.simpleMessage("Sign Up!"),
-        "submit": MessageLookupByLibrary.simpleMessage("Submit")
+        "submit": MessageLookupByLibrary.simpleMessage("Submit"),
+        "system": MessageLookupByLibrary.simpleMessage("System")
       };
 }

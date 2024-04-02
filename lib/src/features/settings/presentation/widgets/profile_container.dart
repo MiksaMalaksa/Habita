@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:habita/core/common/widgets/container_button.dart';
 import 'package:fluttericon/elusive_icons.dart';
 import 'package:habita/core/extensions/color_rgb.dart';
+import 'package:habita/generated/l10n.dart';
 
 class ProfileContainer extends StatelessWidget {
   const ProfileContainer({
@@ -15,7 +16,7 @@ class ProfileContainer extends StatelessWidget {
         duration: const Duration(milliseconds: 200),
         curve: Curves.easeIn,
         width: double.infinity,
-        height: MediaQuery.of(context).size.height * 0.35,
+        height: MediaQuery.of(context).size.height * 0.37,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
             color: Theme.of(context).scaffoldBackgroundColor.elevateAllColors(
@@ -31,10 +32,10 @@ class ProfileContainer extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      'Profile:',
+                      S.of(context).profile,
                       style: Theme.of(context)
                           .textTheme
-                          .displayMedium!
+                          .displaySmall!
                           .copyWith(fontWeight: FontWeight.bold, color: Colors.white),
                     ),
                     const Spacer(),
@@ -51,7 +52,7 @@ class ProfileContainer extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(
-                  height: 5,
+                  height: 10,
                 ),
                 //!This icon will be replaced with custom widget of inkwell
                 Container(
