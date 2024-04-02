@@ -7,6 +7,7 @@ import 'package:habita/init_dependencies.dart';
 import 'package:habita/page_manager.dart';
 import 'package:habita/src/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:habita/src/features/auth/presentation/pages/login_page.dart';
+import 'package:habita/src/features/settings/presentation/bloc/settings_bloc.dart';
 import 'package:habita/src/themes/app_theme_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -22,6 +23,9 @@ Future<void> main() async {
         BlocProvider(
           create: (_) => sl<AuthBloc>(),
         ),
+        BlocProvider(
+          create: (_) => sl<SettingsBloc>(),
+        )
       ],
       child: const Habita(),
     ),

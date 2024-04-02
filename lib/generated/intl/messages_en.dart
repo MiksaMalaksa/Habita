@@ -46,7 +46,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "profile": MessageLookupByLibrary.simpleMessage("Profile"),
         "signIn": MessageLookupByLibrary.simpleMessage("Sign In!"),
         "signUp": MessageLookupByLibrary.simpleMessage("Sign Up!"),
+        "sourceCode": MessageLookupByLibrary.simpleMessage("Source code"),
         "submit": MessageLookupByLibrary.simpleMessage("Submit"),
-        "system": MessageLookupByLibrary.simpleMessage("System")
+        "system": MessageLookupByLibrary.simpleMessage("System"),
+        "telegram": MessageLookupByLibrary.simpleMessage("Text me")
       };
 }

@@ -15,4 +15,6 @@ final class AppUserLoggedIn extends AppUserState {
   const AppUserLoggedIn({required this.user});
 }
 
+final class AppUserLoading extends AppUserState{}
+
 //!core can not depend on other features

@@ -3,17 +3,24 @@ import 'package:habita/core/common/entities/user.dart';
 import 'package:habita/core/exceptions/exceptions.dart';
 import 'package:habita/core/failures/failure.dart';
 import 'package:habita/core/failures/ifailure.dart';
+import 'package:habita/core/network/connection_checker.dart';
 import 'package:habita/src/features/auth/data/data_sources/iauth_datasource.dart';
 import 'package:habita/src/features/auth/domain/repositories/iauth_repo.dart';
 
 class AuthRepoImpl implements IAuthRepo {
   final IAuthDataSource datasource;
+  final IConnectionChecker connectionChecker;
 
-  const AuthRepoImpl({required this.datasource});
+  const AuthRepoImpl(
+      {required this.datasource, required this.connectionChecker});
 
   @override
   Future<Either<Failure, User>> currentUser() async {
     try {
+      //*check the internet
+      if (!await (connectionChecker.isConnected)) {
+        return const Left(ServerFailure(message: 'No connection'));
+      }
       final result = await datasource.getCurrentUserData();
       if (result == null) {
         return const Left(ServerFailure(message: 'User is not plugged in!'));
@@ -50,6 +57,10 @@ class AuthRepoImpl implements IAuthRepo {
   Future<Either<Failure, User>> _getUser(
       {required Future<User> Function() function}) async {
     try {
+      //*check the internet
+      if (!await (connectionChecker.isConnected)) {
+        return const Left(ServerFailure(message: 'No connection'));
+      }
       final result = await function();
       return Right(result);
     } on ServerException catch (e) {

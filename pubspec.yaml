@@ -1,7 +1,7 @@
 name: habita
 description: "A new Flutter project."
 
-publish_to: 'none' 
+publish_to: 'none'
 
 version: 1.0.0+1
 
@@ -9,38 +9,42 @@ environment:
   sdk: '>=3.2.3 <4.0.0'
 
 dependencies:
-  flutter:
-    sdk: flutter
-  flutter_localizations:
-    sdk: flutter
-
+  bloc: ^8.1.4
+  country_flags: ^2.2.0
   cupertino_icons: ^1.0.2
   dartz: ^0.10.1
   equatable: ^2.0.5
-  flutter_bloc: ^8.1.4
-  bloc: ^8.1.4
-  flutter_provider: ^2.1.0
   flex_color_scheme: ^7.3.1
-  google_fonts: ^6.2.1
-  provider: ^6.1.2
-  intl: ^0.18.1
-  supabase_flutter: ^2.3.4
-  get_it: ^7.6.7
-  loading_animation_widget: ^1.2.1
-  internet_connection_checker: ^1.0.0+1
+  flutter:
+    sdk: flutter
+  flutter_bloc: ^8.1.4
+  flutter_localizations:
+    sdk: flutter
+  flutter_provider: ^2.1.0
   fluttericon: ^2.0.0
-  country_flags: ^2.2.0
+  get_it: ^7.6.7
+  google_fonts: ^6.2.1
+  image_picker: ^1.0.7
+  internet_connection_checker: ^1.0.0+1
+  intl: ^0.18.1
+  loading_animation_widget: ^1.2.1
+  provider: ^6.1.2
+  supabase_flutter: ^2.3.4
+  url_launcher: ^6.2.5
 
 dev_dependencies:
-  flutter_test:
-    sdk: flutter
 
   flutter_lints: ^2.0.0
-
+  flutter_test:
+    sdk: flutter
 
 flutter:
 
   uses-material-design: true
+
+  assets:
+    - assets/tg.png
+    - assets/git_hub.png
 
 flutter_intl:
   enabled: true

@@ -16,5 +16,7 @@
   "dark": "Темная",
   "system": "Системная",
   "profile": "Профиль",
-  "additionalSettings": "Дополнительно"
+  "additionalSettings": "Дополнительно",
+  "telegram": "Написать мне",
+  "sourceCode": "Kód projektu"
 }

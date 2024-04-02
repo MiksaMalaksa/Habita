@@ -229,6 +229,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Text me`
+  String get telegram {
+    return Intl.message(
+      'Text me',
+      name: 'telegram',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Source code`
+  String get sourceCode {
+    return Intl.message(
+      'Source code',
+      name: 'sourceCode',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

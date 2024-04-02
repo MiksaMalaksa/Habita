@@ -16,5 +16,7 @@
   "dark": "Dark",
   "system": "System",
   "profile": "Profile",
-  "additionalSettings": "Additional settings"
+  "additionalSettings": "Additional settings",
+  "telegram": "Text me",
+  "sourceCode": "Source code"
 }
