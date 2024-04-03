@@ -18,7 +18,7 @@ final class AuthError extends AuthState {
 }
 
 final class AuthLoaded extends AuthState {
-  final User user;
+  final SupaUser user;
 
   const AuthLoaded({required this.user});
 }

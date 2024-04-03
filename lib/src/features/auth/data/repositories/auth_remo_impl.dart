@@ -15,7 +15,7 @@ class AuthRepoImpl implements IAuthRepo {
       {required this.datasource, required this.connectionChecker});
 
   @override
-  Future<Either<Failure, User>> currentUser() async {
+  Future<Either<Failure, SupaUser>> currentUser() async {
     try {
       //*check the internet
       if (!await (connectionChecker.isConnected)) {
@@ -32,7 +32,7 @@ class AuthRepoImpl implements IAuthRepo {
   }
 
   @override
-  Future<Either<Failure, User>> signUp({
+  Future<Either<Failure, SupaUser>> signUp({
     required String name,
     required String email,
     required String password,
@@ -47,7 +47,7 @@ class AuthRepoImpl implements IAuthRepo {
   }
 
   @override
-  Future<Either<Failure, User>> signIn({
+  Future<Either<Failure, SupaUser>> signIn({
     required String email,
     required String password,
   }) async {
@@ -59,8 +59,8 @@ class AuthRepoImpl implements IAuthRepo {
     );
   }
 
-  Future<Either<Failure, User>> _getUser(
-      {required Future<User> Function() function}) async {
+  Future<Either<Failure, SupaUser>> _getUser(
+      {required Future<SupaUser> Function() function}) async {
     try {
       //*check the internet
       if (!await (connectionChecker.isConnected)) {

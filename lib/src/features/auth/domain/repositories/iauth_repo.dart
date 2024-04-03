@@ -3,16 +3,16 @@ import 'package:habita/core/failures/ifailure.dart';
 import 'package:habita/core/common/entities/user.dart';
 
 abstract interface class IAuthRepo {
-  Future<Either<Failure, User>> signIn({
+  Future<Either<Failure, SupaUser>> signIn({
     required String email,
     required String password,
   });
 
-  Future<Either<Failure, User>> signUp({
+  Future<Either<Failure, SupaUser>> signUp({
     required String name,
     required String email,
     required String password,
   });
 
-  Future<Either<Failure, User>> currentUser();
+  Future<Either<Failure, SupaUser>> currentUser();
 }

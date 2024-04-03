@@ -64,7 +64,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   //*mutual
   void _emitAuthSuccess(
-      {required User user, required Emitter<AuthState> emit}) {
+      {required SupaUser user, required Emitter<AuthState> emit}) {
     _userCubit.updateUser(user);
     emit(AuthLoaded(user: user));
   }

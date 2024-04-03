@@ -10,7 +10,7 @@ sealed class AppUserState extends Equatable {
 final class AppUserInitial extends AppUserState {}
 
 final class AppUserLoggedIn extends AppUserState {
-  final User user;
+  final SupaUser user;
 
   const AppUserLoggedIn({required this.user});
 }

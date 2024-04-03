@@ -1,21 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:habita/core/extensions/color_rgb.dart';
 
-class ContainerButtonRow extends StatelessWidget {
+class ContainerButtonRowIcon extends StatelessWidget {
   final Color backColor;
   final String content;
   final VoidCallback onPressed;
-  final String? assetPath;
-  final IconData? icon;
-  final double? fontSize;
-  const ContainerButtonRow({
+  final IconData icon;
+  final double fontSize;
+  const ContainerButtonRowIcon({
     super.key,
     required this.backColor,
     required this.content,
     required this.onPressed,
-    this.assetPath,
-    this.icon,
-    this.fontSize,
+    required this.icon,
+    required this.fontSize,
   });
 
   @override
@@ -41,25 +39,19 @@ class ContainerButtonRow extends StatelessWidget {
               child: Text(
                 content,
                 style: Theme.of(context).textTheme.headlineMedium!.copyWith(
-                      fontSize:
-                          fontSize ?? MediaQuery.of(context).size.width * 0.06,
+                      fontSize: fontSize,
                       color: Colors.white,
                     ),
               ),
             ),
             Flexible(
-                child: icon == null && assetPath == null
-                    ? const Text('')
-                    : icon == null
-                        ? Image(
-                            width: MediaQuery.of(context).size.width * 0.13,
-                            height: MediaQuery.of(context).size.width * 0.13,
-                            image: AssetImage(assetPath!),
-                          )
-                        : Padding(
-                          padding: const EdgeInsets.all(8),
-                          child: Icon(icon!,size: MediaQuery.of(context).size.width * 0.10,),
-                        ))
+                child: Padding(
+              padding: const EdgeInsets.all(8),
+              child: Icon(
+                icon,
+                size: MediaQuery.of(context).size.width * 0.10,
+              ),
+            ))
           ],
         ),
       ),

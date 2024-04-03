@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:habita/core/common/widgets/app_bar.dart';
-import 'package:habita/core/common/widgets/container_button_row.dart';
+import 'package:habita/core/common/widgets/container_button_row_icon.dart';
 import 'package:habita/core/common/widgets/text_button.dart';
 import 'package:habita/core/extensions/color_rgb.dart';
 import 'package:habita/generated/l10n.dart';
@@ -125,19 +125,22 @@ class _EditProfileState extends State<EditProfile> {
                 ),
                 const SizedBox(height: 30),
                 //*Forget password
-                ContainerButtonRow(
-                    backColor: Theme.of(context).colorScheme.secondaryContainer,
-                    content: S.of(context).forgetPassword,
-                    fontSize: MediaQuery.of(context).size.width*0.05,
-                    onPressed: (){},
-                    icon: Entypo.key,),
+                ContainerButtonRowIcon(
+                  backColor: Theme.of(context).colorScheme.secondaryContainer,
+                  content: S.of(context).forgetPassword,
+                  fontSize: MediaQuery.of(context).size.width * 0.05,
+                  onPressed: () {},
+                  icon: Entypo.key,
+                ),
                 //*Sign out
                 const SizedBox(height: 15),
-                ContainerButtonRow(
-                    backColor: Theme.of(context).colorScheme.errorContainer,
-                    content: S.of(context).signOut,
-                    onPressed: (){},
-                    icon: FontAwesome5.sign_out_alt,)
+                ContainerButtonRowIcon(
+                  backColor: Theme.of(context).colorScheme.errorContainer,
+                  content: S.of(context).signOut,
+                  fontSize: MediaQuery.of(context).size.width * 0.05,
+                  onPressed: () {},
+                  icon: FontAwesome5.sign_out_alt,
+                )
               ],
             ),
           ),

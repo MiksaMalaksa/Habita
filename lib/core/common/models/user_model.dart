@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:habita/core/common/entities/user.dart';
 
-class UserModel extends User {
+class UserModel extends SupaUser {
   UserModel({
     required super.id,
     required super.email,
@@ -31,7 +31,7 @@ class UserModel extends User {
       UserModel.fromMap(jsonDecode(source));
 
   //*to_model
-  factory UserModel.toModel(User user) =>
+  factory UserModel.toModel(SupaUser user) =>
       UserModel(email: user.email, id: user.id, name: user.name);
 
   UserModel copyWith({String? id, String? email, String? name}) {

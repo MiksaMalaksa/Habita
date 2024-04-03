@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:habita/core/common/widgets/container_button_row.dart';
+import 'package:habita/core/common/widgets/container_button_row_image.dart';
 import 'package:habita/core/constants/colors.dart';
 import 'package:habita/core/constants/flags.dart';
 import 'package:habita/core/utils/show_snackbar.dart';
@@ -79,7 +79,7 @@ class ProfilePage extends StatelessWidget {
             const SizedBox(height: 10),
             //*Telegram
             Center(
-              child: ContainerButtonRow(
+              child: ContainerButtonRowImage(
                 backColor: telegramColor,
                 assetPath: 'assets/tg.png',
                 content: S.of(context).telegram,
@@ -90,7 +90,7 @@ class ProfilePage extends StatelessWidget {
             const SizedBox(height: 10),
             //*GitHub
             Center(
-              child: ContainerButtonRow(
+              child: ContainerButtonRowImage(
                 backColor: gitColor,
                 assetPath: 'assets/git_hub.png',
                 content: S.of(context).sourceCode,
