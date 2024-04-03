@@ -58,7 +58,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "system": MessageLookupByLibrary.simpleMessage("Systém"),
         "telegram": MessageLookupByLibrary.simpleMessage("Napište mi"),
         "wantToLogOut": MessageLookupByLibrary.simpleMessage(
-            "Do you really want to log out?"),
+            "Opravdu se chcete odhlásit ze svého účtu?"),
         "yes": MessageLookupByLibrary.simpleMessage("Ano")
       };
 }

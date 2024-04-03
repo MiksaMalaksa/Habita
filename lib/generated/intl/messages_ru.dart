@@ -55,12 +55,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "signIn": MessageLookupByLibrary.simpleMessage("Войти!"),
         "signOut": MessageLookupByLibrary.simpleMessage("Выйти с аккаунта"),
         "signUp": MessageLookupByLibrary.simpleMessage("Регистрация!"),
-        "sourceCode": MessageLookupByLibrary.simpleMessage("Kód projektu"),
+        "sourceCode": MessageLookupByLibrary.simpleMessage("Код проекта"),
         "submit": MessageLookupByLibrary.simpleMessage("Подтвердить"),
         "system": MessageLookupByLibrary.simpleMessage("Системная"),
         "telegram": MessageLookupByLibrary.simpleMessage("Написать мне"),
         "wantToLogOut": MessageLookupByLibrary.simpleMessage(
-            "Opravdu se chcete odhlásit ze svého účtu?"),
+            "Вы точно хотите выйти с аккаунта?"),
         "yes": MessageLookupByLibrary.simpleMessage("Да")
       };
 }
