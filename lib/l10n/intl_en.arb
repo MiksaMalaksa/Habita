@@ -20,5 +20,14 @@
   "telegram": "Text me",
   "sourceCode": "Source code",
   "account": "Account",
-  "save": "Save"
+  "save": "Save",
+  "changeAvatar": "CHANGE AVATAR",
+  "oldPassword": "Old password",
+  "newPassword": "New password",
+  "alertLogout": "Loggin out",
+  "wantToLogOut": "Do you really want to log out?",
+  "no": "No",
+  "yes": "Yes",
+  "forgetPassword": "Restore password",
+  "signOut": "Sign out"
 }

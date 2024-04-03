@@ -34,15 +34,8 @@ class AuthField extends StatelessWidget {
           contentPadding: const EdgeInsets.all(22)),
       //*Validation
       validator: (value) {
-        //*mutual case
         if (value!.isEmpty) {
           return S.of(context).hintMissing(hintText);
-        }
-        //*password case
-        if (hintText == S.of(context).password) {
-          if (value.length < 6) {
-            return S.of(context).incorrectPassword;
-          }
         }
         return null;
       },

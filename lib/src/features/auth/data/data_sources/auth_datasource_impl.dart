@@ -1,6 +1,6 @@
 import 'package:habita/core/exceptions/exceptions.dart';
 import 'package:habita/src/features/auth/data/data_sources/iauth_datasource.dart';
-import 'package:habita/src/features/auth/data/models/user_model.dart';
+import 'package:habita/core/common/models/user_model.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class AuthDatasourceImpl implements IAuthDataSource {

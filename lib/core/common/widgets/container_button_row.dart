@@ -5,13 +5,17 @@ class ContainerButtonRow extends StatelessWidget {
   final Color backColor;
   final String content;
   final VoidCallback onPressed;
-  final String assetPath;
+  final String? assetPath;
+  final IconData? icon;
+  final double? fontSize;
   const ContainerButtonRow({
     super.key,
     required this.backColor,
     required this.content,
     required this.onPressed,
-    required this.assetPath,
+    this.assetPath,
+    this.icon,
+    this.fontSize,
   });
 
   @override
@@ -37,18 +41,25 @@ class ContainerButtonRow extends StatelessWidget {
               child: Text(
                 content,
                 style: Theme.of(context).textTheme.headlineMedium!.copyWith(
-                      fontSize: MediaQuery.of(context).size.width * 0.06,
+                      fontSize:
+                          fontSize ?? MediaQuery.of(context).size.width * 0.06,
                       color: Colors.white,
                     ),
               ),
             ),
             Flexible(
-              child: Image(
-                width: MediaQuery.of(context).size.width * 0.13,
-                height: MediaQuery.of(context).size.width * 0.13,
-                image: AssetImage(assetPath),
-              ),
-            )
+                child: icon == null && assetPath == null
+                    ? const Text('')
+                    : icon == null
+                        ? Image(
+                            width: MediaQuery.of(context).size.width * 0.13,
+                            height: MediaQuery.of(context).size.width * 0.13,
+                            image: AssetImage(assetPath!),
+                          )
+                        : Padding(
+                          padding: const EdgeInsets.all(8),
+                          child: Icon(icon!,size: MediaQuery.of(context).size.width * 0.10,),
+                        ))
           ],
         ),
       ),

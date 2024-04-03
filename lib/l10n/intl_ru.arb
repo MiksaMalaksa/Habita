@@ -18,7 +18,16 @@
   "profile": "Профиль",
   "additionalSettings": "Дополнительно",
   "telegram": "Написать мне",
-  "sourceCode": "Kód projektu",
+  "sourceCode": "Код проекта",
   "account": "Аккаунт",
-  "save": "Сохранить"
+  "save": "Сохранить",
+  "changeAvatar": "ПОМЕНЯТЬ АВАТАР",
+  "oldPassword": "Старый пароль",
+  "newPassword": "Новый пароль",
+  "alertLogout": "Выход с аккаунта",
+  "wantToLogOut": "Вы точно хотите выйти с аккаунта?",
+  "no": "Нет",
+  "yes": "Да",
+  "forgetPassword": "Восстановить пароль",
+  "signOut": "Выйти с аккаунта"
 }

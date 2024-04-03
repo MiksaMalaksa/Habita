@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:habita/src/themes/app_theme.dart';
-import 'package:habita/src/themes/combinations/habbita_theme.dart';
+import 'package:habita/src/themes/combinations/sakura_theme.dart';
 
 class ThemeProvider with ChangeNotifier {
   ThemeMode currentMode = ThemeMode.system;
@@ -10,8 +10,8 @@ class ThemeProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  ThemeData currentCustomThemeLight = habitaColoringLight;
-  ThemeData currentCustomThemeDark = habitaColoringDark;
+  ThemeData currentCustomThemeLight = sakuraColoringLight;
+  ThemeData currentCustomThemeDark = sakuraColoringDark;
 
   //!Add suffix to theme defining its mode belonging
   void setSelectedScheme(String scheme) {

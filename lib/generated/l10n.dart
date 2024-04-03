@@ -269,6 +269,96 @@ class S {
       args: [],
     );
   }
+
+  /// `CHANGE AVATAR`
+  String get changeAvatar {
+    return Intl.message(
+      'CHANGE AVATAR',
+      name: 'changeAvatar',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Old password`
+  String get oldPassword {
+    return Intl.message(
+      'Old password',
+      name: 'oldPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `New password`
+  String get newPassword {
+    return Intl.message(
+      'New password',
+      name: 'newPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Loggin out`
+  String get alertLogout {
+    return Intl.message(
+      'Loggin out',
+      name: 'alertLogout',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Do you really want to log out?`
+  String get wantToLogOut {
+    return Intl.message(
+      'Do you really want to log out?',
+      name: 'wantToLogOut',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No`
+  String get no {
+    return Intl.message(
+      'No',
+      name: 'no',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Yes`
+  String get yes {
+    return Intl.message(
+      'Yes',
+      name: 'yes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Restore password`
+  String get forgetPassword {
+    return Intl.message(
+      'Restore password',
+      name: 'forgetPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sign out`
+  String get signOut {
+    return Intl.message(
+      'Sign out',
+      name: 'signOut',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

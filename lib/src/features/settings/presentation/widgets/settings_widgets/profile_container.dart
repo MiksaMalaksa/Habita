@@ -4,7 +4,7 @@ import 'package:fluttericon/elusive_icons.dart';
 import 'package:habita/core/extensions/color_rgb.dart';
 import 'package:habita/generated/l10n.dart';
 import 'package:habita/src/features/settings/presentation/screens/profile_edit_screen.dart';
-import 'package:habita/src/features/settings/presentation/widgets/profile_picture.dart';
+import 'package:habita/src/features/settings/presentation/widgets/settings_widgets/profile_picture.dart';
 import 'package:habita/src/themes/app_theme_provider.dart';
 import 'package:provider/provider.dart';
 

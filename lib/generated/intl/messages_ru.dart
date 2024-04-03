@@ -27,9 +27,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "account": MessageLookupByLibrary.simpleMessage("Аккаунт"),
         "additionalSettings":
             MessageLookupByLibrary.simpleMessage("Дополнительно"),
+        "alertLogout": MessageLookupByLibrary.simpleMessage("Выход с аккаунта"),
+        "changeAvatar": MessageLookupByLibrary.simpleMessage("ПОМЕНЯТЬ АВАТАР"),
         "customization": MessageLookupByLibrary.simpleMessage("Кастомизация"),
         "dark": MessageLookupByLibrary.simpleMessage("Темная"),
         "email": MessageLookupByLibrary.simpleMessage("Электронная почта"),
+        "forgetPassword":
+            MessageLookupByLibrary.simpleMessage("Восстановить пароль"),
         "haveAccountMessage":
             MessageLookupByLibrary.simpleMessage("Уже существует аккаунт?"),
         "hintMissing": m0,
@@ -41,15 +45,22 @@ class MessageLookup extends MessageLookupByLibrary {
         "loginError": MessageLookupByLibrary.simpleMessage(
             "Такого аккаунта нет, попробуйте еще раз!"),
         "name": MessageLookupByLibrary.simpleMessage("Имя"),
+        "newPassword": MessageLookupByLibrary.simpleMessage("Новый пароль"),
+        "no": MessageLookupByLibrary.simpleMessage("Нет"),
         "noAccount": MessageLookupByLibrary.simpleMessage("Нет аккаунта?"),
+        "oldPassword": MessageLookupByLibrary.simpleMessage("Старый пароль"),
         "password": MessageLookupByLibrary.simpleMessage("Пароль"),
         "profile": MessageLookupByLibrary.simpleMessage("Профиль"),
         "save": MessageLookupByLibrary.simpleMessage("Сохранить"),
         "signIn": MessageLookupByLibrary.simpleMessage("Войти!"),
+        "signOut": MessageLookupByLibrary.simpleMessage("Выйти с аккаунта"),
         "signUp": MessageLookupByLibrary.simpleMessage("Регистрация!"),
         "sourceCode": MessageLookupByLibrary.simpleMessage("Kód projektu"),
         "submit": MessageLookupByLibrary.simpleMessage("Подтвердить"),
         "system": MessageLookupByLibrary.simpleMessage("Системная"),
-        "telegram": MessageLookupByLibrary.simpleMessage("Написать мне")
+        "telegram": MessageLookupByLibrary.simpleMessage("Написать мне"),
+        "wantToLogOut": MessageLookupByLibrary.simpleMessage(
+            "Opravdu se chcete odhlásit ze svého účtu?"),
+        "yes": MessageLookupByLibrary.simpleMessage("Да")
       };
 }

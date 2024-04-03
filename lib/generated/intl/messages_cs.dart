@@ -27,9 +27,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "account": MessageLookupByLibrary.simpleMessage("Účet"),
         "additionalSettings":
             MessageLookupByLibrary.simpleMessage("Další nastavení"),
+        "alertLogout": MessageLookupByLibrary.simpleMessage("Odhlášení z účtu"),
+        "changeAvatar": MessageLookupByLibrary.simpleMessage("ZMĚNIT AVATAR"),
         "customization": MessageLookupByLibrary.simpleMessage("Přizpůsobení"),
         "dark": MessageLookupByLibrary.simpleMessage("Temný"),
         "email": MessageLookupByLibrary.simpleMessage("E-mailem"),
+        "forgetPassword": MessageLookupByLibrary.simpleMessage("Obnovit heslo"),
         "haveAccountMessage":
             MessageLookupByLibrary.simpleMessage("Máte již účet?"),
         "hintMissing": m0,
@@ -41,15 +44,21 @@ class MessageLookup extends MessageLookupByLibrary {
         "loginError": MessageLookupByLibrary.simpleMessage(
             "Takový účet neexistuje, zkuste to znovu!"),
         "name": MessageLookupByLibrary.simpleMessage("Jméno"),
+        "no": MessageLookupByLibrary.simpleMessage("Ne"),
         "noAccount": MessageLookupByLibrary.simpleMessage("Nemáte účet?"),
+        "oldPassword": MessageLookupByLibrary.simpleMessage("Nové heslo"),
         "password": MessageLookupByLibrary.simpleMessage("Heslo"),
         "profile": MessageLookupByLibrary.simpleMessage("Profil"),
         "save": MessageLookupByLibrary.simpleMessage("Uložit"),
         "signIn": MessageLookupByLibrary.simpleMessage("Přihlásit se!"),
+        "signOut": MessageLookupByLibrary.simpleMessage("Odhlášení z účtu"),
         "signUp": MessageLookupByLibrary.simpleMessage("Registrace!"),
         "sourceCode": MessageLookupByLibrary.simpleMessage("Source code"),
         "submit": MessageLookupByLibrary.simpleMessage("Potvrďte"),
         "system": MessageLookupByLibrary.simpleMessage("Systém"),
-        "telegram": MessageLookupByLibrary.simpleMessage("Napište mi")
+        "telegram": MessageLookupByLibrary.simpleMessage("Napište mi"),
+        "wantToLogOut": MessageLookupByLibrary.simpleMessage(
+            "Do you really want to log out?"),
+        "yes": MessageLookupByLibrary.simpleMessage("Ano")
       };
 }

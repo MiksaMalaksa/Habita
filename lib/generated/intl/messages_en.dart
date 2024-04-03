@@ -27,9 +27,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "account": MessageLookupByLibrary.simpleMessage("Account"),
         "additionalSettings":
             MessageLookupByLibrary.simpleMessage("Additional settings"),
+        "alertLogout": MessageLookupByLibrary.simpleMessage("Loggin out"),
+        "changeAvatar": MessageLookupByLibrary.simpleMessage("CHANGE AVATAR"),
         "customization": MessageLookupByLibrary.simpleMessage("Customization"),
         "dark": MessageLookupByLibrary.simpleMessage("Dark"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
+        "forgetPassword":
+            MessageLookupByLibrary.simpleMessage("Restore password"),
         "haveAccountMessage":
             MessageLookupByLibrary.simpleMessage("Already have an account?"),
         "hintMissing": m0,
@@ -41,16 +45,23 @@ class MessageLookup extends MessageLookupByLibrary {
         "loginError":
             MessageLookupByLibrary.simpleMessage("No such account, try again!"),
         "name": MessageLookupByLibrary.simpleMessage("Name"),
+        "newPassword": MessageLookupByLibrary.simpleMessage("New password"),
+        "no": MessageLookupByLibrary.simpleMessage("No"),
         "noAccount":
             MessageLookupByLibrary.simpleMessage("Do not have an account?"),
+        "oldPassword": MessageLookupByLibrary.simpleMessage("Old password"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
         "profile": MessageLookupByLibrary.simpleMessage("Profile"),
         "save": MessageLookupByLibrary.simpleMessage("Save"),
         "signIn": MessageLookupByLibrary.simpleMessage("Sign In!"),
+        "signOut": MessageLookupByLibrary.simpleMessage("Sign out"),
         "signUp": MessageLookupByLibrary.simpleMessage("Sign Up!"),
         "sourceCode": MessageLookupByLibrary.simpleMessage("Source code"),
         "submit": MessageLookupByLibrary.simpleMessage("Submit"),
         "system": MessageLookupByLibrary.simpleMessage("System"),
-        "telegram": MessageLookupByLibrary.simpleMessage("Text me")
+        "telegram": MessageLookupByLibrary.simpleMessage("Text me"),
+        "wantToLogOut": MessageLookupByLibrary.simpleMessage(
+            "Do you really want to log out?"),
+        "yes": MessageLookupByLibrary.simpleMessage("Yes")
       };
 }

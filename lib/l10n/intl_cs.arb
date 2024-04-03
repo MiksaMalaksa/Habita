@@ -20,5 +20,16 @@
   "telegram": "Napište mi",
   "sourceCode": "Source code",
   "account": "Účet",
-  "save": "Uložit"
+  "save": "Uložit",
+  "changeAvatar": "ZMĚNIT AVATAR",
+  "oldPassword": "Nové heslo",
+  "alertLogout": "Odhlášení z účtu",
+  "wantToLogOut": "Opravdu se chcete odhlásit ze svého účtu?",
+  "no": "Ne",
+  "yes": "Ano",
+  "forgetPassword": "Obnovit heslo",
+  "signOut": "Odhlášení z účtu"
 }
+
+
+
