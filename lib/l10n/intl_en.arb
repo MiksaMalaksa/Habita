@@ -18,5 +18,7 @@
   "profile": "Profile",
   "additionalSettings": "Additional settings",
   "telegram": "Text me",
-  "sourceCode": "Source code"
+  "sourceCode": "Source code",
+  "account": "Account",
+  "save": "Save"
 }

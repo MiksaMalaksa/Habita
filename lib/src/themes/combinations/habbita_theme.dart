@@ -6,7 +6,7 @@ import 'package:habita/core/constants/font_family.dart';
 final habitaColoringLight = FlexThemeData.light(
   colors: const FlexSchemeColor(
     primary: Color.fromARGB(255, 247, 72, 119),
-    primaryContainer: Color.fromARGB(255, 255, 210, 118),
+    primaryContainer: Color.fromARGB(255, 230, 184, 229),
     secondary: Color.fromARGB(255, 247, 182, 212),
     secondaryContainer: Color.fromARGB(255, 252, 224, 247),
     tertiary: Color.fromARGB(255, 255, 247, 118),

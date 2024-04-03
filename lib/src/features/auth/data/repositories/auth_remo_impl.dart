@@ -38,8 +38,12 @@ class AuthRepoImpl implements IAuthRepo {
     required String password,
   }) async {
     return _getUser(
-        function: () async => await datasource.signUp(
-            email: email, password: password, name: name));
+      function: () async => await datasource.signUp(
+        email: email,
+        password: password,
+        name: name,
+      ),
+    );
   }
 
   @override
@@ -48,10 +52,11 @@ class AuthRepoImpl implements IAuthRepo {
     required String password,
   }) async {
     return _getUser(
-        function: () async => await datasource.signIn(
-              email: email,
-              password: password,
-            ));
+      function: () async => await datasource.signIn(
+        email: email,
+        password: password,
+      ),
+    );
   }
 
   Future<Either<Failure, User>> _getUser(

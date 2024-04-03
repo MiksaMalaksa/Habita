@@ -5,8 +5,12 @@ class CustomizationDropDown<T> extends StatefulWidget {
   final List<T> entries;
   final List<Widget>? icons;
   final void Function(String value) onChoosed;
-  const CustomizationDropDown(
-      {super.key, required this.entries, required this.onChoosed, this.icons});
+  const CustomizationDropDown({
+    super.key,
+    required this.entries,
+    required this.onChoosed,
+    this.icons,
+  });
 
   @override
   State<CustomizationDropDown<T>> createState() => _DropDownState<T>();
@@ -27,6 +31,8 @@ class _DropDownState<T> extends State<CustomizationDropDown<T>> {
   Widget build(BuildContext context) {
     return DropdownMenu<T>(
         initialSelection: widget.entries.first,
+        textStyle: Theme.of(context).dropdownMenuTheme.textStyle,
+        menuStyle: Theme.of(context).dropdownMenuTheme.menuStyle,
         width: MediaQuery.of(context).size.width * 0.9,
         onSelected: (T? value) {
           if (value != null) {
@@ -41,6 +47,7 @@ class _DropDownState<T> extends State<CustomizationDropDown<T>> {
           int index = entry.key;
           T value = entry.value;
           return DropdownMenuEntry(
+            style: Theme.of(context).menuButtonTheme.style,
             value: value,
             leadingIcon: widget.icons == null ? null : widget.icons![index],
             label: value.toString(),

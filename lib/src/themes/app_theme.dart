@@ -40,14 +40,14 @@ List<String> colorCombinations = [
 
 //!In drop box there aree the names of themes and + theme mode = current comb
 Map<String, ThemeData> combinations = {
-  'MainLight': habitaColoringLight,
-  'MainDark': habitaColoringDark,
-  'IndigoLight': indigoColoringLight,
-  'IndigoDark': indigoColoringDark,
-  'PurpleLight': purpleColoringLight,
-  'PurpleDark': purpleColoringDark,
-  'Red-BlueLight': redBlueColoringLight,
-  'Red-BlueDark': redBlueColoringDark,
-  'SakuraLight': sakuraColoringLight,
-  'SakuraDark': sakuraColoringDark
+  '${colorCombinations[0]}Light': habitaColoringLight,
+  '${colorCombinations[0]}Dark': habitaColoringDark,
+  '${colorCombinations[1]}Light': indigoColoringLight,
+  '${colorCombinations[1]}Dark': indigoColoringDark,
+  '${colorCombinations[2]}Light': purpleColoringLight,
+  '${colorCombinations[2]}Dark': purpleColoringDark,
+  '${colorCombinations[3]}Light': redBlueColoringLight,
+  '${colorCombinations[3]}Dark': redBlueColoringDark,
+  '${colorCombinations[4]}Light': sakuraColoringLight,
+  '${colorCombinations[4]}Dark': sakuraColoringDark
 };

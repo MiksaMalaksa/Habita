@@ -11,6 +11,11 @@ import 'package:habita/src/features/auth/domain/usecases/current_user_usecase.da
 import 'package:habita/src/features/auth/domain/usecases/login_usecase.dart';
 import 'package:habita/src/features/auth/domain/usecases/signup_usecase.dart';
 import 'package:habita/src/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:habita/src/features/settings/data/datasources/isettings_datasource.dart';
+import 'package:habita/src/features/settings/data/datasources/settings_datasource_impl.dart';
+import 'package:habita/src/features/settings/data/repo/settings_repo_impl.dart';
+import 'package:habita/src/features/settings/domain/repo/isettings_repo.dart';
+import 'package:habita/src/features/settings/domain/usecases/signout_usecase.dart';
 import 'package:habita/src/features/settings/presentation/bloc/settings_bloc.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -59,6 +64,15 @@ void _initAuth() {
 }
 
 void _initSettings() {
+  sl.registerFactory<ISettingsDataSource>(
+      () => SettingsDataSourceImpl(client: sl()));
+  sl.registerFactory<ISettingsRepo>(
+      () => SettingsRepoImpl(datasource: sl(), connectionChecker: sl()));
+  //*usecases
+  sl.registerFactory(
+    () => UserSignOut(repository: sl()),
+  );
   //*Bloc
-  sl.registerLazySingleton(() => SettingsBloc());
+  sl.registerLazySingleton(
+      () => SettingsBloc(userCubit: sl(), userSignOut: sl()));
 }

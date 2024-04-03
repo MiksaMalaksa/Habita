@@ -7,6 +7,8 @@ sealed class SettingsEvent extends Equatable {
   List<Object> get props => [];
 }
 
+final class SettingsUserSignOut extends SettingsEvent{}
+
 final class SettingsGoTelegram extends SettingsEvent{}
 
 final class SettingsGoGitHub extends SettingsEvent{}

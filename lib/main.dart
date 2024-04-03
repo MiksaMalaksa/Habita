@@ -11,6 +11,12 @@ import 'package:habita/src/features/settings/presentation/bloc/settings_bloc.dar
 import 'package:habita/src/themes/app_theme_provider.dart';
 import 'package:provider/provider.dart';
 
+//!shared preferencies for settings and profile info
+//!all class modifiers(again)
+//!bloc methods
+//!changeable info with bottom modal sheet
+//!find where to code sql 
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initialise();

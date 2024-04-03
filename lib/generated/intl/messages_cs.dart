@@ -24,6 +24,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "account": MessageLookupByLibrary.simpleMessage("Účet"),
         "additionalSettings":
             MessageLookupByLibrary.simpleMessage("Další nastavení"),
         "customization": MessageLookupByLibrary.simpleMessage("Přizpůsobení"),
@@ -43,6 +44,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "noAccount": MessageLookupByLibrary.simpleMessage("Nemáte účet?"),
         "password": MessageLookupByLibrary.simpleMessage("Heslo"),
         "profile": MessageLookupByLibrary.simpleMessage("Profil"),
+        "save": MessageLookupByLibrary.simpleMessage("Uložit"),
         "signIn": MessageLookupByLibrary.simpleMessage("Přihlásit se!"),
         "signUp": MessageLookupByLibrary.simpleMessage("Registrace!"),
         "sourceCode": MessageLookupByLibrary.simpleMessage("Source code"),

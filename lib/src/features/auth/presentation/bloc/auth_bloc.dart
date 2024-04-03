@@ -50,6 +50,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         (success) => _emitAuthSuccess(user: success, emit: emit));
   }
 
+
   Future<void> _userLoggedHandler(
     AuthUserLoggedIn event,
     Emitter<AuthState> emit,
@@ -61,6 +62,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         (success) => _emitAuthSuccess(user: success, emit: emit));
   }
 
+  //*mutual
   void _emitAuthSuccess(
       {required User user, required Emitter<AuthState> emit}) {
     _userCubit.updateUser(user);
