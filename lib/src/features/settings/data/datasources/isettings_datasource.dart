@@ -4,9 +4,10 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 abstract interface class ISettingsDataSource {
   Session? get currentUserSession;
   Future<UserModel> updateUser({
-    String? name,
-    String? email,
-    String? password,
+    required String name,
+    required String email,
+   required  String password,
   });
   Future<void> signOut();
+  Future<UserModel> getCurrentUser();
 }

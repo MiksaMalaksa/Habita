@@ -10,7 +10,7 @@ class AppUserCubit extends Cubit<AppUserState> {
 
   void updateUser(SupaUser? user) {
     if (user == null) {
-      emit(AppUserInitial());
+      emit(AuthSignedOut());
     } else {
       emit(AppUserLoggedIn(user: user));
     }

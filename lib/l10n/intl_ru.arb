@@ -29,5 +29,9 @@
   "no": "Нет",
   "yes": "Да",
   "forgetPassword": "Восстановить пароль",
-  "signOut": "Выйти с аккаунта"
+  "signOut": "Выйти с аккаунта",
+  "home": "Home",
+  "stats": "Stats",
+  "program": "Program",
+  "versus": "Versus"
 }

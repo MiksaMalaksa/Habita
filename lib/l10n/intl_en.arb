@@ -29,5 +29,9 @@
   "no": "No",
   "yes": "Yes",
   "forgetPassword": "Restore password",
-  "signOut": "Sign out"
+  "signOut": "Sign out",
+  "home": "Home",
+  "stats": "Stats",
+  "program": "Program",
+  "versus": "Versus"
 }

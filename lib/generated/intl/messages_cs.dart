@@ -36,6 +36,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "haveAccountMessage":
             MessageLookupByLibrary.simpleMessage("Máte již účet?"),
         "hintMissing": m0,
+        "home": MessageLookupByLibrary.simpleMessage("Home"),
         "incorrectPassword": MessageLookupByLibrary.simpleMessage(
             "Délka hesla musí být alespoň 6!  "),
         "incorrectSigningUp":
@@ -49,14 +50,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "oldPassword": MessageLookupByLibrary.simpleMessage("Nové heslo"),
         "password": MessageLookupByLibrary.simpleMessage("Heslo"),
         "profile": MessageLookupByLibrary.simpleMessage("Profil"),
+        "program": MessageLookupByLibrary.simpleMessage("Program"),
         "save": MessageLookupByLibrary.simpleMessage("Uložit"),
         "signIn": MessageLookupByLibrary.simpleMessage("Přihlásit se!"),
         "signOut": MessageLookupByLibrary.simpleMessage("Odhlášení z účtu"),
         "signUp": MessageLookupByLibrary.simpleMessage("Registrace!"),
         "sourceCode": MessageLookupByLibrary.simpleMessage("Source code"),
+        "stats": MessageLookupByLibrary.simpleMessage("Stats"),
         "submit": MessageLookupByLibrary.simpleMessage("Potvrďte"),
         "system": MessageLookupByLibrary.simpleMessage("Systém"),
         "telegram": MessageLookupByLibrary.simpleMessage("Napište mi"),
+        "versus": MessageLookupByLibrary.simpleMessage("Versus"),
         "wantToLogOut": MessageLookupByLibrary.simpleMessage(
             "Opravdu se chcete odhlásit ze svého účtu?"),
         "yes": MessageLookupByLibrary.simpleMessage("Ano")

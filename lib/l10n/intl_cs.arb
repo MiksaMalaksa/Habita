@@ -28,8 +28,9 @@
   "no": "Ne",
   "yes": "Ano",
   "forgetPassword": "Obnovit heslo",
-  "signOut": "Odhlášení z účtu"
+  "signOut": "Odhlášení z účtu",
+  "home": "Home",
+  "stats": "Stats",
+  "program": "Program",
+  "versus": "Versus"
 }
-
-
-

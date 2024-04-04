@@ -15,7 +15,7 @@ import 'package:provider/provider.dart';
 //!all class modifiers(again)
 //!bloc methods
 //!changeable info with bottom modal sheet
-//!find where to code sql 
+//!find where to code sql
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -31,7 +31,7 @@ Future<void> main() async {
         ),
         BlocProvider(
           create: (_) => sl<SettingsBloc>(),
-        )
+        ),
       ],
       child: const Habita(),
     ),
@@ -98,15 +98,13 @@ class HabitaState extends State<Habita> {
           },
           locale: currentLocale,
           debugShowCheckedModeBanner: false,
-          home: BlocSelector<AppUserCubit, AppUserState, bool>(
-            selector: (state) {
-              return state is AppUserLoggedIn;
-            },
-            builder: (context, isLogged) {
-              if (isLogged) {
+          home: BlocBuilder<AppUserCubit, AppUserState>(
+            builder: (context, state) {
+              if (state is AppUserLoggedIn) {
                 return const PageManager();
+              } else {
+                return const LoginPage();
               }
-              return const LoginPage();
             },
           ),
         ),

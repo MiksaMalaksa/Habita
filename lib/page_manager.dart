@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:habita/core/common/widgets/design_icon.dart';
+import 'package:habita/generated/l10n.dart';
 import 'package:habita/src/features/habits/presentation/habit_page.dart';
 import 'package:habita/src/features/home/presentation/home_page.dart';
 import 'package:habita/src/features/settings/presentation/profile_page.dart';
@@ -43,11 +44,11 @@ class _PageManagerState extends State<PageManager> {
           backgroundColor:
               Theme.of(context).bottomNavigationBarTheme.backgroundColor,
           items: [
-            _bottomBarItem(label: 'Home', icon: Icons.home),
-            _bottomBarItem(label: 'Stats', icon: Icons.bar_chart_sharp),
-            _bottomBarItem(label: 'Program', icon: Icons.calendar_month),
-            _bottomBarItem(label: 'Versus', icon: RpgAwesome.broadsword),
-            _bottomBarItem(label: 'Profile', icon: Icons.person),
+            _bottomBarItem(label: S.of(context).home, icon: Icons.home),
+            _bottomBarItem(label: S.of(context).stats, icon: Icons.bar_chart_sharp),
+            _bottomBarItem(label: S.of(context).program, icon: Icons.calendar_month),
+            _bottomBarItem(label: S.of(context).versus, icon: RpgAwesome.broadsword),
+            _bottomBarItem(label: S.of(context).profile, icon: Icons.person),
           ]),
     );
   }

@@ -1,25 +1,43 @@
 import 'package:flutter/material.dart';
 import 'package:habita/generated/l10n.dart';
 
-class ChangeTextField extends StatelessWidget {
+class ChangePasswordField extends StatefulWidget {
   final TextEditingController controller;
   final String hintText;
-  const ChangeTextField({
+  const ChangePasswordField({
     Key? key,
     required this.controller,
     required this.hintText,
+
   }) : super(key: key);
+
+  @override
+  State<ChangePasswordField> createState() => _ChangeTextFieldState();
+}
+
+class _ChangeTextFieldState extends State<ChangePasswordField> {
+  bool _isObscure = false;
+
+  void changeObscurence() {
+    setState(() {
+      _isObscure == false ? _isObscure = true : _isObscure = false;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     const borderRadius = 20.0;
     return TextFormField(
-      controller: controller,
+      controller: widget.controller,
       style: Theme.of(context).textTheme.headlineSmall,
-      keyboardType: hintText == S.of(context).email
-          ? TextInputType.emailAddress
-          : TextInputType.name,
+      keyboardType: TextInputType.visiblePassword,
       decoration: InputDecoration(
+        suffixIcon: IconButton(
+            onPressed: changeObscurence,
+            icon: Icon(
+              _isObscure ? Icons.visibility_off : Icons.visibility,
+              color: Theme.of(context).iconTheme.color,
+            )),
         border: InputBorder.none,
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(borderRadius),
@@ -35,10 +53,13 @@ class ChangeTextField extends StatelessWidget {
             color: Theme.of(context).primaryColor.withOpacity(0.5),
           ),
         ),
-        hintText: hintText,
+        hintText: widget.hintText,
       ),
       //*validation
       validator: (value) {
+        if (value!.isNotEmpty && value.length < 6) {
+          return S.of(context).incorrectPassword;
+        }
         return null;
       },
     );

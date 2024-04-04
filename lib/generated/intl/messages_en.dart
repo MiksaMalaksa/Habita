@@ -37,6 +37,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "haveAccountMessage":
             MessageLookupByLibrary.simpleMessage("Already have an account?"),
         "hintMissing": m0,
+        "home": MessageLookupByLibrary.simpleMessage("Home"),
         "incorrectPassword": MessageLookupByLibrary.simpleMessage(
             "Password can not be less then 6!"),
         "incorrectSigningUp":
@@ -52,14 +53,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "oldPassword": MessageLookupByLibrary.simpleMessage("Old password"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
         "profile": MessageLookupByLibrary.simpleMessage("Profile"),
+        "program": MessageLookupByLibrary.simpleMessage("Program"),
         "save": MessageLookupByLibrary.simpleMessage("Save"),
         "signIn": MessageLookupByLibrary.simpleMessage("Sign In!"),
         "signOut": MessageLookupByLibrary.simpleMessage("Sign out"),
         "signUp": MessageLookupByLibrary.simpleMessage("Sign Up!"),
         "sourceCode": MessageLookupByLibrary.simpleMessage("Source code"),
+        "stats": MessageLookupByLibrary.simpleMessage("Stats"),
         "submit": MessageLookupByLibrary.simpleMessage("Submit"),
         "system": MessageLookupByLibrary.simpleMessage("System"),
         "telegram": MessageLookupByLibrary.simpleMessage("Text me"),
+        "versus": MessageLookupByLibrary.simpleMessage("Versus"),
         "wantToLogOut": MessageLookupByLibrary.simpleMessage(
             "Do you really want to log out?"),
         "yes": MessageLookupByLibrary.simpleMessage("Yes")

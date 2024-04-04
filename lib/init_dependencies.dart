@@ -15,7 +15,9 @@ import 'package:habita/src/features/settings/data/datasources/isettings_datasour
 import 'package:habita/src/features/settings/data/datasources/settings_datasource_impl.dart';
 import 'package:habita/src/features/settings/data/repo/settings_repo_impl.dart';
 import 'package:habita/src/features/settings/domain/repo/isettings_repo.dart';
+import 'package:habita/src/features/settings/domain/usecases/get_user_usecase.dart';
 import 'package:habita/src/features/settings/domain/usecases/signout_usecase.dart';
+import 'package:habita/src/features/settings/domain/usecases/update_user_usecase.dart';
 import 'package:habita/src/features/settings/presentation/bloc/settings_bloc.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -69,10 +71,14 @@ void _initSettings() {
   sl.registerFactory<ISettingsRepo>(
       () => SettingsRepoImpl(datasource: sl(), connectionChecker: sl()));
   //*usecases
-  sl.registerFactory(
-    () => UserSignOut(repository: sl()),
-  );
+  sl.registerFactory(() => UserSignOut(repository: sl()));
+  sl.registerFactory(() => UpdateUser(repository: sl()));
+  sl.registerFactory(() => GetCurrentUser(repository: sl()));
   //*Bloc
-  sl.registerLazySingleton(
-      () => SettingsBloc(userCubit: sl(), userSignOut: sl()));
+  sl.registerLazySingleton(() => SettingsBloc(
+        userCubit: sl(),
+        updateUser: sl(),
+        userSignOut: sl(),
+        getUser: sl(),
+      ));
 }

@@ -16,22 +16,51 @@ class SettingsDataSourceImpl implements ISettingsDataSource {
 
   @override
   Future<void> signOut() async {
-    await client.auth.signOut();
+    try {
+      await client.auth.signOut();
+    } catch (e) {
+      throw ServerException(message: e.toString());
+    }
   }
 
   @override
   Future<UserModel> updateUser(
-      {String? name, String? email, String? password}) async {
+      {required String name,
+      required String email,
+      required String password}) async {
     try {
       //!Позже поменять парольную составляющую
-      final response = await client.auth.updateUser(
-          UserAttributes(email: email ?? currentUserSession!.user.email,password: password));
+      final response = await client.auth.updateUser(UserAttributes(
+          email: email.isEmpty ? currentUserSession!.user.email : email,
+          data: {
+            'name': name.isEmpty
+                ? currentUserSession!.user.userMetadata!['name']
+                : name
+          }));
 
       if (response.user == null) {
         throw ServerException(message: 'Something went wrong');
       }
 
       final UserModel user = UserModel.fromMap(response.user!.toJson());
+      return user;
+    } catch (e) {
+      throw ServerException(message: e.toString());
+    }
+  }
+
+  @override
+  //!no need of future
+  Future<UserModel> getCurrentUser() async {
+    try {
+      final response = client.auth.currentUser;
+
+      if (response == null) {
+        throw ServerException(message: 'Something went wrong');
+      }
+
+      final UserModel user = UserModel.fromMap(response.toJson())
+          .copyWith(name: response.userMetadata!['name']);
       return user;
     } catch (e) {
       throw ServerException(message: e.toString());

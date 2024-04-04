@@ -50,11 +50,11 @@ class _PasswordFieldState extends State<PasswordField> {
         if (value!.isEmpty) {
           return S.of(context).hintMissing(widget.hintText);
         }
-        if (widget.hintText == S.of(context).password) {
-          if (value.length < 6) {
-            return S.of(context).incorrectPassword;
-          }
+
+        if (value.length < 6) {
+          return S.of(context).incorrectPassword;
         }
+
         return null;
       },
     );

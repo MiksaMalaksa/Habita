@@ -37,6 +37,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "haveAccountMessage":
             MessageLookupByLibrary.simpleMessage("Уже существует аккаунт?"),
         "hintMissing": m0,
+        "home": MessageLookupByLibrary.simpleMessage("Home"),
         "incorrectPassword": MessageLookupByLibrary.simpleMessage(
             "Длина пароля должна быть не меннее 6!"),
         "incorrectSigningUp":
@@ -51,14 +52,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "oldPassword": MessageLookupByLibrary.simpleMessage("Старый пароль"),
         "password": MessageLookupByLibrary.simpleMessage("Пароль"),
         "profile": MessageLookupByLibrary.simpleMessage("Профиль"),
+        "program": MessageLookupByLibrary.simpleMessage("Program"),
         "save": MessageLookupByLibrary.simpleMessage("Сохранить"),
         "signIn": MessageLookupByLibrary.simpleMessage("Войти!"),
         "signOut": MessageLookupByLibrary.simpleMessage("Выйти с аккаунта"),
         "signUp": MessageLookupByLibrary.simpleMessage("Регистрация!"),
         "sourceCode": MessageLookupByLibrary.simpleMessage("Код проекта"),
+        "stats": MessageLookupByLibrary.simpleMessage("Stats"),
         "submit": MessageLookupByLibrary.simpleMessage("Подтвердить"),
         "system": MessageLookupByLibrary.simpleMessage("Системная"),
         "telegram": MessageLookupByLibrary.simpleMessage("Написать мне"),
+        "versus": MessageLookupByLibrary.simpleMessage("Versus"),
         "wantToLogOut": MessageLookupByLibrary.simpleMessage(
             "Вы точно хотите выйти с аккаунта?"),
         "yes": MessageLookupByLibrary.simpleMessage("Да")

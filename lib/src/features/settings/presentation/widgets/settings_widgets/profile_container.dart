@@ -9,8 +9,12 @@ import 'package:habita/src/themes/app_theme_provider.dart';
 import 'package:provider/provider.dart';
 
 class ProfileContainer extends StatelessWidget {
+  final String name;
+  final String email;
   const ProfileContainer({
     super.key,
+    required this.name,
+    required this.email,
   });
 
   @override
@@ -72,7 +76,8 @@ class ProfileContainer extends StatelessWidget {
                 //!Placeholders
                 Center(
                   child: Text(
-                    'Miksa',
+                    name,
+                    //'Miksa',
                     style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                         fontWeight: FontWeight.bold, color: Colors.white),
                   ),
@@ -82,7 +87,8 @@ class ProfileContainer extends StatelessWidget {
                 ),
                 Center(
                   child: Text(
-                    'malaxa2000@gmail.com',
+                    email,
+                    //'malaxa2000@gmail.com',
                     style: Theme.of(context)
                         .textTheme
                         .headlineSmall!
