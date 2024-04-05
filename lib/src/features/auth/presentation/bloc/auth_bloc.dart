@@ -1,71 +1,126 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:habita/core/common/cubits/app_user/app_user_cubit.dart';
 import 'package:habita/core/usecase/no_params.dart';
 import 'package:habita/core/common/entities/user.dart';
 import 'package:habita/src/features/auth/domain/usecases/current_user_usecase.dart';
 import 'package:habita/src/features/auth/domain/usecases/login_usecase.dart';
 import 'package:habita/src/features/auth/domain/usecases/signup_usecase.dart';
+import 'package:habita/src/features/auth/domain/usecases/signout_usecase.dart';
+import 'package:habita/src/features/auth/domain/usecases/update_user_usecase.dart';
 
 part 'auth_event.dart';
 part 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   //*usecases
+  final UserSignOut _userSignOut;
+  final UpdateUser _updateUser;
   final UserSignUp _userSignUp;
   final UserSignIn _userSignIn;
   final CurrentUser _currentUser;
-  final AppUserCubit _userCubit;
 
   AuthBloc({
     required UserSignUp userSignUp,
     required UserSignIn userSignIn,
     required CurrentUser currentUser,
-    required AppUserCubit userCubit,
+    required UserSignOut userSignOut,
+    required UpdateUser updateUser,
   })  : _userSignUp = userSignUp,
         _userSignIn = userSignIn,
         _currentUser = currentUser,
-        _userCubit = userCubit,
+        _userSignOut = userSignOut,
+        _updateUser = updateUser,
         super(AuthInitial()) {
     on<AuthSignUp>(_signUpHandler);
     on<AuthSignIn>(_signInHandler);
-    on<AuthUserLoggedIn>(_userLoggedHandler);
+    on<AuthSignOut>(_signOutHandler);
+    on<AuthUpdateUser>(_updateHandler);
+    on<AuthLoggedIn>(_userLoggedHandler);
   }
 
+  //!sign up
   Future<void> _signUpHandler(AuthSignUp event, Emitter<AuthState> emit) async {
     emit(AuthProcessing());
 
     final result = await _userSignUp(UserSignUpParams(
         name: event.name, email: event.email, password: event.password));
     result.fold((fail) => emit(AuthError(errorMessage: fail.message)),
-        (success) => _emitAuthSuccess(user: success, emit: emit));
+        (success) {
+      _userState(user: success, emit: emit);
+      emit(AuthLoaded(user: success));
+    });
   }
 
+  //!sign in
   Future<void> _signInHandler(AuthSignIn event, Emitter<AuthState> emit) async {
     emit(AuthProcessing());
 
     final result = await _userSignIn(
         UserSignInParams(email: event.email, password: event.password));
     result.fold((fail) => emit(AuthError(errorMessage: fail.message)),
-        (success) => _emitAuthSuccess(user: success, emit: emit));
+        (success) {
+      _userState(user: success, emit: emit);
+      emit(AuthLoaded(user: success));
+    });
   }
 
+  //!Sign out
+  Future<void> _signOutHandler(
+      AuthSignOut event, Emitter<AuthState> emit) async {
+    final result = await _userSignOut(NoParams());
+    result.fold(
+      (fail) => emit(AuthError(errorMessage: fail.message)),
+      (_) {
+        _userState(user: null, emit: emit);
+      },
+    );
+  }
 
+  //!Update user
+  Future<void> _updateHandler(
+      AuthUpdateUser event, Emitter<AuthState> emit) async {
+    emit(AuthProcessing());
+    final result = await _updateUser(UpdateUserParams(
+      name: event.name,
+      password: event.password,
+      email: event.email,
+    ));
+
+    result.fold(
+      (fail) {
+        emit(AuthError(errorMessage: fail.message));
+      },
+      (user) {
+        _userState(user: user, emit: emit);
+         emit(AuthLoaded(user: user));
+      },
+    );
+  }
+
+  //!is logged
   Future<void> _userLoggedHandler(
-    AuthUserLoggedIn event,
+    AuthLoggedIn event,
     Emitter<AuthState> emit,
   ) async {
-    emit(AuthProcessing());
+    emit(AuthEntering());
 
     final result = await _currentUser(NoParams());
-    result.fold((fail) => emit(AuthInitial()),
-        (success) => _emitAuthSuccess(user: success, emit: emit));
+    result.fold((fail) => emit(AuthInitial()), (success) {
+      _userState(user: success, emit: emit);
+      emit(AuthLoaded(user: success));
+    });
   }
 
   //*mutual
-  void _emitAuthSuccess(
-      {required SupaUser user, required Emitter<AuthState> emit}) {
-    _userCubit.updateUser(user);
-    emit(AuthLoaded(user: user));
+  void _userState({
+    required SupaUser? user,
+    required Emitter<AuthState> emit,
+  }) {
+    //!Check User
+    if (user == null) {
+      emit(AuthInitial());
+    } else {
+      emit(AuthUserLogged());
+    }
   }
 }

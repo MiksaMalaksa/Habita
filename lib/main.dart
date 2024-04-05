@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:habita/core/common/cubits/app_user/app_user_cubit.dart';
+import 'package:habita/core/common/widgets/habita_greet.dart';
 import 'package:habita/generated/l10n.dart';
 import 'package:habita/init_dependencies.dart';
 import 'package:habita/page_manager.dart';
@@ -23,9 +23,6 @@ Future<void> main() async {
   runApp(
     MultiBlocProvider(
       providers: [
-        BlocProvider(
-          create: (_) => sl<AppUserCubit>(),
-        ),
         BlocProvider(
           create: (_) => sl<AuthBloc>(),
         ),
@@ -60,7 +57,7 @@ class HabitaState extends State<Habita> {
   @override
   void initState() {
     super.initState();
-    context.read<AuthBloc>().add(AuthUserLoggedIn());
+    context.read<AuthBloc>().add(AuthLoggedIn());
   }
 
   @override
@@ -98,9 +95,9 @@ class HabitaState extends State<Habita> {
           },
           locale: currentLocale,
           debugShowCheckedModeBanner: false,
-          home: BlocBuilder<AppUserCubit, AppUserState>(
+          home: BlocBuilder<AuthBloc, AuthState>(
             builder: (context, state) {
-              if (state is AppUserLoggedIn) {
+              if (state is AuthLoggedIn) {
                 return const PageManager();
               } else {
                 return const LoginPage();

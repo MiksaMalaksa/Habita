@@ -24,7 +24,6 @@ class SignUpState extends State<SignUpPage> {
   final nameTextController = TextEditingController();
   final passwordTextController = TextEditingController();
   final formKey = GlobalKey<FormState>();
-  bool hidePassword = true;
 
   @override
   void dispose() {
@@ -34,115 +33,101 @@ class SignUpState extends State<SignUpPage> {
     super.dispose();
   }
 
-  void obscurePassword() {
-    setState(() {
-      hidePassword == false ? hidePassword = true : hidePassword = false;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     final theme = Theme.of(context);
+    final currentState = BlocProvider.of<AuthBloc>(context).state;
 
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Center(
-          child: BlocConsumer<AuthBloc, AuthState>(
-            listener: (context, state) {
-              if (state is AuthError) {
-                showSnackBar(
-                    context: context,
-                    content: S.of(context).incorrectSigningUp);
-              }
-            },
-            builder: (context, state) {
-              if (state is AuthProcessing) {
-                return const Loader();
-              } else if (state is AuthLoaded) {
-                Navigator.of(context)
-                    .pushAndRemoveUntil(PageManager.route(), (route) => false);
-              }
-              return Form(
-                key: formKey,
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.vertical,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        S.of(context).signUp,
-                        style: textTheme.titleLarge!.copyWith(
-                            fontWeight: FontWeight.w400, fontSize: 40),
-                      ),
-                      const SizedBox(
-                        height: 22,
-                      ),
-                      AuthField(
-                        hintText: S.of(context).email,
-                        icon: Icons.email,
-                        controller: emailTextController,
-                      ),
-                      const SizedBox(
-                        height: 17,
-                      ),
-                      AuthField(
-                        hintText: S.of(context).name,
-                        icon: Icons.person,
-                        controller: nameTextController,
-                      ),
-                      const SizedBox(
-                        height: 17,
-                      ),
-                      PasswordField(
-                          controller: passwordTextController,
-                          hintText: S.of(context).password,
-                          icon: Icons.password),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      AuthButton(
-                        onTap: () {
-                          if (formKey.currentState!.validate()) {
-                            context.read<AuthBloc>().add(AuthSignUp(
-                                  name: nameTextController.text,
-                                  email: emailTextController.text,
-                                  password: passwordTextController.text,
-                                ));
-                          }
-                        },
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      RichText(
-                        text: TextSpan(
-                            text: S.of(context).haveAccountMessage,
-                            style: textTheme.titleMedium,
-                            children: [
-                              TextSpan(
-                                  text: " ${S.of(context).signIn}",
-                                  recognizer: TapGestureRecognizer()
-                                    ..onTap = () => Navigator.of(context)
-                                        .push(LoginPage.route()),
-                                  style: textTheme.titleMedium!.copyWith(
-                                      color: theme.colorScheme.primary,
-                                      fontWeight: FontWeight.bold)),
-                            ]),
-                      )
-                    ],
+        body: BlocListener<AuthBloc, AuthState>(
+      listener: (context, state) {
+        if (state is AuthError) {
+          showSnackBar(
+              context: context, content: S.of(context).incorrectSigningUp);
+        } else if (state is AuthLoaded) {
+          Navigator.of(context)
+              .pushAndRemoveUntil(PageManager.route(), (route) => false);
+        }
+      },
+      child: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: currentState is AuthProcessing
+              ? const Loader()
+              : Form(
+                  key: formKey,
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.vertical,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          S.of(context).signUp,
+                          style: textTheme.titleLarge!.copyWith(
+                              fontWeight: FontWeight.w400, fontSize: 40),
+                        ),
+                        const SizedBox(
+                          height: 22,
+                        ),
+                        AuthField(
+                          hintText: S.of(context).email,
+                          icon: Icons.email,
+                          controller: emailTextController,
+                        ),
+                        const SizedBox(
+                          height: 17,
+                        ),
+                        AuthField(
+                          hintText: S.of(context).name,
+                          icon: Icons.person,
+                          controller: nameTextController,
+                        ),
+                        const SizedBox(
+                          height: 17,
+                        ),
+                        PasswordField(
+                            controller: passwordTextController,
+                            hintText: S.of(context).password,
+                            icon: Icons.password),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        AuthButton(
+                          onTap: () {
+                            if (formKey.currentState!.validate()) {
+                              context.read<AuthBloc>().add(AuthSignUp(
+                                    name: nameTextController.text,
+                                    email: emailTextController.text,
+                                    password: passwordTextController.text,
+                                  ));
+                            }
+                          },
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        RichText(
+                          text: TextSpan(
+                              text: S.of(context).haveAccountMessage,
+                              style: textTheme.titleMedium,
+                              children: [
+                                TextSpan(
+                                    text: " ${S.of(context).signIn}",
+                                    recognizer: TapGestureRecognizer()
+                                      ..onTap = () => Navigator.of(context)
+                                          .push(LoginPage.route()),
+                                    style: textTheme.titleMedium!.copyWith(
+                                        color: theme.colorScheme.primary,
+                                        fontWeight: FontWeight.bold)),
+                              ]),
+                        )
+                      ],
+                    ),
                   ),
                 ),
-              );
-            },
-          ),
         ),
       ),
-    );
+    ));
   }
 }

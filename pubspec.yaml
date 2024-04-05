@@ -17,7 +17,7 @@ dependencies:
   flex_color_scheme: ^7.3.1
   flutter:
     sdk: flutter
-  flutter_bloc: ^8.1.4
+  flutter_bloc: ^8.1.5
   flutter_localizations:
     sdk: flutter
   flutter_provider: ^2.1.0
@@ -45,6 +45,7 @@ flutter:
   assets:
     - assets/tg.png
     - assets/git_hub.png
+    - assets/habita_logo.png
 
 flutter_intl:
   enabled: true

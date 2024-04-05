@@ -26,7 +26,9 @@ class AuthDatasourceImpl implements IAuthDataSource {
       }
 
       return UserModel.fromMap(response.user!.toJson())
-        ..copyWith(email: currentUserSession!.user.email);
+        .copyWith(
+            email: currentUserSession!.user.email,
+            name: currentUserSession!.user.userMetadata!['name']);
     } on ServerException {
       rethrow;
     } catch (e) {
@@ -62,13 +64,66 @@ class AuthDatasourceImpl implements IAuthDataSource {
   }
 
   @override
+  Future<void> signOut() async {
+    try {
+      await client.auth.signOut();
+    } catch (e) {
+      throw ServerException(message: e.toString());
+    }
+  }
+
+  @override
+  Future<UserModel> updateUser(
+      {required String name,
+      required String email,
+      required String password}) async {
+    try {
+      //!Позже поменять парольную составляющую
+      final response = await client.auth.updateUser(UserAttributes(
+          email: email.isEmpty ? currentUserSession!.user.email : email,
+          data: {
+            'name': name.isEmpty
+                ? currentUserSession!.user.userMetadata!['name']
+                : name
+          }));
+
+      if (response.user == null) {
+        throw ServerException(message: 'Something went wrong');
+      }
+
+      final UserModel user = UserModel.fromMap(response.user!.toJson()).copyWith(name: response.user!.userMetadata!['name']);
+      return user;
+    } catch (e) {
+      throw ServerException(message: e.toString());
+    }
+  }
+
+  @override
+  //!no need of future
+  Future<UserModel> getCurrentUser() async {
+    try {
+      final response = client.auth.currentUser;
+
+      if (response == null) {
+        throw ServerException(message: 'Something went wrong');
+      }
+
+      final UserModel user = UserModel.fromMap(response.toJson())
+          .copyWith(name: response.userMetadata!['name']);
+      return user;
+    } catch (e) {
+      throw ServerException(message: e.toString());
+    }
+  }
+
+  @override
   Future<UserModel?> getCurrentUserData() async {
     try {
       //*can select specified fields by enumerating them: 'name', 'id', select by
       //*default select all(get all data)
       //*eq specifies a user we want
       //*session - primary unique identifier
-      //!If the user is plugged in current session would not be null
+      //!If the user is plugged in, current session would not be null
       if (currentUserSession != null) {
         final result = await client
             .from('profiles')

@@ -2,10 +2,10 @@ import 'package:dartz/dartz.dart';
 import 'package:habita/core/common/entities/user.dart';
 import 'package:habita/core/failures/ifailure.dart';
 import 'package:habita/core/usecase/usecase.dart';
-import 'package:habita/src/features/settings/domain/repo/isettings_repo.dart';
+import 'package:habita/src/features/auth/domain/repositories/iauth_repo.dart';
 
 class UpdateUser implements Usecase<SupaUser, UpdateUserParams> {
-  final ISettingsRepo repository;
+  final IAuthRepo repository;
 
   const UpdateUser({required this.repository});
 

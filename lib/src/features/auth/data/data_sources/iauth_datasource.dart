@@ -16,4 +16,13 @@ abstract interface class IAuthDataSource {
     required String email,
     required String password,
   });
+
+  Future<UserModel> updateUser({
+    required String name,
+    required String email,
+    required String password,
+  });
+  Future<void> signOut();
+  
+  Future<UserModel> getCurrentUser();
 }
