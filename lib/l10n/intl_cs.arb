@@ -29,8 +29,9 @@
   "yes": "Ano",
   "forgetPassword": "Obnovit heslo",
   "signOut": "Odhlášení z účtu",
-  "home": "Home",
-  "stats": "Stats",
+  "home": "Úvod",
+  "stats": "Statistiky",
   "program": "Program",
-  "versus": "Versus"
+  "versus": "Versus",
+  "noConnection": "Žádné připojení k internetu"
 }

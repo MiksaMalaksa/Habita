@@ -7,29 +7,25 @@ sealed class AuthState extends Equatable {
   List<Object> get props => [];
 }
 
+class AuthInitial extends AuthState {
+  @override
+  List<Object> get props => [];
+}
+
+//!Habita logo
+class AuthGreet extends AuthState {
+  @override
+  List<Object> get props => [];
+}
+
 //!App states
 class AuthUserLogged extends AuthState {
   @override
   List<Object> get props => [];
 }
 
-class AuthExit extends AuthState {
-  @override
-  List<Object> get props => [];
-}
-
-class AuthInitial extends AuthState {
-  @override
-  List<Object> get props => [];
-}
-
 //*Default states
 class AuthProcessing extends AuthState {
-  @override
-  List<Object> get props => [];
-}
-
-class AuthEntering extends AuthState {
   @override
   List<Object> get props => [];
 }

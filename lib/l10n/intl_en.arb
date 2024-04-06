@@ -33,5 +33,6 @@
   "home": "Home",
   "stats": "Stats",
   "program": "Program",
-  "versus": "Versus"
+  "versus": "Versus",
+  "noConnection": "No internet connection!"
 }

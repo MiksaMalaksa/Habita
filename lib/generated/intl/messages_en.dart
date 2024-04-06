@@ -50,6 +50,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "no": MessageLookupByLibrary.simpleMessage("No"),
         "noAccount":
             MessageLookupByLibrary.simpleMessage("Do not have an account?"),
+        "noConnection":
+            MessageLookupByLibrary.simpleMessage("No internet connection!"),
         "oldPassword": MessageLookupByLibrary.simpleMessage("Old password"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
         "profile": MessageLookupByLibrary.simpleMessage("Profile"),

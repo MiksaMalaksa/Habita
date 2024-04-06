@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:habita/core/common/widgets/habita_greet.dart';
+import 'package:habita/core/common/blocs/bloc/internetconnection_bloc.dart';
 import 'package:habita/generated/l10n.dart';
 import 'package:habita/init_dependencies.dart';
 import 'package:habita/page_manager.dart';
@@ -29,6 +29,9 @@ Future<void> main() async {
         BlocProvider(
           create: (_) => sl<SettingsBloc>(),
         ),
+        BlocProvider(
+          create: (_) => sl<InternetConnectionBloc>(),
+        )
       ],
       child: const Habita(),
     ),

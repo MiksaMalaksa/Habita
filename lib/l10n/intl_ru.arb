@@ -30,8 +30,9 @@
   "yes": "Да",
   "forgetPassword": "Восстановить пароль",
   "signOut": "Выйти с аккаунта",
-  "home": "Home",
-  "stats": "Stats",
-  "program": "Program",
-  "versus": "Versus"
+  "home": "Главная",
+  "stats": "Ститистика",
+  "program": "Программа",
+  "versus": "Против",
+  "noConnection": "Нет подключения к интернету!"
 }

@@ -36,7 +36,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "haveAccountMessage":
             MessageLookupByLibrary.simpleMessage("Máte již účet?"),
         "hintMissing": m0,
-        "home": MessageLookupByLibrary.simpleMessage("Home"),
+        "home": MessageLookupByLibrary.simpleMessage("Úvod"),
         "incorrectPassword": MessageLookupByLibrary.simpleMessage(
             "Délka hesla musí být alespoň 6!  "),
         "incorrectSigningUp":
@@ -47,6 +47,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "name": MessageLookupByLibrary.simpleMessage("Jméno"),
         "no": MessageLookupByLibrary.simpleMessage("Ne"),
         "noAccount": MessageLookupByLibrary.simpleMessage("Nemáte účet?"),
+        "noConnection":
+            MessageLookupByLibrary.simpleMessage("Žádné připojení k internetu"),
         "oldPassword": MessageLookupByLibrary.simpleMessage("Nové heslo"),
         "password": MessageLookupByLibrary.simpleMessage("Heslo"),
         "profile": MessageLookupByLibrary.simpleMessage("Profil"),
@@ -56,7 +58,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "signOut": MessageLookupByLibrary.simpleMessage("Odhlášení z účtu"),
         "signUp": MessageLookupByLibrary.simpleMessage("Registrace!"),
         "sourceCode": MessageLookupByLibrary.simpleMessage("Source code"),
-        "stats": MessageLookupByLibrary.simpleMessage("Stats"),
+        "stats": MessageLookupByLibrary.simpleMessage("Statistiky"),
         "submit": MessageLookupByLibrary.simpleMessage("Potvrďte"),
         "system": MessageLookupByLibrary.simpleMessage("Systém"),
         "telegram": MessageLookupByLibrary.simpleMessage("Napište mi"),

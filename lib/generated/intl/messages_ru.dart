@@ -37,7 +37,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "haveAccountMessage":
             MessageLookupByLibrary.simpleMessage("Уже существует аккаунт?"),
         "hintMissing": m0,
-        "home": MessageLookupByLibrary.simpleMessage("Home"),
+        "home": MessageLookupByLibrary.simpleMessage("Главная"),
         "incorrectPassword": MessageLookupByLibrary.simpleMessage(
             "Длина пароля должна быть не меннее 6!"),
         "incorrectSigningUp":
@@ -49,20 +49,22 @@ class MessageLookup extends MessageLookupByLibrary {
         "newPassword": MessageLookupByLibrary.simpleMessage("Новый пароль"),
         "no": MessageLookupByLibrary.simpleMessage("Нет"),
         "noAccount": MessageLookupByLibrary.simpleMessage("Нет аккаунта?"),
+        "noConnection": MessageLookupByLibrary.simpleMessage(
+            "Нет подключения к интернету!"),
         "oldPassword": MessageLookupByLibrary.simpleMessage("Старый пароль"),
         "password": MessageLookupByLibrary.simpleMessage("Пароль"),
         "profile": MessageLookupByLibrary.simpleMessage("Профиль"),
-        "program": MessageLookupByLibrary.simpleMessage("Program"),
+        "program": MessageLookupByLibrary.simpleMessage("Программа"),
         "save": MessageLookupByLibrary.simpleMessage("Сохранить"),
         "signIn": MessageLookupByLibrary.simpleMessage("Войти!"),
         "signOut": MessageLookupByLibrary.simpleMessage("Выйти с аккаунта"),
         "signUp": MessageLookupByLibrary.simpleMessage("Регистрация!"),
         "sourceCode": MessageLookupByLibrary.simpleMessage("Код проекта"),
-        "stats": MessageLookupByLibrary.simpleMessage("Stats"),
+        "stats": MessageLookupByLibrary.simpleMessage("Ститистика"),
         "submit": MessageLookupByLibrary.simpleMessage("Подтвердить"),
         "system": MessageLookupByLibrary.simpleMessage("Системная"),
         "telegram": MessageLookupByLibrary.simpleMessage("Написать мне"),
-        "versus": MessageLookupByLibrary.simpleMessage("Versus"),
+        "versus": MessageLookupByLibrary.simpleMessage("Против"),
         "wantToLogOut": MessageLookupByLibrary.simpleMessage(
             "Вы точно хотите выйти с аккаунта?"),
         "yes": MessageLookupByLibrary.simpleMessage("Да")

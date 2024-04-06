@@ -30,7 +30,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         _currentUser = currentUser,
         _userSignOut = userSignOut,
         _updateUser = updateUser,
-        super(AuthInitial()) {
+        super(AuthGreet()) {
     on<AuthSignUp>(_signUpHandler);
     on<AuthSignIn>(_signInHandler);
     on<AuthSignOut>(_signOutHandler);
@@ -92,7 +92,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       },
       (user) {
         _userState(user: user, emit: emit);
-         emit(AuthLoaded(user: user));
+        emit(AuthLoaded(user: user));
       },
     );
   }
@@ -102,8 +102,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     AuthLoggedIn event,
     Emitter<AuthState> emit,
   ) async {
-    emit(AuthEntering());
-
     final result = await _currentUser(NoParams());
     result.fold((fail) => emit(AuthInitial()), (success) {
       _userState(user: success, emit: emit);

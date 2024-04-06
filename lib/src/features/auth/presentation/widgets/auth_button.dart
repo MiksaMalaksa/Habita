@@ -4,11 +4,27 @@ import 'package:habita/generated/l10n.dart';
 
 class AuthButton extends StatelessWidget {
   final VoidCallback onTap;
-  const AuthButton({super.key, required this.onTap});
+  final bool showColors;
+  const AuthButton({
+    super.key,
+    required this.onTap,
+    required this.showColors,
+  });
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final gradientColors = [
+      theme.colorScheme.primary.green > 100
+          ? theme.colorScheme.primary.withGreen(78)
+          : theme.colorScheme.primary,
+      theme.colorScheme.primaryContainer
+    ];
+    final greyGradientColors = [
+      HSLColor.fromColor(gradientColors[0]).withSaturation(0.2).toColor().withBlue(200),
+      HSLColor.fromColor(gradientColors[1]).withSaturation(0.2).toColor().withBlue(200),
+    ];
+
     return InkWell(
       onTap: onTap,
       child: Container(
@@ -21,12 +37,11 @@ class AuthButton extends StatelessWidget {
                 style: BorderStyle.solid,
                 width: 2),
             borderRadius: BorderRadius.circular(7),
-            gradient: LinearGradient(colors: [
-              theme.colorScheme.primary.green > 100
-                  ? theme.colorScheme.primary.withGreen(78)
-                  : theme.colorScheme.primary,
-              theme.colorScheme.primaryContainer
-            ], begin: Alignment.topLeft, end: Alignment.bottomRight)),
+            gradient: LinearGradient(
+                colors:
+                    showColors == true ? gradientColors : greyGradientColors,
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight)),
         child: Center(
             child: Padding(
           padding: const EdgeInsets.only(top: 10, bottom: 10),

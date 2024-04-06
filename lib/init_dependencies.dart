@@ -1,5 +1,6 @@
 //!sl - serviceLocator
 import 'package:get_it/get_it.dart';
+import 'package:habita/core/common/blocs/bloc/internetconnection_bloc.dart';
 import 'package:habita/core/network/connection_checker.dart';
 import 'package:habita/core/supabase_keys/supa_keys.dart';
 import 'package:habita/src/features/auth/data/data_sources/auth_datasource_impl.dart';
@@ -36,15 +37,16 @@ Future<void> initialise() async {
     () => ConnectionCheckerImpl(internetChecker: sl()),
   );
 
-  //!Auth
+  //!Features
   _initAuth();
+  _initInternetStreamChecker();
   _initSettings();
 }
 
 void _initAuth() {
   sl.registerSingleton<IAuthDataSource>(AuthDatasourceImpl(client: sl()));
   sl.registerSingleton<IAuthRepo>(
-     AuthRepoImpl(
+    AuthRepoImpl(
       datasource: sl(),
       connectionChecker: sl(),
     ),
@@ -67,12 +69,15 @@ void _initAuth() {
   );
 }
 
+void _initInternetStreamChecker() {
+  sl.registerFactory<InternetConnectionBloc>(() => InternetConnectionBloc());
+}
+
 void _initSettings() {
   sl.registerFactory<ISettingsDataSource>(
       () => SettingsDataSourceImpl(client: sl()));
   sl.registerFactory<ISettingsRepo>(
       () => SettingsRepoImpl(datasource: sl(), connectionChecker: sl()));
-  //*usecases
 
   //*Bloc
   sl.registerFactory<SettingsBloc>(() => SettingsBloc());
