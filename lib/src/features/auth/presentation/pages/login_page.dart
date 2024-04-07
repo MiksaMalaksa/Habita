@@ -73,7 +73,6 @@ class LoginState extends State<LoginPage> {
                           : BlocBuilder<InternetConnectionBloc,
                               InternetConnectionState>(
                               builder: (context, state) {
-
                                 return Padding(
                                   padding: const EdgeInsets.all(16.0),
                                   child: Form(
@@ -107,7 +106,7 @@ class LoginState extends State<LoginPage> {
                                           AuthButton(
                                             showColors: state.isConnected,
                                             onTap: () => state.isConnected
-                                                ? formValidation
+                                                ? formValidation()
                                                 : showSnackBar(
                                                     content: S
                                                         .of(context)

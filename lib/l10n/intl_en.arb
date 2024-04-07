@@ -34,5 +34,6 @@
   "stats": "Stats",
   "program": "Program",
   "versus": "Versus",
-  "noConnection": "No internet connection!"
+  "noConnection": "No internet connection!",
+  "settingsNoInternet": "The application goes into local mode, editing mode is not available"
 }

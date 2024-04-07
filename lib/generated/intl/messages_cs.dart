@@ -54,6 +54,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "profile": MessageLookupByLibrary.simpleMessage("Profil"),
         "program": MessageLookupByLibrary.simpleMessage("Program"),
         "save": MessageLookupByLibrary.simpleMessage("Uložit"),
+        "settingsNoInternet": MessageLookupByLibrary.simpleMessage(
+            "Aplikace přejde do místního režimu, režim úprav není k dispozici"),
         "signIn": MessageLookupByLibrary.simpleMessage("Přihlásit se!"),
         "signOut": MessageLookupByLibrary.simpleMessage("Odhlášení z účtu"),
         "signUp": MessageLookupByLibrary.simpleMessage("Registrace!"),

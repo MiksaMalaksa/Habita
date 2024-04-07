@@ -18,6 +18,8 @@ import 'package:habita/src/features/settings/domain/repo/isettings_repo.dart';
 import 'package:habita/src/features/auth/domain/usecases/signout_usecase.dart';
 import 'package:habita/src/features/auth/domain/usecases/update_user_usecase.dart';
 import 'package:habita/src/features/settings/presentation/bloc/settings_bloc.dart';
+import 'package:habita/src/features/settings/utils/shared_pref_utils.dart';
+import 'package:habita/src/themes/bloc/theme_bloc.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -37,9 +39,12 @@ Future<void> initialise() async {
     () => ConnectionCheckerImpl(internetChecker: sl()),
   );
 
+  //!core
+    _initInternetStreamChecker();
+    sl.registerFactory<ThemeBloc>(() => ThemeBloc());
+
   //!Features
   _initAuth();
-  _initInternetStreamChecker();
   _initSettings();
 }
 
@@ -74,6 +79,7 @@ void _initInternetStreamChecker() {
 }
 
 void _initSettings() {
+  sl.registerSingleton(SharedPreferencesUtils());
   sl.registerFactory<ISettingsDataSource>(
       () => SettingsDataSourceImpl(client: sl()));
   sl.registerFactory<ISettingsRepo>(

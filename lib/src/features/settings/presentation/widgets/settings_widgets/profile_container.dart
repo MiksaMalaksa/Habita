@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:habita/core/common/widgets/container_button.dart';
 import 'package:fluttericon/elusive_icons.dart';
 import 'package:habita/core/extensions/color_rgb.dart';
 import 'package:habita/generated/l10n.dart';
 import 'package:habita/src/features/settings/presentation/screens/profile_edit_screen.dart';
 import 'package:habita/src/features/settings/presentation/widgets/settings_widgets/profile_picture.dart';
-import 'package:habita/src/themes/app_theme_provider.dart';
-import 'package:provider/provider.dart';
+import 'package:habita/src/themes/bloc/theme_bloc.dart';
 
 class ProfileContainer extends StatelessWidget {
   final String name;
@@ -19,7 +19,7 @@ class ProfileContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final currentMode = Provider.of<ThemeProvider>(context).currentMode;
+    final themeState = BlocProvider.of<ThemeBloc>(context).state;
     return SafeArea(
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 200),
@@ -29,8 +29,8 @@ class ProfileContainer extends StatelessWidget {
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
             //*Border case of design
-            color: currentMode == ThemeMode.dark ||
-                    (currentMode == ThemeMode.system &&
+            color: themeState.currentMode == ThemeMode.dark ||
+                    (themeState.currentMode == ThemeMode.system &&
                         MediaQuery.of(context).platformBrightness ==
                             Brightness.dark)
                 ? Theme.of(context)

@@ -56,6 +56,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "profile": MessageLookupByLibrary.simpleMessage("Профиль"),
         "program": MessageLookupByLibrary.simpleMessage("Программа"),
         "save": MessageLookupByLibrary.simpleMessage("Сохранить"),
+        "settingsNoInternet": MessageLookupByLibrary.simpleMessage(
+            "Приложение переходит в локальный режим, режим редактирования недоступен"),
         "signIn": MessageLookupByLibrary.simpleMessage("Войти!"),
         "signOut": MessageLookupByLibrary.simpleMessage("Выйти с аккаунта"),
         "signUp": MessageLookupByLibrary.simpleMessage("Регистрация!"),

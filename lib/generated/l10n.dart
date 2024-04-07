@@ -409,6 +409,16 @@ class S {
       args: [],
     );
   }
+
+  /// `The application goes into local mode, editing mode is not available`
+  String get settingsNoInternet {
+    return Intl.message(
+      'The application goes into local mode, editing mode is not available',
+      name: 'settingsNoInternet',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

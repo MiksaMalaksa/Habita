@@ -33,5 +33,6 @@
   "stats": "Statistiky",
   "program": "Program",
   "versus": "Versus",
-  "noConnection": "Žádné připojení k internetu"
+  "noConnection": "Žádné připojení k internetu",
+  "settingsNoInternet": "Aplikace přejde do místního režimu, režim úprav není k dispozici"
 }

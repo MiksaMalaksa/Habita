@@ -8,8 +8,8 @@ import 'package:habita/page_manager.dart';
 import 'package:habita/src/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:habita/src/features/auth/presentation/pages/login_page.dart';
 import 'package:habita/src/features/settings/presentation/bloc/settings_bloc.dart';
-import 'package:habita/src/themes/app_theme_provider.dart';
-import 'package:provider/provider.dart';
+import 'package:habita/src/features/settings/utils/shared_pref_utils.dart';
+import 'package:habita/src/themes/bloc/theme_bloc.dart';
 
 //!shared preferencies for settings and profile info
 //!all class modifiers(again)
@@ -31,7 +31,10 @@ Future<void> main() async {
         ),
         BlocProvider(
           create: (_) => sl<InternetConnectionBloc>(),
-        )
+        ),
+        BlocProvider(
+          create: (_) => sl<ThemeBloc>(),
+        ),
       ],
       child: const Habita(),
     ),
@@ -60,19 +63,36 @@ class HabitaState extends State<Habita> {
   @override
   void initState() {
     super.initState();
+    //*auth
     context.read<AuthBloc>().add(AuthLoggedIn());
+    //*styling
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      sl.get<SharedPreferencesUtils>().getLang().then((lang) => {
+            setLocale(Locale.fromSubtags(languageCode: lang)),
+          });
+      sl.get<SharedPreferencesUtils>().getThemeMode().then((mode) {
+        ThemeMode currentMode = mode == 'dark'
+            ? ThemeMode.dark
+            : mode == 'light'
+                ? ThemeMode.light
+                : ThemeMode.system;
+        context.read<ThemeBloc>().add(ThemeChangeTheme(themeMode: currentMode));
+      });
+      sl.get<SharedPreferencesUtils>().getThemeComb().then((comb) {
+         context.read<ThemeBloc>().add(ThemeChangeComb(comb: comb));
+      });
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [ChangeNotifierProvider(create: (_) => ThemeProvider())],
-      child: Consumer<ThemeProvider>(
-        builder: (context, themeProvider, _) => MaterialApp(
+    return BlocBuilder<ThemeBloc, ThemeState>(
+      builder: (context, state) {
+        return MaterialApp(
           ////*Theme spec
-          themeMode: themeProvider.currentMode,
-          theme: themeProvider.currentCustomThemeLight,
-          darkTheme: themeProvider.currentCustomThemeDark,
+          themeMode: state.currentMode,
+          theme: state.currentCustomThemeLight,
+          darkTheme: state.currentCustomThemeDark,
           ////*Internationalization
           localizationsDelegates: const [
             GlobalMaterialLocalizations.delegate,
@@ -107,8 +127,8 @@ class HabitaState extends State<Habita> {
               }
             },
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }

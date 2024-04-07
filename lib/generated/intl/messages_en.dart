@@ -57,6 +57,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "profile": MessageLookupByLibrary.simpleMessage("Profile"),
         "program": MessageLookupByLibrary.simpleMessage("Program"),
         "save": MessageLookupByLibrary.simpleMessage("Save"),
+        "settingsNoInternet": MessageLookupByLibrary.simpleMessage(
+            "The application goes into local mode, editing mode is not available"),
         "signIn": MessageLookupByLibrary.simpleMessage("Sign In!"),
         "signOut": MessageLookupByLibrary.simpleMessage("Sign out"),
         "signUp": MessageLookupByLibrary.simpleMessage("Sign Up!"),
