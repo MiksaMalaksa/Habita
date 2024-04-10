@@ -35,5 +35,9 @@
   "program": "Program",
   "versus": "Versus",
   "noConnection": "No internet connection!",
-  "settingsNoInternet": "The application goes into local mode, editing mode is not available"
+  "settingsNoInternet": "The application goes into local mode, editing mode is not available",
+  "somethingWrong": "Something went wrong!",
+  "checkOldPassword": "Confirm old password befor submitting!",
+  "noInternet": "Check your internet connection!",
+  "profileEdited": "Profile edited!"
 }

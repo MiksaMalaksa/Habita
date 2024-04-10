@@ -419,6 +419,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Something went wrong!`
+  String get somethingWrong {
+    return Intl.message(
+      'Something went wrong!',
+      name: 'somethingWrong',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm old password befor submitting!`
+  String get checkOldPassword {
+    return Intl.message(
+      'Confirm old password befor submitting!',
+      name: 'checkOldPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Check your internet connection!`
+  String get noInternet {
+    return Intl.message(
+      'Check your internet connection!',
+      name: 'noInternet',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Profile edited!`
+  String get profileEdited {
+    return Intl.message(
+      'Profile edited!',
+      name: 'profileEdited',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

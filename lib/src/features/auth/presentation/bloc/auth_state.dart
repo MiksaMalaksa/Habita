@@ -47,3 +47,5 @@ class AuthLoaded extends AuthState {
   @override
   List<Object> get props => [user];
 }
+
+class AuthUpdated extends AuthState {}

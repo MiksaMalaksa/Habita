@@ -34,5 +34,9 @@
   "program": "Program",
   "versus": "Versus",
   "noConnection": "Žádné připojení k internetu",
-  "settingsNoInternet": "Aplikace přejde do místního režimu, režim úprav není k dispozici"
+  "settingsNoInternet": "Aplikace přejde do místního režimu, režim úprav není k dispozici",
+  "somethingWrong": "Něco se pokazilo!",
+  "checkOldPassword": "Musíte potvrdit své staré heslo!",
+  "noInternet": "Zkontrolujte připojení k internetu!",
+  "profileEdited": "Profile edited!"
 }

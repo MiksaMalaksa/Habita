@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:habita/core/failures/ifailure.dart';
-import 'package:habita/core/common/entities/user.dart';
+import 'package:habita/src/features/auth/domain/entities/user.dart';
 
 abstract interface class IAuthRepo {
   Future<Either<Failure, SupaUser>> signIn({
@@ -21,6 +21,7 @@ abstract interface class IAuthRepo {
   Future<Either<Failure, SupaUser>> updateUser({
     required String name,
     required String password,
+    required String oldPassword,
     required String email,
   });
 

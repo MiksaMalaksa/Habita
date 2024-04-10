@@ -18,7 +18,7 @@ class ChangePasswordField extends StatefulWidget {
 class _ChangeTextFieldState extends State<ChangePasswordField> {
   bool _isObscure = false;
 
-  void changeObscurence() {
+  void _changeObscurence() {
     setState(() {
       _isObscure == false ? _isObscure = true : _isObscure = false;
     });
@@ -31,9 +31,10 @@ class _ChangeTextFieldState extends State<ChangePasswordField> {
       controller: widget.controller,
       style: Theme.of(context).textTheme.headlineSmall,
       keyboardType: TextInputType.visiblePassword,
+      obscureText: _isObscure,
       decoration: InputDecoration(
         suffixIcon: IconButton(
-            onPressed: changeObscurence,
+            onPressed: _changeObscurence,
             icon: Icon(
               _isObscure ? Icons.visibility_off : Icons.visibility,
               color: Theme.of(context).iconTheme.color,

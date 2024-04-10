@@ -29,6 +29,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Дополнительно"),
         "alertLogout": MessageLookupByLibrary.simpleMessage("Выход с аккаунта"),
         "changeAvatar": MessageLookupByLibrary.simpleMessage("ПОМЕНЯТЬ АВАТАР"),
+        "checkOldPassword": MessageLookupByLibrary.simpleMessage(
+            "Надо подтвердить свой старый пароль!"),
         "customization": MessageLookupByLibrary.simpleMessage("Кастомизация"),
         "dark": MessageLookupByLibrary.simpleMessage("Темная"),
         "email": MessageLookupByLibrary.simpleMessage("Электронная почта"),
@@ -51,9 +53,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "noAccount": MessageLookupByLibrary.simpleMessage("Нет аккаунта?"),
         "noConnection": MessageLookupByLibrary.simpleMessage(
             "Нет подключения к интернету!"),
+        "noInternet": MessageLookupByLibrary.simpleMessage(
+            "Проверьте ваше соединение с интернетом!"),
         "oldPassword": MessageLookupByLibrary.simpleMessage("Старый пароль"),
         "password": MessageLookupByLibrary.simpleMessage("Пароль"),
         "profile": MessageLookupByLibrary.simpleMessage("Профиль"),
+        "profileEdited":
+            MessageLookupByLibrary.simpleMessage("Profile edited!"),
         "program": MessageLookupByLibrary.simpleMessage("Программа"),
         "save": MessageLookupByLibrary.simpleMessage("Сохранить"),
         "settingsNoInternet": MessageLookupByLibrary.simpleMessage(
@@ -61,8 +67,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "signIn": MessageLookupByLibrary.simpleMessage("Войти!"),
         "signOut": MessageLookupByLibrary.simpleMessage("Выйти с аккаунта"),
         "signUp": MessageLookupByLibrary.simpleMessage("Регистрация!"),
+        "somethingWrong":
+            MessageLookupByLibrary.simpleMessage("Что-то пошло не так!"),
         "sourceCode": MessageLookupByLibrary.simpleMessage("Код проекта"),
-        "stats": MessageLookupByLibrary.simpleMessage("Ститистика"),
+        "stats": MessageLookupByLibrary.simpleMessage("Статистика"),
         "submit": MessageLookupByLibrary.simpleMessage("Подтвердить"),
         "system": MessageLookupByLibrary.simpleMessage("Системная"),
         "telegram": MessageLookupByLibrary.simpleMessage("Написать мне"),

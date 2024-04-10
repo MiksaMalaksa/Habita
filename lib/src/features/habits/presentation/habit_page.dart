@@ -1,5 +1,13 @@
 import 'package:flutter/material.dart';
 
+//!App bar with program name and action like edit (drop down button with edit program or habits)
+//!Today(label) calendar icon button which allows to check future day and check it habits
+//!The same date thing but now like a scrollable thing
+//!Coontainer which tells how many habits today where done
+//!habits itself
+//!By tapping on their labale new screen appeared with more info and circular indicator of how much of this
+//!should be done
+
 class HabitPage extends StatefulWidget {
   static route() => MaterialPageRoute(
         builder: (context) => const HabitPage(),

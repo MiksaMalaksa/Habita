@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:habita/core/extensions/color_rgb.dart';
 
 class ContainerButtonRowIcon extends StatelessWidget {
   final Color backColor;
@@ -26,10 +25,7 @@ class ContainerButtonRowIcon extends StatelessWidget {
             borderRadius: BorderRadius.circular(5),
             border: Border.all(
               width: 2,
-              color: backColor.elevateAllColors(
-                upParam: 20,
-                opacity: 0.9,
-              ),
+              color: Theme.of(context).primaryColor.withOpacity(0.3),
             )),
         width: MediaQuery.of(context).size.width * 0.9,
         child: Row(
@@ -50,6 +46,7 @@ class ContainerButtonRowIcon extends StatelessWidget {
               child: Icon(
                 icon,
                 size: MediaQuery.of(context).size.width * 0.10,
+                color: Colors.white,
               ),
             ))
           ],

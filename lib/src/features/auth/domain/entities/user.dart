@@ -3,7 +3,7 @@ class SupaUser {
   final String email;
   final String name;
 
-  SupaUser({
+  const SupaUser({
     required this.id,
     required this.email,
     required this.name,

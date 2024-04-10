@@ -17,6 +17,20 @@ class ProfileContainer extends StatelessWidget {
     required this.email,
   });
 
+  Future<void> _showPicture(
+    BuildContext context,
+  ) {
+    return showDialog(
+        context: context,
+        builder: (context) => Dialog.fullscreen(
+              backgroundColor: Theme.of(context).primaryColor.withOpacity(0.05),
+              child: Center(
+                child: ProfilePicture(
+                    size: MediaQuery.of(context).size.height * 0.3),
+              ),
+            ));
+  }
+
   @override
   Widget build(BuildContext context) {
     final themeState = BlocProvider.of<ThemeBloc>(context).state;
@@ -66,18 +80,17 @@ class ProfileContainer extends StatelessWidget {
                 const SizedBox(
                   height: 10,
                 ),
-                //!ON PRESSED
+                //*Picture
                 ProfilePicture(
                   size: MediaQuery.of(context).size.height * 0.15,
+                  onPressed: () => _showPicture(context),
                 ),
                 const SizedBox(
                   height: 15,
                 ),
-                //!Placeholders
                 Center(
                   child: Text(
                     name,
-                    //'Miksa',
                     style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                         fontWeight: FontWeight.bold, color: Colors.white),
                   ),
@@ -88,7 +101,6 @@ class ProfileContainer extends StatelessWidget {
                 Center(
                   child: Text(
                     email,
-                    //'malaxa2000@gmail.com',
                     style: Theme.of(context)
                         .textTheme
                         .headlineSmall!

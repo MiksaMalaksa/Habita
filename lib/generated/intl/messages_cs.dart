@@ -29,6 +29,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Další nastavení"),
         "alertLogout": MessageLookupByLibrary.simpleMessage("Odhlášení z účtu"),
         "changeAvatar": MessageLookupByLibrary.simpleMessage("ZMĚNIT AVATAR"),
+        "checkOldPassword": MessageLookupByLibrary.simpleMessage(
+            "Musíte potvrdit své staré heslo!"),
         "customization": MessageLookupByLibrary.simpleMessage("Přizpůsobení"),
         "dark": MessageLookupByLibrary.simpleMessage("Temný"),
         "email": MessageLookupByLibrary.simpleMessage("E-mailem"),
@@ -49,9 +51,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "noAccount": MessageLookupByLibrary.simpleMessage("Nemáte účet?"),
         "noConnection":
             MessageLookupByLibrary.simpleMessage("Žádné připojení k internetu"),
+        "noInternet": MessageLookupByLibrary.simpleMessage(
+            "Zkontrolujte připojení k internetu!"),
         "oldPassword": MessageLookupByLibrary.simpleMessage("Nové heslo"),
         "password": MessageLookupByLibrary.simpleMessage("Heslo"),
         "profile": MessageLookupByLibrary.simpleMessage("Profil"),
+        "profileEdited":
+            MessageLookupByLibrary.simpleMessage("Profile edited!"),
         "program": MessageLookupByLibrary.simpleMessage("Program"),
         "save": MessageLookupByLibrary.simpleMessage("Uložit"),
         "settingsNoInternet": MessageLookupByLibrary.simpleMessage(
@@ -59,6 +65,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "signIn": MessageLookupByLibrary.simpleMessage("Přihlásit se!"),
         "signOut": MessageLookupByLibrary.simpleMessage("Odhlášení z účtu"),
         "signUp": MessageLookupByLibrary.simpleMessage("Registrace!"),
+        "somethingWrong":
+            MessageLookupByLibrary.simpleMessage("Něco se pokazilo!"),
         "sourceCode": MessageLookupByLibrary.simpleMessage("Source code"),
         "stats": MessageLookupByLibrary.simpleMessage("Statistiky"),
         "submit": MessageLookupByLibrary.simpleMessage("Potvrďte"),

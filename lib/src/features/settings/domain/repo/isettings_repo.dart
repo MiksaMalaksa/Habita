@@ -1,5 +1,1 @@
-
-
-abstract interface class ISettingsRepo {
-  
-}
+abstract interface class ISettingsRepo {}

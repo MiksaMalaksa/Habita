@@ -11,11 +11,9 @@ import 'package:habita/src/features/settings/presentation/bloc/settings_bloc.dar
 import 'package:habita/src/features/settings/utils/shared_pref_utils.dart';
 import 'package:habita/src/themes/bloc/theme_bloc.dart';
 
-//!shared preferencies for settings and profile info
-//!all class modifiers(again)
-//!bloc methods
-//!changeable info with bottom modal sheet
-//!find where to code sql
+
+//!Можно считать сколько надо будет сделать юзеру действий за время привычки, и 
+//!при ее завершении показать какие дни были отстой 
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

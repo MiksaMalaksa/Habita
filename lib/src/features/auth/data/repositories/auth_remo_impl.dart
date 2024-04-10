@@ -1,10 +1,10 @@
 import 'package:dartz/dartz.dart';
-import 'package:habita/core/common/entities/user.dart';
 import 'package:habita/core/exceptions/exceptions.dart';
 import 'package:habita/core/failures/failure.dart';
 import 'package:habita/core/failures/ifailure.dart';
 import 'package:habita/core/network/connection_checker.dart';
 import 'package:habita/src/features/auth/data/data_sources/iauth_datasource.dart';
+import 'package:habita/src/features/auth/domain/entities/user.dart';
 import 'package:habita/src/features/auth/domain/repositories/iauth_repo.dart';
 
 class AuthRepoImpl implements IAuthRepo {
@@ -17,10 +17,6 @@ class AuthRepoImpl implements IAuthRepo {
   @override
   Future<Either<Failure, SupaUser>> currentUser() async {
     try {
-      //*check the internet
-      if (!await (connectionChecker.isConnected)) {
-        return const Left(ServerFailure(message: 'No connection'));
-      }
       final result = await datasource.getCurrentUserData();
       if (result == null) {
         return const Left(ServerFailure(message: 'User is not plugged in!'));
@@ -82,11 +78,11 @@ class AuthRepoImpl implements IAuthRepo {
   }
 
   @override
-  Future<Either<Failure, SupaUser>> updateUser({
-    required String email,
-    required String name,
-    required String password,
-  }) async {
+  Future<Either<Failure, SupaUser>> updateUser(
+      {required String email,
+      required String name,
+      required String password,
+      required String oldPassword}) async {
     if (!await (connectionChecker.isConnected)) {
       return const Left(ServerFailure(message: 'No connection'));
     }
@@ -94,7 +90,11 @@ class AuthRepoImpl implements IAuthRepo {
     try {
       return Right(
         await datasource.updateUser(
-            email: email, name: name, password: password),
+          email: email,
+          name: name,
+          password: password,
+          oldPassword: oldPassword,
+        ),
       );
     } catch (e) {
       return Left(ServerFailure(message: e.toString()));

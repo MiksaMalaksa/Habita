@@ -29,6 +29,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Additional settings"),
         "alertLogout": MessageLookupByLibrary.simpleMessage("Loggin out"),
         "changeAvatar": MessageLookupByLibrary.simpleMessage("CHANGE AVATAR"),
+        "checkOldPassword": MessageLookupByLibrary.simpleMessage(
+            "Confirm old password befor submitting!"),
         "customization": MessageLookupByLibrary.simpleMessage("Customization"),
         "dark": MessageLookupByLibrary.simpleMessage("Dark"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
@@ -52,9 +54,13 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Do not have an account?"),
         "noConnection":
             MessageLookupByLibrary.simpleMessage("No internet connection!"),
+        "noInternet": MessageLookupByLibrary.simpleMessage(
+            "Check your internet connection!"),
         "oldPassword": MessageLookupByLibrary.simpleMessage("Old password"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
         "profile": MessageLookupByLibrary.simpleMessage("Profile"),
+        "profileEdited":
+            MessageLookupByLibrary.simpleMessage("Profile edited!"),
         "program": MessageLookupByLibrary.simpleMessage("Program"),
         "save": MessageLookupByLibrary.simpleMessage("Save"),
         "settingsNoInternet": MessageLookupByLibrary.simpleMessage(
@@ -62,6 +68,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "signIn": MessageLookupByLibrary.simpleMessage("Sign In!"),
         "signOut": MessageLookupByLibrary.simpleMessage("Sign out"),
         "signUp": MessageLookupByLibrary.simpleMessage("Sign Up!"),
+        "somethingWrong":
+            MessageLookupByLibrary.simpleMessage("Something went wrong!"),
         "sourceCode": MessageLookupByLibrary.simpleMessage("Source code"),
         "stats": MessageLookupByLibrary.simpleMessage("Stats"),
         "submit": MessageLookupByLibrary.simpleMessage("Submit"),

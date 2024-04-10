@@ -1,4 +1,3 @@
-
 import 'package:habita/src/features/settings/data/datasources/isettings_datasource.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -12,6 +11,4 @@ class SettingsDataSourceImpl implements ISettingsDataSource {
 
   @override
   Session? get currentUserSession => client.auth.currentSession;
-
-
 }

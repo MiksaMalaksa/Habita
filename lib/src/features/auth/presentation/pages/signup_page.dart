@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:habita/core/common/blocs/bloc/internetconnection_bloc.dart';
 import 'package:habita/core/common/widgets/loader.dart';
+import 'package:habita/core/constants/exceptions_messages.dart';
 import 'package:habita/core/utils/show_snackbar.dart';
 import 'package:habita/generated/l10n.dart';
 import 'package:habita/page_manager.dart';
@@ -55,7 +56,9 @@ class SignUpState extends State<SignUpPage> {
       listener: (context, state) {
         if (state is AuthError) {
           showSnackBar(
-              context: context, content: S.of(context).incorrectSigningUp);
+              context: context,
+              content: ErrorsConventer()
+                  .convertedMsg(context, msg: state.errorMessage));
         } else if (state is AuthLoaded) {
           Navigator.of(context)
               .pushAndRemoveUntil(PageManager.route(), (route) => false);

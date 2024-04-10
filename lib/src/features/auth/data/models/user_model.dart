@@ -1,5 +1,6 @@
 import 'dart:convert';
-import 'package:habita/core/common/entities/user.dart';
+
+import 'package:habita/src/features/auth/domain/entities/user.dart';
 
 class UserModel extends SupaUser {
   UserModel({
@@ -8,7 +9,6 @@ class UserModel extends SupaUser {
     required super.name,
   });
 
-  //*to_map
   Map<String, dynamic> toMap() {
     return {
       'id': id,
@@ -17,20 +17,16 @@ class UserModel extends SupaUser {
     };
   }
 
-  //*from_map
   factory UserModel.fromMap(Map<String, dynamic> map) => UserModel(
       id: map['id'] ?? '',
       email: map['email'] ?? 'emil',
       name: map['name'] ?? '');
 
-  //*to_string_source
   String toJson() => jsonEncode(toMap());
 
-  //*from_json_source
   factory UserModel.fromJson(String source) =>
       UserModel.fromMap(jsonDecode(source));
 
-  //*to_model
   factory UserModel.toModel(SupaUser user) =>
       UserModel(email: user.email, id: user.id, name: user.name);
 

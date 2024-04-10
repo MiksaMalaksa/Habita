@@ -1,6 +1,7 @@
+import 'package:habita/core/constants/exceptions_messages.dart';
 import 'package:habita/core/exceptions/exceptions.dart';
 import 'package:habita/src/features/auth/data/data_sources/iauth_datasource.dart';
-import 'package:habita/core/common/models/user_model.dart';
+import 'package:habita/src/features/auth/data/models/user_model.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class AuthDatasourceImpl implements IAuthDataSource {
@@ -22,17 +23,16 @@ class AuthDatasourceImpl implements IAuthDataSource {
       );
 
       if (response.user == null) {
-        throw ServerException(message: 'User is null');
+        throw ServerException(message: serverFailMsg);
       }
 
-      return UserModel.fromMap(response.user!.toJson())
-        .copyWith(
-            email: currentUserSession!.user.email,
-            name: currentUserSession!.user.userMetadata!['name']);
+      return UserModel.fromMap(response.user!.toJson()).copyWith(
+          email: currentUserSession!.user.email,
+          name: currentUserSession!.user.userMetadata!['name']);
     } on ServerException {
       rethrow;
-    } catch (e) {
-      throw ServerException(message: e.toString());
+    } catch (_) {
+      throw ServerException(message: serverFailMsg);
     }
   }
 
@@ -51,15 +51,15 @@ class AuthDatasourceImpl implements IAuthDataSource {
       );
 
       if (response.user == null) {
-        throw ServerException(message: 'User is null');
+        throw ServerException(message: serverFailMsg);
       }
 
       return UserModel.fromMap(response.user!.toJson())
         ..copyWith(email: currentUserSession!.user.email);
     } on ServerException {
       rethrow;
-    } catch (e) {
-      throw ServerException(message: e.toString());
+    } catch (_) {
+      throw ServerException(message: serverFailMsg);
     }
   }
 
@@ -67,8 +67,8 @@ class AuthDatasourceImpl implements IAuthDataSource {
   Future<void> signOut() async {
     try {
       await client.auth.signOut();
-    } catch (e) {
-      throw ServerException(message: e.toString());
+    } catch (_) {
+      throw ServerException(message: serverFailMsg);
     }
   }
 
@@ -76,22 +76,48 @@ class AuthDatasourceImpl implements IAuthDataSource {
   Future<UserModel> updateUser(
       {required String name,
       required String email,
-      required String password}) async {
+      required String password,
+      required String oldPassword}) async {
     try {
-      //!Позже поменять парольную составляющую
-      final response = await client.auth.updateUser(UserAttributes(
-          email: email.isEmpty ? currentUserSession!.user.email : email,
-          data: {
-            'name': name.isEmpty
-                ? currentUserSession!.user.userMetadata!['name']
-                : name
-          }));
+      bool passwordCheck = true;
+      UserResponse response;
+      final currentUser = currentUserSession!.user;
 
-      if (response.user == null) {
-        throw ServerException(message: 'Something went wrong');
+      //*Check password
+      //*On success renew password
+      if (password.isNotEmpty) {
+        passwordCheck = await client.rpc(
+          'check_password',
+          params: {
+            'password': oldPassword,
+          },
+        );
+        if (!passwordCheck) {
+          throw ServerException(message: oldPasswordIncorrectMsg);
+        }
+
+        response = await client.auth.updateUser(UserAttributes(
+            email: email.isEmpty ? currentUser.email : email,
+            password: password,
+            data: {
+              'name': name.isEmpty ? currentUser.userMetadata!['name'] : name
+            }));
+      }
+      //*No password change required
+      else {
+        response = await client.auth.updateUser(UserAttributes(
+            email: email.isEmpty ? currentUser.email : email,
+            data: {
+              'name': name.isEmpty ? currentUser.userMetadata!['name'] : name
+            }));
       }
 
-      final UserModel user = UserModel.fromMap(response.user!.toJson()).copyWith(name: response.user!.userMetadata!['name']);
+      if (response.user == null) {
+        throw ServerException(message: serverFailMsg);
+      }
+
+      final UserModel user = UserModel.fromMap(response.user!.toJson())
+          .copyWith(name: response.user!.userMetadata!['name']);
       return user;
     } catch (e) {
       throw ServerException(message: e.toString());
@@ -105,14 +131,14 @@ class AuthDatasourceImpl implements IAuthDataSource {
       final response = client.auth.currentUser;
 
       if (response == null) {
-        throw ServerException(message: 'Something went wrong');
+        throw ServerException(message: serverFailMsg);
       }
 
       final UserModel user = UserModel.fromMap(response.toJson())
           .copyWith(name: response.userMetadata!['name']);
       return user;
-    } catch (e) {
-      throw ServerException(message: e.toString());
+    } catch (_) {
+      throw ServerException(message: serverFailMsg);
     }
   }
 
@@ -133,8 +159,8 @@ class AuthDatasourceImpl implements IAuthDataSource {
             .copyWith(email: currentUserSession!.user.email);
       }
       return null;
-    } catch (e) {
-      throw ServerException(message: e.toString());
+    } catch (_) {
+      throw ServerException(message: serverFailMsg);
     }
   }
 }

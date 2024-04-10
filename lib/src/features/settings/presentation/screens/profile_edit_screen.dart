@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:habita/core/common/blocs/bloc/internetconnection_bloc.dart';
+import 'package:habita/core/common/entities/dialog.dart';
 import 'package:habita/core/common/widgets/app_bar.dart';
 import 'package:habita/core/common/widgets/container_button_row_icon.dart';
 import 'package:habita/core/common/widgets/loader.dart';
 import 'package:habita/core/common/widgets/text_button.dart';
+import 'package:habita/core/constants/exceptions_messages.dart';
 import 'package:habita/core/extensions/color_rgb.dart';
+import 'package:habita/core/utils/show_dialog.dart';
 import 'package:habita/core/utils/show_snackbar.dart';
 import 'package:habita/generated/l10n.dart';
 import 'package:habita/src/features/auth/presentation/bloc/auth_bloc.dart';
@@ -55,12 +59,24 @@ class _EditProfileState extends State<EditProfile> {
         if (state is AuthError) {
           showSnackBar(
             context: context,
-            content: state.errorMessage,
+            content: ErrorsConventer()
+                .convertedMsg(context, msg: state.errorMessage),
           );
         }
         if (state is AuthInitial) {
           Navigator.of(context)
               .pushAndRemoveUntil(LoginPage.route(), (route) => false);
+        }
+        if (state is AuthUpdated) {
+          nameController.clear();
+          emailController.clear();
+          oldPasswordController.clear();
+          newPasswordController.clear();
+          showSnackBar(
+            context: context,
+            content: S.of(context).profileEdited,
+          );
+          Navigator.of(context).pop();
         }
       },
       child: userState is AuthLoaded
@@ -70,17 +86,23 @@ class _EditProfileState extends State<EditProfile> {
                 actions: [
                   HabitaTextButton(
                     onPressed: () {
-                      ////*Check does oldPassword setted right by user////
-                      if (formKey.currentState!.validate()) {
+                      if (!BlocProvider.of<InternetConnectionBloc>(context)
+                          .state
+                          .isConnected) {
+                        dialogBuilder(
+                            context: context,
+                            atributes: DialogAtributes(
+                                label: S.of(context).noConnection,
+                                body: S.of(context).settingsNoInternet));
+                      } else if (formKey.currentState!.validate()) {
                         if (newPasswordController.text.isNotEmpty &&
                             oldPasswordController.text.isEmpty) {
                           showSnackBar(
                               context: context,
-                              content:
-                                  'Before changing password need to confirm previous one');
+                              content: S.of(context).checkOldPassword);
                         } else {
                           context.read<AuthBloc>().add(AuthUpdateUser(
-                                currentUser: userState.user,
+                                oldPassword: oldPasswordController.text,
                                 email: emailController.text,
                                 name: nameController.text,
                                 password: newPasswordController.text,
@@ -180,8 +202,7 @@ class _EditProfileState extends State<EditProfile> {
                         //*Sign out
                         const SizedBox(height: 15),
                         ContainerButtonRowIcon(
-                          backColor:
-                              Theme.of(context).colorScheme.errorContainer,
+                          backColor: const Color.fromARGB(255, 201, 78, 69),
                           content: S.of(context).signOut,
                           fontSize: MediaQuery.of(context).size.width * 0.05,
                           onPressed: () {
