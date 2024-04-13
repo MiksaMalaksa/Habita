@@ -17,11 +17,10 @@ class ThemeSelector extends StatefulWidget {
 }
 
 class _ThemeSelectorState extends State<ThemeSelector> {
-  late Set<ThemeMode> selections = {ThemeMode.system};
+  late Set<ThemeMode> selections;
 
   @override
   void initState() {
-    super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       sl.get<SharedPreferencesUtils>().getThemeMode().then((mode) {
         ThemeMode currentMode = mode == 'dark'
@@ -32,6 +31,7 @@ class _ThemeSelectorState extends State<ThemeSelector> {
         setState(() => selections = {currentMode});
       });
     });
+    super.initState();
   }
 
   @override

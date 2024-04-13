@@ -17,7 +17,7 @@ class AppTheme {
 List<AppTheme> appThemes = [
   AppTheme(
     mode: ThemeMode.light,
-    icon: Icons.brightness_5_rounded,
+    icon: Icons.sunny,
   ),
   AppTheme(
     mode: ThemeMode.dark,

@@ -20,7 +20,9 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'ru';
 
-  static String m0(hintText) => "Некорректно введенное имя!";
+  static String m0(value1, value2) => "${value1} из ${value2} сделаны!";
+
+  static String m1(hintText) => "Некорректно введенное имя!";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -28,18 +30,24 @@ class MessageLookup extends MessageLookupByLibrary {
         "additionalSettings":
             MessageLookupByLibrary.simpleMessage("Дополнительно"),
         "alertLogout": MessageLookupByLibrary.simpleMessage("Выход с аккаунта"),
+        "almostDone": MessageLookupByLibrary.simpleMessage("Почти все!"),
+        "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "changeAvatar": MessageLookupByLibrary.simpleMessage("ПОМЕНЯТЬ АВАТАР"),
         "checkOldPassword": MessageLookupByLibrary.simpleMessage(
             "Надо подтвердить свой старый пароль!"),
+        "colors": MessageLookupByLibrary.simpleMessage("Colors"),
+        "completedOutOf": m0,
         "customization": MessageLookupByLibrary.simpleMessage("Кастомизация"),
         "dark": MessageLookupByLibrary.simpleMessage("Темная"),
         "email": MessageLookupByLibrary.simpleMessage("Электронная почта"),
         "forgetPassword":
             MessageLookupByLibrary.simpleMessage("Восстановить пароль"),
+        "halfDone": MessageLookupByLibrary.simpleMessage("На пол пути!"),
         "haveAccountMessage":
             MessageLookupByLibrary.simpleMessage("Уже существует аккаунт?"),
-        "hintMissing": m0,
+        "hintMissing": m1,
         "home": MessageLookupByLibrary.simpleMessage("Главная"),
+        "icons": MessageLookupByLibrary.simpleMessage("Icons"),
         "incorrectPassword": MessageLookupByLibrary.simpleMessage(
             "Длина пароля должна быть не меннее 6!"),
         "incorrectSigningUp":
@@ -55,11 +63,13 @@ class MessageLookup extends MessageLookupByLibrary {
             "Нет подключения к интернету!"),
         "noInternet": MessageLookupByLibrary.simpleMessage(
             "Проверьте ваше соединение с интернетом!"),
+        "nothingDone":
+            MessageLookupByLibrary.simpleMessage("Начните действовать!"),
         "oldPassword": MessageLookupByLibrary.simpleMessage("Старый пароль"),
         "password": MessageLookupByLibrary.simpleMessage("Пароль"),
         "profile": MessageLookupByLibrary.simpleMessage("Профиль"),
         "profileEdited":
-            MessageLookupByLibrary.simpleMessage("Profile edited!"),
+            MessageLookupByLibrary.simpleMessage("Профиль отредактирован!"),
         "program": MessageLookupByLibrary.simpleMessage("Программа"),
         "save": MessageLookupByLibrary.simpleMessage("Сохранить"),
         "settingsNoInternet": MessageLookupByLibrary.simpleMessage(

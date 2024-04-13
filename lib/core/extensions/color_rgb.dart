@@ -7,4 +7,10 @@ extension ThemeExtension on Color {
         .withRed(red + upParam)
         .withOpacity(opacity);
   }
+
+  Color desaturate(double amount) {
+    final hslColor = HSLColor.fromColor(this);
+    final desaturatedColor = hslColor.withSaturation(1 - amount);
+    return desaturatedColor.toColor();
+  }
 }

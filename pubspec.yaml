@@ -48,6 +48,7 @@ flutter:
     - assets/tg.png
     - assets/git_hub.png
     - assets/habita_logo.png
+    - assets/dart.png
 
 flutter_intl:
   enabled: true

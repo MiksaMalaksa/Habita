@@ -38,5 +38,12 @@
   "somethingWrong": "Něco se pokazilo!",
   "checkOldPassword": "Musíte potvrdit své staré heslo!",
   "noInternet": "Zkontrolujte připojení k internetu!",
-  "profileEdited": "Profile edited!"
+  "profileEdited": "Profil byl upraven!",
+  "almostDone": "Téměř všechny!",
+  "halfDone": "Na půli cesty!",
+  "nothingDone": "Start taking action!",
+  "completedOutOf": "{value1} z {value2} připraveno!",
+  "cancel": "Cancel",
+  "colors": "Colors",
+  "icons": "Icons"
 }

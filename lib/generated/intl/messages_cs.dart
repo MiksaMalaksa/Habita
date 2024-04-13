@@ -20,7 +20,9 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'cs';
 
-  static String m0(hintText) => "Nesprávně zadané jméno!";
+  static String m0(value1, value2) => "${value1} z ${value2} připraveno!";
+
+  static String m1(hintText) => "Nesprávně zadané jméno!";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -28,17 +30,23 @@ class MessageLookup extends MessageLookupByLibrary {
         "additionalSettings":
             MessageLookupByLibrary.simpleMessage("Další nastavení"),
         "alertLogout": MessageLookupByLibrary.simpleMessage("Odhlášení z účtu"),
+        "almostDone": MessageLookupByLibrary.simpleMessage("Téměř všechny!"),
+        "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "changeAvatar": MessageLookupByLibrary.simpleMessage("ZMĚNIT AVATAR"),
         "checkOldPassword": MessageLookupByLibrary.simpleMessage(
             "Musíte potvrdit své staré heslo!"),
+        "colors": MessageLookupByLibrary.simpleMessage("Colors"),
+        "completedOutOf": m0,
         "customization": MessageLookupByLibrary.simpleMessage("Přizpůsobení"),
         "dark": MessageLookupByLibrary.simpleMessage("Temný"),
         "email": MessageLookupByLibrary.simpleMessage("E-mailem"),
         "forgetPassword": MessageLookupByLibrary.simpleMessage("Obnovit heslo"),
+        "halfDone": MessageLookupByLibrary.simpleMessage("Na půli cesty!"),
         "haveAccountMessage":
             MessageLookupByLibrary.simpleMessage("Máte již účet?"),
-        "hintMissing": m0,
+        "hintMissing": m1,
         "home": MessageLookupByLibrary.simpleMessage("Úvod"),
+        "icons": MessageLookupByLibrary.simpleMessage("Icons"),
         "incorrectPassword": MessageLookupByLibrary.simpleMessage(
             "Délka hesla musí být alespoň 6!  "),
         "incorrectSigningUp":
@@ -53,11 +61,13 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Žádné připojení k internetu"),
         "noInternet": MessageLookupByLibrary.simpleMessage(
             "Zkontrolujte připojení k internetu!"),
+        "nothingDone":
+            MessageLookupByLibrary.simpleMessage("Start taking action!"),
         "oldPassword": MessageLookupByLibrary.simpleMessage("Nové heslo"),
         "password": MessageLookupByLibrary.simpleMessage("Heslo"),
         "profile": MessageLookupByLibrary.simpleMessage("Profil"),
         "profileEdited":
-            MessageLookupByLibrary.simpleMessage("Profile edited!"),
+            MessageLookupByLibrary.simpleMessage("Profil byl upraven!"),
         "program": MessageLookupByLibrary.simpleMessage("Program"),
         "save": MessageLookupByLibrary.simpleMessage("Uložit"),
         "settingsNoInternet": MessageLookupByLibrary.simpleMessage(

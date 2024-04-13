@@ -27,8 +27,8 @@ class _DropDownState<T> extends State<CustomizationDropDown<T>> {
 
   @override
   void initState() {
-    super.initState();
     setInitial();
+    super.initState();
   }
 
   @override

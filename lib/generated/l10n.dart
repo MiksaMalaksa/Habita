@@ -459,6 +459,76 @@ class S {
       args: [],
     );
   }
+
+  /// `Almost Done!`
+  String get almostDone {
+    return Intl.message(
+      'Almost Done!',
+      name: 'almostDone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Half Way Through!`
+  String get halfDone {
+    return Intl.message(
+      'Half Way Through!',
+      name: 'halfDone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Start taking actions!`
+  String get nothingDone {
+    return Intl.message(
+      'Start taking actions!',
+      name: 'nothingDone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `{value1} of {value2} completed`
+  String completedOutOf(Object value1, Object value2) {
+    return Intl.message(
+      '$value1 of $value2 completed',
+      name: 'completedOutOf',
+      desc: '',
+      args: [value1, value2],
+    );
+  }
+
+  /// `Cancel`
+  String get cancel {
+    return Intl.message(
+      'Cancel',
+      name: 'cancel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Colors`
+  String get colors {
+    return Intl.message(
+      'Colors',
+      name: 'colors',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Icons`
+  String get icons {
+    return Intl.message(
+      'Icons',
+      name: 'icons',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

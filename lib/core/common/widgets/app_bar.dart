@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 class HabitaAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   final List<Widget>? actions;
+  final bool center;
   const HabitaAppBar({
     super.key,
     required this.title,
     this.actions,
+    this.center = true,
   });
 
   @override
@@ -17,7 +19,7 @@ class HabitaAppBar extends StatelessWidget implements PreferredSizeWidget {
         style: Theme.of(context).appBarTheme.titleTextStyle,
       ),
       actions: actions,
-      centerTitle: true,
+      centerTitle: center,
       backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
     );
   }

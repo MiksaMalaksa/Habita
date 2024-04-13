@@ -20,7 +20,9 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
-  static String m0(hintText) => "${hintText} is missing!";
+  static String m0(value1, value2) => "${value1} of ${value2} completed";
+
+  static String m1(hintText) => "${hintText} is missing!";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -28,18 +30,24 @@ class MessageLookup extends MessageLookupByLibrary {
         "additionalSettings":
             MessageLookupByLibrary.simpleMessage("Additional settings"),
         "alertLogout": MessageLookupByLibrary.simpleMessage("Loggin out"),
+        "almostDone": MessageLookupByLibrary.simpleMessage("Almost Done!"),
+        "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "changeAvatar": MessageLookupByLibrary.simpleMessage("CHANGE AVATAR"),
         "checkOldPassword": MessageLookupByLibrary.simpleMessage(
             "Confirm old password befor submitting!"),
+        "colors": MessageLookupByLibrary.simpleMessage("Colors"),
+        "completedOutOf": m0,
         "customization": MessageLookupByLibrary.simpleMessage("Customization"),
         "dark": MessageLookupByLibrary.simpleMessage("Dark"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
         "forgetPassword":
             MessageLookupByLibrary.simpleMessage("Restore password"),
+        "halfDone": MessageLookupByLibrary.simpleMessage("Half Way Through!"),
         "haveAccountMessage":
             MessageLookupByLibrary.simpleMessage("Already have an account?"),
-        "hintMissing": m0,
+        "hintMissing": m1,
         "home": MessageLookupByLibrary.simpleMessage("Home"),
+        "icons": MessageLookupByLibrary.simpleMessage("Icons"),
         "incorrectPassword": MessageLookupByLibrary.simpleMessage(
             "Password can not be less then 6!"),
         "incorrectSigningUp":
@@ -56,6 +64,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("No internet connection!"),
         "noInternet": MessageLookupByLibrary.simpleMessage(
             "Check your internet connection!"),
+        "nothingDone":
+            MessageLookupByLibrary.simpleMessage("Start taking actions!"),
         "oldPassword": MessageLookupByLibrary.simpleMessage("Old password"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
         "profile": MessageLookupByLibrary.simpleMessage("Profile"),

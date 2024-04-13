@@ -1,32 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:habita/core/extensions/color_rgb.dart';
 
-class ContainerButton extends StatelessWidget {
+class ContainerShowCase extends StatelessWidget {
   final IconData icon;
   final Color backcolor;
-  final VoidCallback onPressed;
   final Color? iconColor;
-  const ContainerButton(
-      {super.key,
-      required this.icon,
-      required this.backcolor,
-      required this.onPressed,
-      this.iconColor});
+  const ContainerShowCase({
+    super.key,
+    required this.icon,
+    required this.backcolor,
+    this.iconColor,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-        width: MediaQuery.of(context).size.width * 0.13,
-        height: MediaQuery.of(context).size.width * 0.13,
+        width: MediaQuery.of(context).size.width * 0.099,
+        height: MediaQuery.of(context).size.width * 0.099,
         decoration: BoxDecoration(
           color: backcolor,
-          borderRadius: BorderRadius.circular(15),
+          borderRadius: BorderRadius.circular(13),
         ),
         child: Padding(
           padding: const EdgeInsets.all(4.0),
-          child: IconButton(
-            onPressed: onPressed,
-            icon: Icon(icon),
+          child: Icon(
+            icon,
             color: iconColor ??
                 Theme.of(context)
                     .primaryColorDark

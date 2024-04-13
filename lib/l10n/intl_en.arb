@@ -39,5 +39,12 @@
   "somethingWrong": "Something went wrong!",
   "checkOldPassword": "Confirm old password befor submitting!",
   "noInternet": "Check your internet connection!",
-  "profileEdited": "Profile edited!"
+  "profileEdited": "Profile edited!",
+  "almostDone": "Almost Done!",
+  "halfDone": "Half Way Through!",
+  "nothingDone": "Start taking actions!",
+  "completedOutOf": "{value1} of {value2} completed",
+  "cancel": "Cancel",
+  "colors": "Colors",
+  "icons": "Icons"
 }

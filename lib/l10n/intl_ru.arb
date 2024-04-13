@@ -39,5 +39,12 @@
   "somethingWrong": "Что-то пошло не так!",
   "checkOldPassword": "Надо подтвердить свой старый пароль!",
   "noInternet": "Проверьте ваше соединение с интернетом!",
-  "profileEdited": "Profile edited!"
+  "profileEdited": "Профиль отредактирован!",
+  "almostDone": "Почти все!",
+  "halfDone": "На пол пути!",
+  "nothingDone": "Начните действовать!",
+  "completedOutOf": "{value1} из {value2} сделаны!",
+  "cancel": "Cancel",
+  "colors": "Colors",
+  "icons": "Icons"
 }
