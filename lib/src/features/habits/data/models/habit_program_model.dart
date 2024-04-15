@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:habita/src/features/habits/data/models/habit_day_model.dart';
 import 'package:habita/src/features/habits/domain/entities/habit_day.dart';
 import 'package:habita/src/features/habits/domain/entities/habit_program.dart';
-import 'package:intl/intl.dart';
+
 
 class HabitProgramModel extends HabitProgram {
   const HabitProgramModel({
@@ -15,13 +15,14 @@ class HabitProgramModel extends HabitProgram {
     required super.programEnd,
   });
 
+  @override
   HabitProgramModel copyWith({
     List<HabitDay>? habits,
     String? name,
     String? description,
     bool? muatable,
-    DateFormat? programStart,
-    DateFormat? programEnd,
+    String? programStart,
+    String? programEnd,
   }) {
     return HabitProgramModel(
       habits: habits ?? this.habits,
@@ -55,8 +56,8 @@ class HabitProgramModel extends HabitProgram {
       name: map['name'] as String,
       description: map['description'] as String,
       muatable: map['muatable'] as bool,
-      programStart: map['programStart'] as DateFormat,
-      programEnd: map['programEnd'] as DateFormat,
+      programStart: map['programStart'] as String,
+      programEnd: map['programEnd'] as String,
     );
   }
 

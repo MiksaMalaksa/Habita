@@ -2,15 +2,17 @@ import 'package:flutter/material.dart';
 
 class CustomizationDropDown<T> extends StatefulWidget {
   final List<T> entries;
-  final Map<String, Widget>? icons;
+  final Map<Locale, Widget>? icons;
   final void Function(String value) onChoosed;
   final Future<T> Function() getInitial;
+  final T initialValue;
   const CustomizationDropDown({
     super.key,
     required this.entries,
     required this.onChoosed,
     required this.getInitial,
     this.icons,
+    required this.initialValue,
   });
 
   @override
@@ -18,7 +20,7 @@ class CustomizationDropDown<T> extends StatefulWidget {
 }
 
 class _DropDownState<T> extends State<CustomizationDropDown<T>> {
-  late T initial = widget.entries.first;
+  T? initial;
 
   Future<void> setInitial() async {
     initial = await widget.getInitial();
@@ -27,14 +29,14 @@ class _DropDownState<T> extends State<CustomizationDropDown<T>> {
 
   @override
   void initState() {
-    setInitial();
     super.initState();
+    setInitial();
   }
 
   @override
   Widget build(BuildContext context) {
     return DropdownMenu<T>(
-        initialSelection: initial,
+        initialSelection: initial ?? widget.initialValue,
         textStyle: Theme.of(context).dropdownMenuTheme.textStyle,
         menuStyle: Theme.of(context).dropdownMenuTheme.menuStyle,
         width: MediaQuery.of(context).size.width * 0.9,

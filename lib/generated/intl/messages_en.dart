@@ -32,6 +32,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "alertLogout": MessageLookupByLibrary.simpleMessage("Loggin out"),
         "almostDone": MessageLookupByLibrary.simpleMessage("Almost Done!"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
+        "cancelCapitalized": MessageLookupByLibrary.simpleMessage("CANCEL"),
         "changeAvatar": MessageLookupByLibrary.simpleMessage("CHANGE AVATAR"),
         "checkOldPassword": MessageLookupByLibrary.simpleMessage(
             "Confirm old password befor submitting!"),
@@ -40,6 +41,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "customization": MessageLookupByLibrary.simpleMessage("Customization"),
         "dark": MessageLookupByLibrary.simpleMessage("Dark"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
+        "endDate": MessageLookupByLibrary.simpleMessage("End date"),
         "forgetPassword":
             MessageLookupByLibrary.simpleMessage("Restore password"),
         "halfDone": MessageLookupByLibrary.simpleMessage("Half Way Through!"),
@@ -48,13 +50,20 @@ class MessageLookup extends MessageLookupByLibrary {
         "hintMissing": m1,
         "home": MessageLookupByLibrary.simpleMessage("Home"),
         "icons": MessageLookupByLibrary.simpleMessage("Icons"),
+        "immutable": MessageLookupByLibrary.simpleMessage("Immutable"),
         "incorrectPassword": MessageLookupByLibrary.simpleMessage(
             "Password can not be less then 6!"),
         "incorrectSigningUp":
             MessageLookupByLibrary.simpleMessage("Something went wrong!"),
+        "invalidEndDate":
+            MessageLookupByLibrary.simpleMessage("Min days are 7 from today!"),
+        "invalidInput": MessageLookupByLibrary.simpleMessage("Invalid input"),
+        "invalidStartDate": MessageLookupByLibrary.simpleMessage(
+            "You can not start before today :)"),
         "light": MessageLookupByLibrary.simpleMessage("Light"),
         "loginError":
             MessageLookupByLibrary.simpleMessage("No such account, try again!"),
+        "mutable": MessageLookupByLibrary.simpleMessage("Mutable"),
         "name": MessageLookupByLibrary.simpleMessage("Name"),
         "newPassword": MessageLookupByLibrary.simpleMessage("New password"),
         "no": MessageLookupByLibrary.simpleMessage("No"),
@@ -73,6 +82,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Profile edited!"),
         "program": MessageLookupByLibrary.simpleMessage("Program"),
         "save": MessageLookupByLibrary.simpleMessage("Save"),
+        "setNow": MessageLookupByLibrary.simpleMessage("Set now"),
         "settingsNoInternet": MessageLookupByLibrary.simpleMessage(
             "The application goes into local mode, editing mode is not available"),
         "signIn": MessageLookupByLibrary.simpleMessage("Sign In!"),
@@ -81,8 +91,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "somethingWrong":
             MessageLookupByLibrary.simpleMessage("Something went wrong!"),
         "sourceCode": MessageLookupByLibrary.simpleMessage("Source code"),
+        "startDate": MessageLookupByLibrary.simpleMessage("Start Date"),
         "stats": MessageLookupByLibrary.simpleMessage("Stats"),
         "submit": MessageLookupByLibrary.simpleMessage("Submit"),
+        "submitCapitalised": MessageLookupByLibrary.simpleMessage("SUBMIT"),
         "system": MessageLookupByLibrary.simpleMessage("System"),
         "telegram": MessageLookupByLibrary.simpleMessage("Text me"),
         "versus": MessageLookupByLibrary.simpleMessage("Versus"),

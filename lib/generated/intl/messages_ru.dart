@@ -32,6 +32,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "alertLogout": MessageLookupByLibrary.simpleMessage("Выход с аккаунта"),
         "almostDone": MessageLookupByLibrary.simpleMessage("Почти все!"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
+        "cancelCapitalized": MessageLookupByLibrary.simpleMessage("CANCEL"),
         "changeAvatar": MessageLookupByLibrary.simpleMessage("ПОМЕНЯТЬ АВАТАР"),
         "checkOldPassword": MessageLookupByLibrary.simpleMessage(
             "Надо подтвердить свой старый пароль!"),
@@ -40,6 +41,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "customization": MessageLookupByLibrary.simpleMessage("Кастомизация"),
         "dark": MessageLookupByLibrary.simpleMessage("Темная"),
         "email": MessageLookupByLibrary.simpleMessage("Электронная почта"),
+        "endDate": MessageLookupByLibrary.simpleMessage("End date"),
         "forgetPassword":
             MessageLookupByLibrary.simpleMessage("Восстановить пароль"),
         "halfDone": MessageLookupByLibrary.simpleMessage("На пол пути!"),
@@ -48,13 +50,20 @@ class MessageLookup extends MessageLookupByLibrary {
         "hintMissing": m1,
         "home": MessageLookupByLibrary.simpleMessage("Главная"),
         "icons": MessageLookupByLibrary.simpleMessage("Icons"),
+        "immutable": MessageLookupByLibrary.simpleMessage("Immutable"),
         "incorrectPassword": MessageLookupByLibrary.simpleMessage(
             "Длина пароля должна быть не меннее 6!"),
         "incorrectSigningUp":
             MessageLookupByLibrary.simpleMessage("Что-то пошло не так!"),
+        "invalidEndDate":
+            MessageLookupByLibrary.simpleMessage("Min days are 7 from today!"),
+        "invalidInput": MessageLookupByLibrary.simpleMessage("Invalid input"),
+        "invalidStartDate": MessageLookupByLibrary.simpleMessage(
+            "You can  ot start before today :)"),
         "light": MessageLookupByLibrary.simpleMessage("Светлая"),
         "loginError": MessageLookupByLibrary.simpleMessage(
             "Такого аккаунта нет, попробуйте еще раз!"),
+        "mutable": MessageLookupByLibrary.simpleMessage("Mutable"),
         "name": MessageLookupByLibrary.simpleMessage("Имя"),
         "newPassword": MessageLookupByLibrary.simpleMessage("Новый пароль"),
         "no": MessageLookupByLibrary.simpleMessage("Нет"),
@@ -72,6 +81,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Профиль отредактирован!"),
         "program": MessageLookupByLibrary.simpleMessage("Программа"),
         "save": MessageLookupByLibrary.simpleMessage("Сохранить"),
+        "setNow": MessageLookupByLibrary.simpleMessage("Set now"),
         "settingsNoInternet": MessageLookupByLibrary.simpleMessage(
             "Приложение переходит в локальный режим, режим редактирования недоступен"),
         "signIn": MessageLookupByLibrary.simpleMessage("Войти!"),
@@ -80,8 +90,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "somethingWrong":
             MessageLookupByLibrary.simpleMessage("Что-то пошло не так!"),
         "sourceCode": MessageLookupByLibrary.simpleMessage("Код проекта"),
+        "startDate": MessageLookupByLibrary.simpleMessage("Start Date"),
         "stats": MessageLookupByLibrary.simpleMessage("Статистика"),
         "submit": MessageLookupByLibrary.simpleMessage("Подтвердить"),
+        "submitCapitalised": MessageLookupByLibrary.simpleMessage("SUBMIT"),
         "system": MessageLookupByLibrary.simpleMessage("Системная"),
         "telegram": MessageLookupByLibrary.simpleMessage("Написать мне"),
         "versus": MessageLookupByLibrary.simpleMessage("Против"),

@@ -11,6 +11,7 @@ import 'package:habita/src/features/auth/domain/usecases/current_user_usecase.da
 import 'package:habita/src/features/auth/domain/usecases/login_usecase.dart';
 import 'package:habita/src/features/auth/domain/usecases/signup_usecase.dart';
 import 'package:habita/src/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:habita/src/features/habits/presentation/bloc/habit_bloc.dart';
 import 'package:habita/src/features/settings/data/datasources/isettings_datasource.dart';
 import 'package:habita/src/features/settings/data/datasources/settings_datasource_impl.dart';
 import 'package:habita/src/features/settings/data/repo/settings_repo_impl.dart';
@@ -40,12 +41,13 @@ Future<void> initialise() async {
   );
 
   //!core
-    _initInternetStreamChecker();
-    sl.registerFactory<ThemeBloc>(() => ThemeBloc());
+  _initInternetStreamChecker();
+  sl.registerFactory<ThemeBloc>(() => ThemeBloc());
 
   //!Features
   _initAuth();
   _initSettings();
+  _initHabits();
 }
 
 void _initAuth() {
@@ -87,4 +89,8 @@ void _initSettings() {
 
   //*Bloc
   sl.registerFactory<SettingsBloc>(() => SettingsBloc());
+}
+
+void _initHabits() {
+  sl.registerFactory<HabitBloc>(() => HabitBloc());
 }

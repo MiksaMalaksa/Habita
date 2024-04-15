@@ -23,7 +23,7 @@ class DateContainer extends StatelessWidget {
         : Colors.transparent;
     final textColor = selected
         ? Theme.of(context).primaryColorLight
-        : Theme.of(context).primaryColorLight.withOpacity(0.7).desaturate(0.2);
+        : Theme.of(context).primaryColorLight.withOpacity(0.9).desaturate(0.9);
     return Padding(
       padding: const EdgeInsets.only(right: 10),
       child: InkWell(

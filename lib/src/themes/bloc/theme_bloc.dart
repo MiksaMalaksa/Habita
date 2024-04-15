@@ -11,15 +11,20 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
   ThemeMode _mode = ThemeMode.system;
   ThemeData _customThemeLight = sakuraColoringLight;
   ThemeData _customThemeDark = sakuraColoringDark;
+  String _combName = colorCombinations[0];
 
   ThemeBloc() : super(ThemeInitial()) {
     on<ThemeChangeTheme>(
       (event, emit) {
         _mode = event.themeMode;
-        emit(ThemeInitial(
+        emit(
+          ThemeInitial(
             mode: _mode,
             lightComb: _customThemeLight,
-            darkComb: _customThemeDark));
+            darkComb: _customThemeDark,
+            combName: _combName,
+          ),
+        );
       },
     );
     on<ThemeChangeComb>(
@@ -28,11 +33,13 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
             combinations.containsKey('${event.comb}' 'Dark')) {
           _customThemeLight = combinations['${event.comb}' 'Light']!;
           _customThemeDark = combinations['${event.comb}' 'Dark']!;
+          _combName = event.comb;
 
           emit(ThemeInitial(
             mode: _mode,
             lightComb: _customThemeLight,
             darkComb: _customThemeDark,
+            combName: event.comb,
           ));
         }
       },

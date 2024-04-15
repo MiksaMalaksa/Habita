@@ -7,13 +7,13 @@ import 'package:habita/init_dependencies.dart';
 import 'package:habita/page_manager.dart';
 import 'package:habita/src/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:habita/src/features/auth/presentation/pages/login_page.dart';
+import 'package:habita/src/features/habits/presentation/bloc/habit_bloc.dart';
 import 'package:habita/src/features/settings/presentation/bloc/settings_bloc.dart';
 import 'package:habita/src/features/settings/utils/shared_pref_utils.dart';
 import 'package:habita/src/themes/bloc/theme_bloc.dart';
 
-
-//!Можно считать сколько надо будет сделать юзеру действий за время привычки, и 
-//!при ее завершении показать какие дни были отстой 
+//!Можно считать сколько надо будет сделать юзеру действий за время привычки, и
+//!при ее завершении показать какие дни были отстой
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -32,6 +32,9 @@ Future<void> main() async {
         ),
         BlocProvider(
           create: (_) => sl<ThemeBloc>(),
+        ),
+        BlocProvider(
+          create: (_) => sl<HabitBloc>(),
         ),
       ],
       child: const Habita(),
@@ -77,7 +80,7 @@ class HabitaState extends State<Habita> {
         context.read<ThemeBloc>().add(ThemeChangeTheme(themeMode: currentMode));
       });
       sl.get<SharedPreferencesUtils>().getThemeComb().then((comb) {
-         context.read<ThemeBloc>().add(ThemeChangeComb(comb: comb));
+        context.read<ThemeBloc>().add(ThemeChangeComb(comb: comb));
       });
     });
   }

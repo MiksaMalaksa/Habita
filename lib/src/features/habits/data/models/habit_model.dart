@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 
 import 'package:habita/core/enums/habit_type.dart';
 import 'package:habita/src/features/habits/domain/entities/habit.dart';
-import 'package:intl/intl.dart';
 
 class HabitModel extends Habit {
   const HabitModel({
@@ -45,8 +44,8 @@ class HabitModel extends Habit {
     int? taskSteps,
     int? completedSteps,
     int? timerSeconds,
-    DateFormat? taskStart,
-    DateFormat? taskEnd,
+    String? taskStart,
+    String? taskEnd,
   ) {
     return HabitModel(
       id: id ?? this.id,
@@ -115,8 +114,8 @@ class HabitModel extends Habit {
       taskSteps: map['taskSteps'] != null ? map['taskSteps'] as int : null,
       completedSteps:
           map['completedSteps'] != null ? map['completedSteps'] as int : null,
-      taskStart:
-          map['taskStart'] != null ? DateFormat.yMd(map['taskStart']) : null,
+      taskStart: map['taskStart'] != null ? map['taskStart'] as String : null,
+      taskEnd: map['taskEnd'] != null ? map['taskEnd'] as String : null,
     );
   }
 

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:habita/core/enums/habit_type.dart';
-import 'package:intl/intl.dart';
 
 class Habit {
   final String id;
@@ -19,8 +18,8 @@ class Habit {
   final int? taskSteps;
   final int? completedSteps;
   final int? timerSeconds;
-  final DateFormat? taskStart;
-  final DateFormat? taskEnd;
+  final String? taskStart;
+  final String? taskEnd;
 
   const Habit({
     required this.id,

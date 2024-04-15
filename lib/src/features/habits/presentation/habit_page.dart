@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttericon/elusive_icons.dart';
 import 'package:habita/core/extensions/color_rgb.dart';
+import 'package:habita/src/features/habits/presentation/screens/create_program.dart';
 import 'package:habita/src/features/habits/presentation/screens/program_edit.dart';
 import 'package:habita/src/features/habits/presentation/widgets/style_picker.dart';
 import 'package:habita/src/features/habits/presentation/widgets/habit_page/date_container_builder.dart';
@@ -95,12 +96,26 @@ class _HabitScreenState extends State<HabitPage> {
                 backColor: Color.fromARGB(255, 138, 224, 140),
               ),
               ElevatedButton(
-                  onPressed: () => showDialog(context: context,builder: (context) => const ColorPicker(),),
-                  child:  Container(
+                  onPressed: () => showDialog(
+                        context: context,
+                        builder: (context) => const ColorPicker(),
+                      ),
+                  child: Container(
                     width: 200,
                     height: 100,
                     color: Colors.amber,
-                  ))
+                  )),
+              ElevatedButton(
+                  onPressed: () => Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const HabitProgramScreen(
+                          appBarTitle: 'Habits',
+                        ),
+                      )),
+                  child: Container(
+                    width: 200,
+                    height: 100,
+                    color: Colors.red,
+                  )),
             ],
           ),
         ),

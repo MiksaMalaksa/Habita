@@ -32,6 +32,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "alertLogout": MessageLookupByLibrary.simpleMessage("Odhlášení z účtu"),
         "almostDone": MessageLookupByLibrary.simpleMessage("Téměř všechny!"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
+        "cancelCapitalized": MessageLookupByLibrary.simpleMessage("CANCEL"),
         "changeAvatar": MessageLookupByLibrary.simpleMessage("ZMĚNIT AVATAR"),
         "checkOldPassword": MessageLookupByLibrary.simpleMessage(
             "Musíte potvrdit své staré heslo!"),
@@ -40,6 +41,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "customization": MessageLookupByLibrary.simpleMessage("Přizpůsobení"),
         "dark": MessageLookupByLibrary.simpleMessage("Temný"),
         "email": MessageLookupByLibrary.simpleMessage("E-mailem"),
+        "endDate": MessageLookupByLibrary.simpleMessage("End date"),
         "forgetPassword": MessageLookupByLibrary.simpleMessage("Obnovit heslo"),
         "halfDone": MessageLookupByLibrary.simpleMessage("Na půli cesty!"),
         "haveAccountMessage":
@@ -47,13 +49,20 @@ class MessageLookup extends MessageLookupByLibrary {
         "hintMissing": m1,
         "home": MessageLookupByLibrary.simpleMessage("Úvod"),
         "icons": MessageLookupByLibrary.simpleMessage("Icons"),
+        "immutable": MessageLookupByLibrary.simpleMessage("Immutable"),
         "incorrectPassword": MessageLookupByLibrary.simpleMessage(
             "Délka hesla musí být alespoň 6!  "),
         "incorrectSigningUp":
             MessageLookupByLibrary.simpleMessage("Něco se pokazilo"),
+        "invalidEndDate":
+            MessageLookupByLibrary.simpleMessage("Min days are 7 from today!"),
+        "invalidInput": MessageLookupByLibrary.simpleMessage("Invalid input"),
+        "invalidStartDate": MessageLookupByLibrary.simpleMessage(
+            "You can  ot start before today :)"),
         "light": MessageLookupByLibrary.simpleMessage("Světlo"),
         "loginError": MessageLookupByLibrary.simpleMessage(
             "Takový účet neexistuje, zkuste to znovu!"),
+        "mutable": MessageLookupByLibrary.simpleMessage("Mutable"),
         "name": MessageLookupByLibrary.simpleMessage("Jméno"),
         "no": MessageLookupByLibrary.simpleMessage("Ne"),
         "noAccount": MessageLookupByLibrary.simpleMessage("Nemáte účet?"),
@@ -70,6 +79,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Profil byl upraven!"),
         "program": MessageLookupByLibrary.simpleMessage("Program"),
         "save": MessageLookupByLibrary.simpleMessage("Uložit"),
+        "setNow": MessageLookupByLibrary.simpleMessage("Set now"),
         "settingsNoInternet": MessageLookupByLibrary.simpleMessage(
             "Aplikace přejde do místního režimu, režim úprav není k dispozici"),
         "signIn": MessageLookupByLibrary.simpleMessage("Přihlásit se!"),
@@ -78,8 +88,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "somethingWrong":
             MessageLookupByLibrary.simpleMessage("Něco se pokazilo!"),
         "sourceCode": MessageLookupByLibrary.simpleMessage("Source code"),
+        "startDate": MessageLookupByLibrary.simpleMessage("Start Date"),
         "stats": MessageLookupByLibrary.simpleMessage("Statistiky"),
         "submit": MessageLookupByLibrary.simpleMessage("Potvrďte"),
+        "submitCapitalised": MessageLookupByLibrary.simpleMessage("SUBMIT"),
         "system": MessageLookupByLibrary.simpleMessage("Systém"),
         "telegram": MessageLookupByLibrary.simpleMessage("Napište mi"),
         "versus": MessageLookupByLibrary.simpleMessage("Versus"),

@@ -70,8 +70,8 @@ class ProfilePage extends StatelessWidget {
                         //*customization
                         Padding(
                           padding: const EdgeInsetsDirectional.only(start: 8),
-                          child:
-                              Text(S.of(context).customization, style: textTheme),
+                          child: Text(S.of(context).customization,
+                              style: textTheme),
                         ),
                         const SizedBox(height: 20),
                         //*Segmented selector
@@ -84,10 +84,12 @@ class ProfilePage extends StatelessWidget {
                                     .get<SharedPreferencesUtils>()
                                     .getThemeComb(),
                                 entries: colorCombinations,
+                                initialValue:
+                                    context.read<ThemeBloc>().state.combName,
                                 onChoosed: (String scheme) {
-                                  context.read<ThemeBloc>().add(
-                                        ThemeChangeComb(comb: scheme),
-                                      );
+                                  context
+                                      .read<ThemeBloc>()
+                                      .add(ThemeChangeComb(comb: scheme));
                                   sl
                                       .get<SharedPreferencesUtils>()
                                       .addThemeComb(scheme);
@@ -96,13 +98,15 @@ class ProfilePage extends StatelessWidget {
                         //*internationalization
                         Center(
                             child: CustomizationDropDown<Locale>(
+                                initialValue:
+                                    Habita.of(context)!.currentLocale!,
                                 getInitial: () => sl
                                     .get<SharedPreferencesUtils>()
                                     .getLang()
                                     .then((code) =>
                                         Locale.fromSubtags(languageCode: code)),
                                 entries: S.delegate.supportedLocales,
-                                //*get flags on their code
+                                //*get flags based on their locale code
                                 icons: flags,
                                 onChoosed: (String locale) {
                                   Habita.of(context)!.setLocale(Locale(locale));
@@ -125,7 +129,8 @@ class ProfilePage extends StatelessWidget {
                             assetPath: 'assets/tg.png',
                             content: S.of(context).telegram,
                             onPressed: () {
-                              if (BlocProvider.of<InternetConnectionBloc>(context)
+                              if (BlocProvider.of<InternetConnectionBloc>(
+                                      context)
                                   .state
                                   .isConnected) {
                                 context.read<SettingsBloc>().add(
@@ -145,7 +150,8 @@ class ProfilePage extends StatelessWidget {
                             assetPath: 'assets/git_hub.png',
                             content: S.of(context).sourceCode,
                             onPressed: () {
-                              if (BlocProvider.of<InternetConnectionBloc>(context)
+                              if (BlocProvider.of<InternetConnectionBloc>(
+                                      context)
                                   .state
                                   .isConnected) {
                                 context.read<SettingsBloc>().add(

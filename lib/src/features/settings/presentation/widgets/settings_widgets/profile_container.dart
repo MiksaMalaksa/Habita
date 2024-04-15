@@ -70,7 +70,11 @@ class ProfileContainer extends StatelessWidget {
                     const Spacer(),
                     ContainerButton(
                       icon: Elusive.pencil,
-                      backcolor: Theme.of(context).primaryColorLight,
+                      backcolor: Theme.of(context)
+                          .primaryColorLight
+                          .desaturate(0.1)
+                          .withOpacity(0.8),
+                      iconColor: Colors.white,
                       onPressed: () => Navigator.of(context).push(
                         EditProfile.route(),
                       ),

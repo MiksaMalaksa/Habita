@@ -529,6 +529,106 @@ class S {
       args: [],
     );
   }
+
+  /// `Invalid input`
+  String get invalidInput {
+    return Intl.message(
+      'Invalid input',
+      name: 'invalidInput',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Immutable`
+  String get immutable {
+    return Intl.message(
+      'Immutable',
+      name: 'immutable',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Mutable`
+  String get mutable {
+    return Intl.message(
+      'Mutable',
+      name: 'mutable',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Set now`
+  String get setNow {
+    return Intl.message(
+      'Set now',
+      name: 'setNow',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `CANCEL`
+  String get cancelCapitalized {
+    return Intl.message(
+      'CANCEL',
+      name: 'cancelCapitalized',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `SUBMIT`
+  String get submitCapitalised {
+    return Intl.message(
+      'SUBMIT',
+      name: 'submitCapitalised',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You can not start before today :)`
+  String get invalidStartDate {
+    return Intl.message(
+      'You can not start before today :)',
+      name: 'invalidStartDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Start Date`
+  String get startDate {
+    return Intl.message(
+      'Start Date',
+      name: 'startDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `End date`
+  String get endDate {
+    return Intl.message(
+      'End date',
+      name: 'endDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Min days are 7 from today!`
+  String get invalidEndDate {
+    return Intl.message(
+      'Min days are 7 from today!',
+      name: 'invalidEndDate',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

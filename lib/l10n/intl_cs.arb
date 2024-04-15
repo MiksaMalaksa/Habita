@@ -45,5 +45,15 @@
   "completedOutOf": "{value1} z {value2} připraveno!",
   "cancel": "Cancel",
   "colors": "Colors",
-  "icons": "Icons"
+  "icons": "Icons",
+  "invalidInput": "Invalid input",
+  "immutable": "Immutable",
+  "mutable": "Mutable",
+  "setNow": "Set now",
+  "cancelCapitalized": "CANCEL",
+  "submitCapitalised": "SUBMIT",
+  "invalidStartDate": "You can  ot start before today :)",
+  "startDate": "Start Date",
+  "endDate": "End date",
+  "invalidEndDate": "Min days are 7 from today!"
 }

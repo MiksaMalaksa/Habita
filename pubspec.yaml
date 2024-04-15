@@ -10,6 +10,7 @@ environment:
 
 dependencies:
   bloc: ^8.1.4
+  calendar_date_picker2: ^0.5.5
   connectivity_plus: ^6.0.1
   country_flags: ^2.2.0
   cupertino_icons: ^1.0.2
@@ -49,6 +50,7 @@ flutter:
     - assets/git_hub.png
     - assets/habita_logo.png
     - assets/dart.png
+    - assets/busy.png
 
 flutter_intl:
   enabled: true
