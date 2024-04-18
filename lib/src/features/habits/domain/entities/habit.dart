@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:fluttericon/font_awesome5_icons.dart';
+
 import 'package:habita/core/enums/habit_type.dart';
 
 class Habit {
@@ -7,19 +9,20 @@ class Habit {
   final IconData icon;
   final HabitType habitType;
   final String name;
-  final String description;
+
   final bool isCompleted;
   final int highestStreak;
   final int currentStreak;
+  final String? description;
   final double? waterTarget;
   final double? waterConsumed;
   final int? stepsTarget;
   final int? stepsProduced;
   final int? taskSteps;
   final int? completedSteps;
-  final int? timerSeconds;
   final String? taskStart;
   final String? taskEnd;
+  final String? remainder;
 
   const Habit({
     required this.id,
@@ -27,10 +30,10 @@ class Habit {
     required this.icon,
     required this.habitType,
     required this.name,
-    required this.description,
     required this.isCompleted,
     required this.highestStreak,
     required this.currentStreak,
+    this.description,
     this.waterTarget,
     this.waterConsumed,
     this.stepsTarget,
@@ -39,6 +42,60 @@ class Habit {
     this.completedSteps,
     this.taskEnd,
     this.taskStart,
-    this.timerSeconds,
+    this.remainder,
   });
+
+  factory Habit.base({required String id}) => Habit(
+        id: id,
+        color: const Color.fromARGB(255, 138, 224, 140),
+        icon: FontAwesome5.laptop_code,
+        habitType: HabitType.todo,
+        name: '',
+        description: '',
+        isCompleted: false,
+        highestStreak: 0,
+        currentStreak: 0,
+      );
+
+  Habit copyWith({
+    String? id,
+    Color? color,
+    IconData? icon,
+    HabitType? habitType,
+    String? name,
+    bool? isCompleted,
+    int? highestStreak,
+    int? currentStreak,
+    String? description,
+    double? waterTarget,
+    double? waterConsumed,
+    int? stepsTarget,
+    int? stepsProduced,
+    int? taskSteps,
+    int? completedSteps,
+    String? taskStart,
+    String? taskEnd,
+    String? remainder,
+  }) {
+    return Habit(
+      id: id ?? this.id,
+      color: color ?? this.color,
+      icon: icon ?? this.icon,
+      habitType: habitType ?? this.habitType,
+      name: name ?? this.name,
+      isCompleted: isCompleted ?? this.isCompleted,
+      highestStreak: highestStreak ?? this.highestStreak,
+      currentStreak: currentStreak ?? this.currentStreak,
+      description: description ?? this.description,
+      waterTarget: waterTarget ?? this.waterTarget,
+      waterConsumed: waterConsumed ?? this.waterConsumed,
+      stepsTarget: stepsTarget ?? this.stepsTarget,
+      stepsProduced: stepsProduced ?? this.stepsProduced,
+      taskSteps: taskSteps ?? this.taskSteps,
+      completedSteps: completedSteps ?? this.completedSteps,
+      taskStart: taskStart ?? this.taskStart,
+      taskEnd: taskEnd ?? this.taskEnd,
+      remainder: remainder ?? this.remainder,
+    );
+  }
 }

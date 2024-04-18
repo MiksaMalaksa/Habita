@@ -24,6 +24,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m1(hintText) => "Некорректно введенное имя!";
 
+  static String m2(maxValue) => "Макс - ${maxValue}";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "account": MessageLookupByLibrary.simpleMessage("Аккаунт"),
@@ -31,40 +33,53 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Дополнительно"),
         "alertLogout": MessageLookupByLibrary.simpleMessage("Выход с аккаунта"),
         "almostDone": MessageLookupByLibrary.simpleMessage("Почти все!"),
-        "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
-        "cancelCapitalized": MessageLookupByLibrary.simpleMessage("CANCEL"),
+        "cancel": MessageLookupByLibrary.simpleMessage("Отменить"),
+        "cancelCapitalized": MessageLookupByLibrary.simpleMessage("ОТМЕНИТЬ"),
+        "change": MessageLookupByLibrary.simpleMessage("Изменить"),
         "changeAvatar": MessageLookupByLibrary.simpleMessage("ПОМЕНЯТЬ АВАТАР"),
         "checkOldPassword": MessageLookupByLibrary.simpleMessage(
             "Надо подтвердить свой старый пароль!"),
-        "colors": MessageLookupByLibrary.simpleMessage("Colors"),
+        "colors": MessageLookupByLibrary.simpleMessage("Цвета"),
         "completedOutOf": m0,
+        "create": MessageLookupByLibrary.simpleMessage("Создать"),
         "customization": MessageLookupByLibrary.simpleMessage("Кастомизация"),
         "dark": MessageLookupByLibrary.simpleMessage("Темная"),
+        "description": MessageLookupByLibrary.simpleMessage("Описание"),
         "email": MessageLookupByLibrary.simpleMessage("Электронная почта"),
-        "endDate": MessageLookupByLibrary.simpleMessage("End date"),
+        "endDate": MessageLookupByLibrary.simpleMessage("Конец"),
         "forgetPassword":
             MessageLookupByLibrary.simpleMessage("Восстановить пароль"),
+        "friday": MessageLookupByLibrary.simpleMessage("Friday"),
+        "habitDays": MessageLookupByLibrary.simpleMessage("Habit days"),
+        "habitName": MessageLookupByLibrary.simpleMessage("Привычка"),
+        "habitType": MessageLookupByLibrary.simpleMessage("Тип привычки"),
         "halfDone": MessageLookupByLibrary.simpleMessage("На пол пути!"),
         "haveAccountMessage":
             MessageLookupByLibrary.simpleMessage("Уже существует аккаунт?"),
         "hintMissing": m1,
         "home": MessageLookupByLibrary.simpleMessage("Главная"),
-        "icons": MessageLookupByLibrary.simpleMessage("Icons"),
-        "immutable": MessageLookupByLibrary.simpleMessage("Immutable"),
+        "icons": MessageLookupByLibrary.simpleMessage("Иконки"),
+        "immutable": MessageLookupByLibrary.simpleMessage("Неизменяемая"),
         "incorrectPassword": MessageLookupByLibrary.simpleMessage(
             "Длина пароля должна быть не меннее 6!"),
         "incorrectSigningUp":
             MessageLookupByLibrary.simpleMessage("Что-то пошло не так!"),
-        "invalidEndDate":
-            MessageLookupByLibrary.simpleMessage("Min days are 7 from today!"),
-        "invalidInput": MessageLookupByLibrary.simpleMessage("Invalid input"),
+        "invalidEndDate": MessageLookupByLibrary.simpleMessage(
+            "Минимальное - 7 дней с сегодня!"),
+        "invalidInput":
+            MessageLookupByLibrary.simpleMessage("Некорректный ввод"),
         "invalidStartDate": MessageLookupByLibrary.simpleMessage(
-            "You can  ot start before today :)"),
+            "Вы не можете начать вчера :)"),
         "light": MessageLookupByLibrary.simpleMessage("Светлая"),
         "loginError": MessageLookupByLibrary.simpleMessage(
             "Такого аккаунта нет, попробуйте еще раз!"),
-        "mutable": MessageLookupByLibrary.simpleMessage("Mutable"),
+        "maxValue": m2,
+        "monday": MessageLookupByLibrary.simpleMessage("Monday"),
+        "multiple": MessageLookupByLibrary.simpleMessage("Множественное ту-ду"),
+        "mutable": MessageLookupByLibrary.simpleMessage("Изменяемая"),
         "name": MessageLookupByLibrary.simpleMessage("Имя"),
+        "nameOfHabit":
+            MessageLookupByLibrary.simpleMessage("Название привычки"),
         "newPassword": MessageLookupByLibrary.simpleMessage("Новый пароль"),
         "no": MessageLookupByLibrary.simpleMessage("Нет"),
         "noAccount": MessageLookupByLibrary.simpleMessage("Нет аккаунта?"),
@@ -72,33 +87,48 @@ class MessageLookup extends MessageLookupByLibrary {
             "Нет подключения к интернету!"),
         "noInternet": MessageLookupByLibrary.simpleMessage(
             "Проверьте ваше соединение с интернетом!"),
+        "notes": MessageLookupByLibrary.simpleMessage("Заметки"),
         "nothingDone":
             MessageLookupByLibrary.simpleMessage("Начните действовать!"),
+        "off": MessageLookupByLibrary.simpleMessage("без напоминания"),
         "oldPassword": MessageLookupByLibrary.simpleMessage("Старый пароль"),
         "password": MessageLookupByLibrary.simpleMessage("Пароль"),
         "profile": MessageLookupByLibrary.simpleMessage("Профиль"),
         "profileEdited":
             MessageLookupByLibrary.simpleMessage("Профиль отредактирован!"),
         "program": MessageLookupByLibrary.simpleMessage("Программа"),
+        "saturday": MessageLookupByLibrary.simpleMessage("Saturday"),
         "save": MessageLookupByLibrary.simpleMessage("Сохранить"),
-        "setNow": MessageLookupByLibrary.simpleMessage("Set now"),
+        "setNow": MessageLookupByLibrary.simpleMessage("Установить"),
+        "setReminder":
+            MessageLookupByLibrary.simpleMessage("Установить напоминание"),
         "settingsNoInternet": MessageLookupByLibrary.simpleMessage(
             "Приложение переходит в локальный режим, режим редактирования недоступен"),
         "signIn": MessageLookupByLibrary.simpleMessage("Войти!"),
         "signOut": MessageLookupByLibrary.simpleMessage("Выйти с аккаунта"),
         "signUp": MessageLookupByLibrary.simpleMessage("Регистрация!"),
+        "smallDescription":
+            MessageLookupByLibrary.simpleMessage("Описание привычки"),
         "somethingWrong":
             MessageLookupByLibrary.simpleMessage("Что-то пошло не так!"),
         "sourceCode": MessageLookupByLibrary.simpleMessage("Код проекта"),
-        "startDate": MessageLookupByLibrary.simpleMessage("Start Date"),
+        "startDate": MessageLookupByLibrary.simpleMessage("Старт"),
         "stats": MessageLookupByLibrary.simpleMessage("Статистика"),
+        "steps": MessageLookupByLibrary.simpleMessage("Шаги"),
         "submit": MessageLookupByLibrary.simpleMessage("Подтвердить"),
-        "submitCapitalised": MessageLookupByLibrary.simpleMessage("SUBMIT"),
+        "submitCapitalised":
+            MessageLookupByLibrary.simpleMessage("ПОДТВЕРДИТЬ"),
+        "sunday": MessageLookupByLibrary.simpleMessage("Sunday"),
         "system": MessageLookupByLibrary.simpleMessage("Системная"),
         "telegram": MessageLookupByLibrary.simpleMessage("Написать мне"),
+        "thursday": MessageLookupByLibrary.simpleMessage("Thursday"),
+        "todo": MessageLookupByLibrary.simpleMessage("Ту-ду"),
+        "tuesday": MessageLookupByLibrary.simpleMessage("Tuesday"),
         "versus": MessageLookupByLibrary.simpleMessage("Против"),
         "wantToLogOut": MessageLookupByLibrary.simpleMessage(
             "Вы точно хотите выйти с аккаунта?"),
+        "water": MessageLookupByLibrary.simpleMessage("Вода"),
+        "wednesday": MessageLookupByLibrary.simpleMessage("Wednesday"),
         "yes": MessageLookupByLibrary.simpleMessage("Да")
       };
 }

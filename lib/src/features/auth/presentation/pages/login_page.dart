@@ -43,10 +43,12 @@ class LoginState extends State<LoginPage> {
 
     void formValidation() {
       if (formKey.currentState!.validate()) {
-        context.read<AuthBloc>().add(AuthSignIn(
-              email: emailTextController.text,
-              password: passwordTextController.text,
-            ));
+        context.read<AuthBloc>().add(
+              AuthSignIn(
+                email: emailTextController.text,
+                password: passwordTextController.text,
+              ),
+            );
       }
     }
 

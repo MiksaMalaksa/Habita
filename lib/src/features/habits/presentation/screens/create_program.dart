@@ -6,6 +6,7 @@ import 'package:habita/core/common/widgets/text_button.dart';
 import 'package:habita/core/extensions/color_rgb.dart';
 import 'package:habita/generated/l10n.dart';
 import 'package:habita/src/features/habits/presentation/bloc/habit_bloc.dart';
+import 'package:habita/src/features/habits/presentation/screens/create_habit.dart';
 import 'package:habita/src/features/habits/presentation/widgets/create_program/date_row/date_row.dart';
 import 'package:habita/src/features/habits/presentation/widgets/create_program/segmented_button.dart';
 import 'package:habita/src/features/habits/presentation/widgets/text_field.dart';
@@ -22,6 +23,7 @@ class _HabitProgramScreenState extends State<HabitProgramScreen> {
   //!takes from db current name
   final nameEditController = TextEditingController();
   final aimEditController = TextEditingController();
+
   final formKey = GlobalKey<FormState>();
 
   @override
@@ -33,7 +35,7 @@ class _HabitProgramScreenState extends State<HabitProgramScreen> {
 
   @override
   void initState() {
-    context.read<HabitBloc>().add(const HabitProgramChanging());
+    context.read<HabitBloc>().add(const HabitProgramChange());
     super.initState();
   }
 
@@ -43,7 +45,7 @@ class _HabitProgramScreenState extends State<HabitProgramScreen> {
           color: Theme.of(context).primaryColorLight.desaturate(0.9),
         );
     return BlocBuilder<HabitBloc, HabitState>(builder: (context, state) {
-      if (state is HabitChanging) {
+      if (state is ProgramChanging) {
         return Scaffold(
           appBar: HabitaAppBar(
             title: widget.appBarTitle,
@@ -78,6 +80,9 @@ class _HabitProgramScreenState extends State<HabitProgramScreen> {
                         height: 10,
                       ),
                       HabitTextField(
+                        onSubmitted: () => context.read<HabitBloc>().add(
+                            HabitProgramChange(
+                                name: nameEditController.text)),
                         controller: nameEditController,
                         hintText: 'Naming',
                       ),
@@ -89,6 +94,8 @@ class _HabitProgramScreenState extends State<HabitProgramScreen> {
                         height: 10,
                       ),
                       HabitTextField(
+                        onSubmitted: () => context.read<HabitBloc>().add(
+                            HabitProgramChange(name: aimEditController.text)),
                         controller: aimEditController,
                         maxChars: 50,
                         hintText: 'Aim of the program',
@@ -126,6 +133,53 @@ class _HabitProgramScreenState extends State<HabitProgramScreen> {
                         state: state,
                         startDate: state.changeableProgram.programStart,
                         endDate: state.changeableProgram.programEnd,
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        'Current habbits',
+                        style: textTheme,
+                      ),
+                      Row(
+                        children: [
+                          const Spacer(
+                            flex: 3,
+                          ),
+                          Flexible(
+                            flex: 1,
+                            child: GestureDetector(
+                              onTap: () => Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) => HabitView(
+                                    showChooseDays: false,
+                                    appBarTitle: S.of(context).create,
+                                  ),
+                                ),
+                              ),
+                              child: Container(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.08,
+                                decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    border: Border.all(
+                                      width: 1,
+                                      color: Theme.of(context)
+                                          .secondaryHeaderColor,
+                                    ),
+                                    color: Theme.of(context).primaryColorLight),
+                                child: Center(
+                                  child: Icon(
+                                    Icons.add,
+                                    size: MediaQuery.of(context).size.height *
+                                        0.045,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       )
                     ],
                   ),

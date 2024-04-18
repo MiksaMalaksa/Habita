@@ -2,27 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:fluttericon/iconic_icons.dart';
 import 'package:habita/generated/l10n.dart';
 
-class HabitTextField extends StatelessWidget {
+class HabitTargetTextField extends StatelessWidget {
   final TextEditingController controller;
   final String hintText;
-  final bool requireCheck;
-  final VoidCallback onSubmitted;
+  final int maxValue;
   final int? maxChars;
 
-  const HabitTextField({
+  const HabitTargetTextField({
     super.key,
     required this.controller,
     required this.hintText,
-    required this.onSubmitted,
     this.maxChars,
-    this.requireCheck = true,
+    required this.maxValue,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      onEditingComplete: onSubmitted,
       controller: controller,
+      keyboardType: TextInputType.number,
       maxLength: maxChars ?? 15,
       style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
       decoration: InputDecoration(
@@ -51,10 +49,15 @@ class HabitTextField extends StatelessWidget {
         hintText: hintText,
       ),
       validator: (value) {
-        if (requireCheck) {
-          if (value!.isEmpty || value.trim().isEmpty) {
+        if (value!.isEmpty || value.trim().isEmpty) {
+          return S.of(context).invalidInput;
+        }
+
+        if(int.tryParse(value) == null){
             return S.of(context).invalidInput;
-          }
+        }
+        else if(int.parse(value) > maxValue){
+          return S.of(context).maxValue(maxValue);
         }
 
         return null;

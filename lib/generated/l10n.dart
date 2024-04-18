@@ -629,6 +629,236 @@ class S {
       args: [],
     );
   }
+
+  /// `Create`
+  String get create {
+    return Intl.message(
+      'Create',
+      name: 'create',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Change`
+  String get change {
+    return Intl.message(
+      'Change',
+      name: 'change',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Habit name`
+  String get habitName {
+    return Intl.message(
+      'Habit name',
+      name: 'habitName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The name of habit`
+  String get nameOfHabit {
+    return Intl.message(
+      'The name of habit',
+      name: 'nameOfHabit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Description`
+  String get description {
+    return Intl.message(
+      'Description',
+      name: 'description',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Small description`
+  String get smallDescription {
+    return Intl.message(
+      'Small description',
+      name: 'smallDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Max - {maxValue}`
+  String maxValue(Object maxValue) {
+    return Intl.message(
+      'Max - $maxValue',
+      name: 'maxValue',
+      desc: '',
+      args: [maxValue],
+    );
+  }
+
+  /// `Notes`
+  String get notes {
+    return Intl.message(
+      'Notes',
+      name: 'notes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Multiple to-do`
+  String get multiple {
+    return Intl.message(
+      'Multiple to-do',
+      name: 'multiple',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `To-do`
+  String get todo {
+    return Intl.message(
+      'To-do',
+      name: 'todo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Steps`
+  String get steps {
+    return Intl.message(
+      'Steps',
+      name: 'steps',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Water`
+  String get water {
+    return Intl.message(
+      'Water',
+      name: 'water',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Type of habit`
+  String get habitType {
+    return Intl.message(
+      'Type of habit',
+      name: 'habitType',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Set reminder`
+  String get setReminder {
+    return Intl.message(
+      'Set reminder',
+      name: 'setReminder',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `off`
+  String get off {
+    return Intl.message(
+      'off',
+      name: 'off',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Habit days`
+  String get habitDays {
+    return Intl.message(
+      'Habit days',
+      name: 'habitDays',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Monday`
+  String get monday {
+    return Intl.message(
+      'Monday',
+      name: 'monday',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tuesday`
+  String get tuesday {
+    return Intl.message(
+      'Tuesday',
+      name: 'tuesday',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Wednesday`
+  String get wednesday {
+    return Intl.message(
+      'Wednesday',
+      name: 'wednesday',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Thursday`
+  String get thursday {
+    return Intl.message(
+      'Thursday',
+      name: 'thursday',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Friday`
+  String get friday {
+    return Intl.message(
+      'Friday',
+      name: 'friday',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Saturday`
+  String get saturday {
+    return Intl.message(
+      'Saturday',
+      name: 'saturday',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sunday`
+  String get sunday {
+    return Intl.message(
+      'Sunday',
+      name: 'sunday',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

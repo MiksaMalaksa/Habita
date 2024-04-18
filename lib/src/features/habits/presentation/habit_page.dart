@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttericon/elusive_icons.dart';
 import 'package:habita/core/extensions/color_rgb.dart';
+import 'package:habita/generated/l10n.dart';
 import 'package:habita/src/features/habits/presentation/screens/create_program.dart';
 import 'package:habita/src/features/habits/presentation/screens/program_edit.dart';
 import 'package:habita/src/features/habits/presentation/widgets/style_picker.dart';
@@ -107,8 +108,8 @@ class _HabitScreenState extends State<HabitPage> {
                   )),
               ElevatedButton(
                   onPressed: () => Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const HabitProgramScreen(
-                          appBarTitle: 'Habits',
+                        builder: (context) =>  HabitProgramScreen(
+                          appBarTitle: S.of(context).program,
                         ),
                       )),
                   child: Container(

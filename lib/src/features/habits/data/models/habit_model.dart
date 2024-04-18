@@ -24,50 +24,8 @@ class HabitModel extends Habit {
     super.completedSteps,
     super.taskStart,
     super.taskEnd,
-    super.timerSeconds,
+    super.remainder,
   });
-
-  HabitModel copyWith(
-    String? id,
-    Color? color,
-    IconData? icon,
-    HabitType? habitType,
-    String? name,
-    String? description,
-    bool? isCompleted,
-    int? highestStreak,
-    int? currentStreak,
-    double? waterTarget,
-    double? waterConsumed,
-    int? stepsTarget,
-    int? stepsProduced,
-    int? taskSteps,
-    int? completedSteps,
-    int? timerSeconds,
-    String? taskStart,
-    String? taskEnd,
-  ) {
-    return HabitModel(
-      id: id ?? this.id,
-      color: color ?? this.color,
-      icon: icon ?? this.icon,
-      habitType: habitType ?? this.habitType,
-      name: name ?? this.name,
-      description: description ?? this.description,
-      isCompleted: isCompleted ?? this.isCompleted,
-      highestStreak: highestStreak ?? this.highestStreak,
-      currentStreak: currentStreak ?? this.currentStreak,
-      waterTarget: waterTarget ?? this.waterTarget,
-      waterConsumed: waterConsumed ?? this.waterConsumed,
-      stepsTarget: stepsTarget ?? this.stepsTarget,
-      stepsProduced: stepsProduced ?? this.stepsProduced,
-      taskSteps: taskSteps ?? this.taskSteps,
-      completedSteps: completedSteps ?? this.completedSteps,
-      taskStart: taskStart ?? this.taskStart,
-      taskEnd: taskEnd ?? this.taskEnd,
-      timerSeconds: timerSeconds ?? this.timerSeconds,
-    );
-  }
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{

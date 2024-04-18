@@ -75,7 +75,10 @@ const _habitIconColors = [
 ];
 
 class ColorPicker extends StatefulWidget {
-  const ColorPicker({super.key});
+  final Color? color;
+  final IconData? icon;
+
+  const ColorPicker({super.key, this.color, this.icon});
 
   @override
   State<ColorPicker> createState() => _ColorPickerState();
@@ -83,8 +86,24 @@ class ColorPicker extends StatefulWidget {
 
 class _ColorPickerState extends State<ColorPicker> {
   bool _colorPicker = false;
-  Color _currentColor = _habitIconColors[0];
-  IconData _currentIcon = _habitIcons[0];
+  late Color _currentColor;
+  late IconData _currentIcon;
+
+  @override
+  void initState() {
+    super.initState();
+    _currentColor = widget.color == null
+        ? _habitIconColors[0]
+        : _habitIconColors.contains(widget.color)
+            ? widget.color!
+            : _habitIconColors[0];
+
+    _currentIcon = widget.icon == null
+        ? _habitIcons[0]
+        : _habitIcons.contains(widget.icon)
+            ? widget.icon!
+            : _habitIcons[0];
+  }
 
   void _changePicker() {
     setState(() {
@@ -210,7 +229,7 @@ class _ColorPickerState extends State<ColorPicker> {
                   children: [
                     Expanded(
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () => Navigator.of(context).pop(),
                         child: Text(S.of(context).cancel),
                       ),
                     ),
@@ -219,7 +238,11 @@ class _ColorPickerState extends State<ColorPicker> {
                     ),
                     Expanded(
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          final iconInfo = HabitIcon(
+                              color: _currentColor, icon: _currentIcon);
+                          Navigator.pop(context, iconInfo);
+                        },
                         child: Text(S.of(context).submit),
                       ),
                     ),
@@ -232,4 +255,14 @@ class _ColorPickerState extends State<ColorPicker> {
       ),
     );
   }
+}
+
+class HabitIcon {
+  final Color color;
+  final IconData icon;
+
+  const HabitIcon({
+    required this.color,
+    required this.icon,
+  });
 }

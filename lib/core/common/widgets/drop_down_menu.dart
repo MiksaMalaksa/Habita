@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class CustomizationDropDown<T> extends StatefulWidget {
+class HabitaDropDown<T> extends StatefulWidget {
   final List<T> entries;
   final Map<Locale, Widget>? icons;
   final void Function(String value) onChoosed;
   final Future<T> Function() getInitial;
   final T initialValue;
-  const CustomizationDropDown({
+  const HabitaDropDown({
     super.key,
     required this.entries,
     required this.onChoosed,
@@ -16,10 +16,10 @@ class CustomizationDropDown<T> extends StatefulWidget {
   });
 
   @override
-  State<CustomizationDropDown<T>> createState() => _DropDownState<T>();
+  State<HabitaDropDown<T>> createState() => _DropDownState<T>();
 }
 
-class _DropDownState<T> extends State<CustomizationDropDown<T>> {
+class _DropDownState<T> extends State<HabitaDropDown<T>> {
   T? initial;
 
   Future<void> setInitial() async {
@@ -53,6 +53,10 @@ class _DropDownState<T> extends State<CustomizationDropDown<T>> {
             value: value,
             leadingIcon: widget.icons == null ? null : widget.icons![value],
             label: value.toString(),
+            labelWidget: Text(
+              value.toString(),
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
           );
         }).toList());
   }

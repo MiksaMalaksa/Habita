@@ -5,6 +5,7 @@ class HabitaTextButton extends StatelessWidget {
   final String title;
   final double fontSize;
   final FontWeight? weight;
+
   const HabitaTextButton({
     super.key,
     required this.onPressed,

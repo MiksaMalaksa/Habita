@@ -43,7 +43,7 @@ class SegmentedMutability extends StatelessWidget {
         onSelectionChanged: (Set<bool> newSelection) {
           context
               .read<HabitBloc>()
-              .add(HabitProgramChanging(muatable: newSelection.first));
+              .add(HabitProgramChange(muatable: newSelection.first));
         },
         showSelectedIcon: false,
       ),
