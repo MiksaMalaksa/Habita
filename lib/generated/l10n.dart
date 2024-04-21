@@ -859,6 +859,296 @@ class S {
       args: [],
     );
   }
+
+  /// `Should be numeric value between 0 and max value`
+  String get shouldNumeric {
+    return Intl.message(
+      'Should be numeric value between 0 and max value',
+      name: 'shouldNumeric',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `M`
+  String get mDay {
+    return Intl.message(
+      'M',
+      name: 'mDay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `T`
+  String get tDay {
+    return Intl.message(
+      'T',
+      name: 'tDay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `W`
+  String get wDay {
+    return Intl.message(
+      'W',
+      name: 'wDay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `T`
+  String get thDay {
+    return Intl.message(
+      'T',
+      name: 'thDay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `F`
+  String get fDay {
+    return Intl.message(
+      'F',
+      name: 'fDay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `S`
+  String get stDay {
+    return Intl.message(
+      'S',
+      name: 'stDay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `S`
+  String get sDay {
+    return Intl.message(
+      'S',
+      name: 'sDay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Mon`
+  String get monDay {
+    return Intl.message(
+      'Mon',
+      name: 'monDay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tue`
+  String get tueDay {
+    return Intl.message(
+      'Tue',
+      name: 'tueDay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Wed`
+  String get wedDay {
+    return Intl.message(
+      'Wed',
+      name: 'wedDay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Thu`
+  String get thuDay {
+    return Intl.message(
+      'Thu',
+      name: 'thuDay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Fri`
+  String get friDay {
+    return Intl.message(
+      'Fri',
+      name: 'friDay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sat`
+  String get satDay {
+    return Intl.message(
+      'Sat',
+      name: 'satDay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sun`
+  String get sunDay {
+    return Intl.message(
+      'Sun',
+      name: 'sunDay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No habits this day!`
+  String get noHabitsThisDay {
+    return Intl.message(
+      'No habits this day!',
+      name: 'noHabitsThisDay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Set dates`
+  String get setDates {
+    return Intl.message(
+      'Set dates',
+      name: 'setDates',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Mutability`
+  String get mutability {
+    return Intl.message(
+      'Mutability',
+      name: 'mutability',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Aim of the program`
+  String get aimOfTheProgram {
+    return Intl.message(
+      'Aim of the program',
+      name: 'aimOfTheProgram',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Aim`
+  String get aim {
+    return Intl.message(
+      'Aim',
+      name: 'aim',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Program name`
+  String get programName {
+    return Intl.message(
+      'Program name',
+      name: 'programName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Current habbits`
+  String get currentHabbits {
+    return Intl.message(
+      'Current habbits',
+      name: 'currentHabbits',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `All`
+  String get all {
+    return Intl.message(
+      'All',
+      name: 'all',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Set at least 1 day!`
+  String get setAtLeast1Day {
+    return Intl.message(
+      'Set at least 1 day!',
+      name: 'setAtLeast1Day',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No program for now!`
+  String get noProgram {
+    return Intl.message(
+      'No program for now!',
+      name: 'noProgram',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Must be at least 1 habit!`
+  String get atLeast1Habit {
+    return Intl.message(
+      'Must be at least 1 habit!',
+      name: 'atLeast1Habit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Program shoud last at least for 7 days!`
+  String get atLeast7Days {
+    return Intl.message(
+      'Program shoud last at least for 7 days!',
+      name: 'atLeast7Days',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Warning!`
+  String get warning {
+    return Intl.message(
+      'Warning!',
+      name: 'warning',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You are going to delete program, later there would be no opportunity to restore it!`
+  String get submitDeleting {
+    return Intl.message(
+      'You are going to delete program, later there would be no opportunity to restore it!',
+      name: 'submitDeleting',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

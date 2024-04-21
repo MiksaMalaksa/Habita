@@ -14,8 +14,8 @@ class Habit {
   final int highestStreak;
   final int currentStreak;
   final String? description;
-  final double? waterTarget;
-  final double? waterConsumed;
+  final int? waterTarget;
+  final int? waterConsumed;
   final int? stepsTarget;
   final int? stepsProduced;
   final int? taskSteps;
@@ -48,7 +48,7 @@ class Habit {
   factory Habit.base({required String id}) => Habit(
         id: id,
         color: const Color.fromARGB(255, 138, 224, 140),
-        icon: FontAwesome5.laptop_code,
+        icon: FontAwesome5.laptop,
         habitType: HabitType.todo,
         name: '',
         description: '',
@@ -67,8 +67,8 @@ class Habit {
     int? highestStreak,
     int? currentStreak,
     String? description,
-    double? waterTarget,
-    double? waterConsumed,
+    int? waterTarget,
+    int? waterConsumed,
     int? stepsTarget,
     int? stepsProduced,
     int? taskSteps,
@@ -96,6 +96,35 @@ class Habit {
       taskStart: taskStart ?? this.taskStart,
       taskEnd: taskEnd ?? this.taskEnd,
       remainder: remainder ?? this.remainder,
+    );
+  }
+
+  Habit nullCopy({
+    String? description,
+    int? waterTarget,
+    int? stepsTarget,
+    int? taskSteps,
+    String? remainder,
+  }) {
+    return Habit(
+      id: id,
+      color: color,
+      icon: icon,
+      habitType: habitType,
+      name: name,
+      isCompleted: isCompleted,
+      highestStreak: highestStreak,
+      currentStreak: currentStreak,
+      waterConsumed: waterConsumed,
+      stepsProduced: stepsProduced,
+      taskSteps: taskSteps,
+      completedSteps: completedSteps,
+      taskStart: taskStart,
+      taskEnd: taskEnd,
+      remainder: remainder == '' ? null : this.remainder,
+      stepsTarget: stepsTarget == -1 ? null : this.stepsTarget,
+      description: description == '' ? null : this.description,
+      waterTarget: waterTarget == -1 ? null : this.waterTarget,
     );
   }
 }

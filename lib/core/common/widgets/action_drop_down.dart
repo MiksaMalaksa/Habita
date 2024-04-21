@@ -21,6 +21,7 @@ class ActionDropDown extends StatelessWidget {
     return InkWell(
       onTap: onPressed,
       onLongPress: onHold,
+      onDoubleTap: onHold,
       splashColor: Theme.of(context).splashColor,
       child: Container(
         width: MediaQuery.of(context).size.width * 0.9,

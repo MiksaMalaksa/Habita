@@ -3,13 +3,15 @@ import 'package:habita/core/extensions/color_rgb.dart';
 
 class DateContainer extends StatelessWidget {
   final String weekDay;
-  final int dateNumber;
+  final DateTime dateNumber;
   final bool selected;
+  final void Function(DateTime) onChoosed;
   const DateContainer({
     super.key,
     required this.weekDay,
     required this.dateNumber,
     required this.selected,
+    required this.onChoosed,
   });
 
   @override
@@ -18,16 +20,15 @@ class DateContainer extends StatelessWidget {
         ? Theme.of(context).primaryColorLight.withAlpha(150).withOpacity(0.4)
         : Theme.of(context).primaryColorLight.withAlpha(10);
     final borderRadius = selected ? 0.15 : 0.0;
-    final borderColor = selected
-        ? Theme.of(context).primaryColorLight
-        : Colors.transparent;
+    final borderColor =
+        selected ? Theme.of(context).primaryColorLight : Colors.transparent;
     final textColor = selected
         ? Theme.of(context).primaryColorLight
         : Theme.of(context).primaryColorLight.withOpacity(0.9).desaturate(0.9);
     return Padding(
       padding: const EdgeInsets.only(right: 10),
       child: InkWell(
-        onTap: () {},
+        onTap: () => onChoosed(dateNumber),
         child: Container(
           width: MediaQuery.of(context).size.width * 0.155,
           decoration: BoxDecoration(
@@ -52,7 +53,7 @@ class DateContainer extends StatelessWidget {
                   height: 3,
                 ),
                 Text(
-                  dateNumber.toString(),
+                  dateNumber.day.toString(),
                   style: Theme.of(context)
                       .textTheme
                       .titleMedium!

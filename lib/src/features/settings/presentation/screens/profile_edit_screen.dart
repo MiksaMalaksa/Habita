@@ -149,7 +149,6 @@ class _EditProfileState extends State<EditProfile> {
                           style: textStyle,
                         ),
                         const SizedBox(height: 6),
-
                         ///*Name field
                         ChangeTextField(
                           controller: nameController,
@@ -161,7 +160,6 @@ class _EditProfileState extends State<EditProfile> {
                           style: textStyle,
                         ),
                         const SizedBox(height: 6),
-
                         ///*Email field
                         ChangeTextField(
                           controller: emailController,

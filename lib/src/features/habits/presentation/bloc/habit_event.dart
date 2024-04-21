@@ -10,7 +10,7 @@ sealed class HabitEvent extends Equatable {
 final class HabitChange extends HabitEvent {
   final String? habitName;
   final String? habitDescription;
-  final double? waterTarget;
+  final int? waterTarget;
   final int? stepsTarget;
   final int? taskSteps;
   final String? taskStart;
@@ -20,7 +20,7 @@ final class HabitChange extends HabitEvent {
   final Color? color;
   final IconData? iconData;
   final HabitType? type;
-  final List<int>? days;
+  final bool? dropReminder;
 
   const HabitChange({
     this.habitName,
@@ -35,7 +35,7 @@ final class HabitChange extends HabitEvent {
     this.color,
     this.iconData,
     this.type,
-    this.days,
+    this.dropReminder,
   });
 }
 
@@ -46,7 +46,9 @@ final class HabitProgramChange extends HabitEvent {
   final String? programStart;
   final String? programEnd;
   final Habit? habit;
-  final bool? submitted;
+  final List<int>? days;
+  final bool? fromScratch;
+  final List<HabitDay>? habitDays;
 
   const HabitProgramChange({
     this.habit,
@@ -55,6 +57,10 @@ final class HabitProgramChange extends HabitEvent {
     this.muatable,
     this.programStart,
     this.programEnd,
-    this.submitted,
+    this.days,
+    this.fromScratch,
+    this.habitDays,
   });
 }
+
+final class HabitProgramFinishedEditing extends HabitEvent {}

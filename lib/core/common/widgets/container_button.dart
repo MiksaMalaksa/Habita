@@ -1,5 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:fluttericon/font_awesome5_icons.dart';
 import 'package:habita/core/extensions/color_rgb.dart';
+
+//!Somehow they moved to right, and not correctly centered
+final _exceptionIcons = [
+  FontAwesome5.laptop,
+  FontAwesome5.swimmer,
+  FontAwesome5.bicycle,
+  FontAwesome5.bed,
+  FontAwesome5.spa,
+];
 
 class ContainerButton extends StatelessWidget {
   final IconData icon;
@@ -22,15 +32,21 @@ class ContainerButton extends StatelessWidget {
           color: backcolor,
           borderRadius: BorderRadius.circular(15),
         ),
-        child: Padding(
-          padding: const EdgeInsets.all(4.0),
-          child: IconButton(
-            onPressed: onPressed,
-            icon: Icon(icon),
-            color: iconColor ??
-                Theme.of(context)
-                    .primaryColorDark
-                    .elevateAllColors(upParam: 10, opacity: 0.9),
+        child: Center(
+          child: Padding(
+            padding: _exceptionIcons.contains(icon)
+                ? EdgeInsets.only(
+                    right: MediaQuery.of(context).size.width * 0.013)
+                : EdgeInsets.zero,
+            child: IconButton(
+              iconSize: MediaQuery.of(context).size.width * 0.06,
+              onPressed: onPressed,
+              icon: Icon(icon),
+              color: iconColor ??
+                  Theme.of(context)
+                      .primaryColorDark
+                      .elevateAllColors(upParam: 10, opacity: 0.9),
+            ),
           ),
         ));
   }

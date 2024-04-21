@@ -31,8 +31,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "account": MessageLookupByLibrary.simpleMessage("Účet"),
         "additionalSettings":
             MessageLookupByLibrary.simpleMessage("Další nastavení"),
+        "aim": MessageLookupByLibrary.simpleMessage("Aim"),
+        "aimOfTheProgram":
+            MessageLookupByLibrary.simpleMessage("Aim of the program"),
         "alertLogout": MessageLookupByLibrary.simpleMessage("Odhlášení z účtu"),
+        "all": MessageLookupByLibrary.simpleMessage("All"),
         "almostDone": MessageLookupByLibrary.simpleMessage("Téměř všechny!"),
+        "atLeast1Habit":
+            MessageLookupByLibrary.simpleMessage("Must be at least 1 habit!"),
+        "atLeast7Days": MessageLookupByLibrary.simpleMessage(
+            "Program shoud last at least for 7 days!"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "cancelCapitalized": MessageLookupByLibrary.simpleMessage("CANCEL"),
         "change": MessageLookupByLibrary.simpleMessage("Change"),
@@ -42,12 +50,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "colors": MessageLookupByLibrary.simpleMessage("Colors"),
         "completedOutOf": m0,
         "create": MessageLookupByLibrary.simpleMessage("Create"),
+        "currentHabbits":
+            MessageLookupByLibrary.simpleMessage("Current habbits"),
         "customization": MessageLookupByLibrary.simpleMessage("Přizpůsobení"),
         "dark": MessageLookupByLibrary.simpleMessage("Temný"),
         "description": MessageLookupByLibrary.simpleMessage("Description"),
         "email": MessageLookupByLibrary.simpleMessage("E-mailem"),
         "endDate": MessageLookupByLibrary.simpleMessage("End date"),
+        "fDay": MessageLookupByLibrary.simpleMessage("F"),
         "forgetPassword": MessageLookupByLibrary.simpleMessage("Obnovit heslo"),
+        "friDay": MessageLookupByLibrary.simpleMessage("Fri"),
         "friday": MessageLookupByLibrary.simpleMessage("Friday"),
         "habitDays": MessageLookupByLibrary.simpleMessage("Habit days"),
         "habitName": MessageLookupByLibrary.simpleMessage("Habit name"),
@@ -71,9 +83,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "light": MessageLookupByLibrary.simpleMessage("Světlo"),
         "loginError": MessageLookupByLibrary.simpleMessage(
             "Takový účet neexistuje, zkuste to znovu!"),
+        "mDay": MessageLookupByLibrary.simpleMessage("M"),
         "maxValue": m2,
+        "monDay": MessageLookupByLibrary.simpleMessage("Mon"),
         "monday": MessageLookupByLibrary.simpleMessage("Monday"),
         "multiple": MessageLookupByLibrary.simpleMessage("multiple"),
+        "mutability": MessageLookupByLibrary.simpleMessage("Mutability"),
         "mutable": MessageLookupByLibrary.simpleMessage("Mutable"),
         "name": MessageLookupByLibrary.simpleMessage("Jméno"),
         "nameOfHabit": MessageLookupByLibrary.simpleMessage("Name of habit"),
@@ -81,8 +96,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "noAccount": MessageLookupByLibrary.simpleMessage("Nemáte účet?"),
         "noConnection":
             MessageLookupByLibrary.simpleMessage("Žádné připojení k internetu"),
+        "noHabitsThisDay":
+            MessageLookupByLibrary.simpleMessage("No habits this day!"),
         "noInternet": MessageLookupByLibrary.simpleMessage(
             "Zkontrolujte připojení k internetu!"),
+        "noProgram":
+            MessageLookupByLibrary.simpleMessage("No program for now!"),
         "notes": MessageLookupByLibrary.simpleMessage("notes"),
         "nothingDone":
             MessageLookupByLibrary.simpleMessage("Start taking action!"),
@@ -93,13 +112,21 @@ class MessageLookup extends MessageLookupByLibrary {
         "profileEdited":
             MessageLookupByLibrary.simpleMessage("Profil byl upraven!"),
         "program": MessageLookupByLibrary.simpleMessage("Program"),
+        "programName": MessageLookupByLibrary.simpleMessage("Program name"),
+        "sDay": MessageLookupByLibrary.simpleMessage("S"),
+        "satDay": MessageLookupByLibrary.simpleMessage("Sat"),
         "saturday": MessageLookupByLibrary.simpleMessage("Saturday"),
         "save": MessageLookupByLibrary.simpleMessage("Uložit"),
+        "setAtLeast1Day":
+            MessageLookupByLibrary.simpleMessage("Set at least 1 day!"),
+        "setDates": MessageLookupByLibrary.simpleMessage("Set dates"),
         "setNow": MessageLookupByLibrary.simpleMessage("Set now"),
         "setReminder":
             MessageLookupByLibrary.simpleMessage("Nastavit připomenutí"),
         "settingsNoInternet": MessageLookupByLibrary.simpleMessage(
             "Aplikace přejde do místního režimu, režim úprav není k dispozici"),
+        "shouldNumeric": MessageLookupByLibrary.simpleMessage(
+            "Should be numeric value between 0 and max value"),
         "signIn": MessageLookupByLibrary.simpleMessage("Přihlásit se!"),
         "signOut": MessageLookupByLibrary.simpleMessage("Odhlášení z účtu"),
         "signUp": MessageLookupByLibrary.simpleMessage("Registrace!"),
@@ -108,21 +135,32 @@ class MessageLookup extends MessageLookupByLibrary {
         "somethingWrong":
             MessageLookupByLibrary.simpleMessage("Něco se pokazilo!"),
         "sourceCode": MessageLookupByLibrary.simpleMessage("Source code"),
+        "stDay": MessageLookupByLibrary.simpleMessage("S"),
         "startDate": MessageLookupByLibrary.simpleMessage("Start Date"),
         "stats": MessageLookupByLibrary.simpleMessage("Statistiky"),
         "steps": MessageLookupByLibrary.simpleMessage("kroky"),
         "submit": MessageLookupByLibrary.simpleMessage("Potvrďte"),
         "submitCapitalised": MessageLookupByLibrary.simpleMessage("SUBMIT"),
+        "submitDeleting": MessageLookupByLibrary.simpleMessage(
+            "You are going to delete program, later there would be no opportunity to restore it!"),
+        "sunDay": MessageLookupByLibrary.simpleMessage("Sun"),
         "sunday": MessageLookupByLibrary.simpleMessage("Sunday"),
         "system": MessageLookupByLibrary.simpleMessage("Systém"),
+        "tDay": MessageLookupByLibrary.simpleMessage("T"),
         "telegram": MessageLookupByLibrary.simpleMessage("Napište mi"),
+        "thDay": MessageLookupByLibrary.simpleMessage("T"),
+        "thuDay": MessageLookupByLibrary.simpleMessage("Thu"),
         "thursday": MessageLookupByLibrary.simpleMessage("Thursday"),
         "todo": MessageLookupByLibrary.simpleMessage("to-do"),
+        "tueDay": MessageLookupByLibrary.simpleMessage("Tue"),
         "tuesday": MessageLookupByLibrary.simpleMessage("Tuesday"),
         "versus": MessageLookupByLibrary.simpleMessage("Versus"),
+        "wDay": MessageLookupByLibrary.simpleMessage("W"),
         "wantToLogOut": MessageLookupByLibrary.simpleMessage(
             "Opravdu se chcete odhlásit ze svého účtu?"),
+        "warning": MessageLookupByLibrary.simpleMessage("Warning!"),
         "water": MessageLookupByLibrary.simpleMessage("voda"),
+        "wedDay": MessageLookupByLibrary.simpleMessage("Wed"),
         "wednesday": MessageLookupByLibrary.simpleMessage("Wednesday"),
         "yes": MessageLookupByLibrary.simpleMessage("Ano")
       };

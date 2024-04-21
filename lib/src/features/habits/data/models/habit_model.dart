@@ -62,9 +62,9 @@ class HabitModel extends Habit {
       highestStreak: map['highestStreak'] as int,
       currentStreak: map['currentStreak'] as int,
       waterTarget:
-          map['waterTarget'] != null ? map['waterTarget'] as double : null,
+          map['waterTarget'] != null ? map['waterTarget'] as int : null,
       waterConsumed:
-          map['waterConsumed'] != null ? map['waterConsumed'] as double : null,
+          map['waterConsumed'] != null ? map['waterConsumed'] as int : null,
       stepsTarget:
           map['stepsTarget'] != null ? map['stepsTarget'] as int : null,
       stepsProduced:

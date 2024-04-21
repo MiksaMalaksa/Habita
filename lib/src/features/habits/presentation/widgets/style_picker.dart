@@ -8,7 +8,7 @@ import 'package:habita/src/features/habits/presentation/widgets/container_icon.d
 final _habitIcons = [
   //!hobbies - 6
   FontAwesome5.book,
-  FontAwesome5.laptop_code,
+  FontAwesome5.laptop,
   FontAwesome5.briefcase,
   FontAwesome5.guitar,
   Icons.brush,

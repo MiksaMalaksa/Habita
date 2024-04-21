@@ -90,6 +90,8 @@ class HabitaState extends State<Habita> {
     return BlocBuilder<ThemeBloc, ThemeState>(
       builder: (context, state) {
         return MaterialApp(
+          themeAnimationCurve: Curves.fastOutSlowIn,
+          themeAnimationDuration: const Duration(milliseconds: 500),
           ////*Theme spec
           themeMode: state.currentMode,
           theme: state.currentCustomThemeLight,

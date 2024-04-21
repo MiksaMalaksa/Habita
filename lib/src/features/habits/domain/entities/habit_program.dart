@@ -1,7 +1,10 @@
+import 'package:habita/core/common/widgets/date_picker_configes.dart';
+import 'package:intl/intl.dart';
+
 import 'habit_day.dart';
 
 class HabitProgram {
-  final List<HabitDay> habits;
+  final List<HabitDay> habitDays;
   final String name;
   final String description;
   final bool muatable;
@@ -9,7 +12,7 @@ class HabitProgram {
   final String programEnd;
 
   const HabitProgram({
-    required this.habits,
+    required this.habitDays,
     required this.name,
     required this.description,
     required this.muatable,
@@ -17,8 +20,34 @@ class HabitProgram {
     required this.programEnd,
   });
 
+  int programLength() {
+    final dateFormat = DateFormat('M/d/yyyy');
+    final startDays = dateFormat.parse(programStart);
+    int difference = dateFormat.parse(programEnd).difference(startDays).inDays;
+    return difference;
+  }
+
+  factory HabitProgram.base() {
+    final weekdays = [1, 2, 3, 4, 5, 6, 7];
+    return HabitProgram(
+      habitDays: List.generate(
+        weekdays.length,
+        (index) => HabitDay(
+          weekday: weekdays[index],
+          habits: [],
+        ),
+      ),
+      name: '',
+      description: '',
+      muatable: false,
+      programStart: DateFormat.yMd().format(DateTime.now()),
+      programEnd: DateFormat.yMd()
+          .format(DateTime.now().add(const Duration(days: minProgramDuration))),
+    );
+  }
+
   HabitProgram copyWith({
-    List<HabitDay>? habits,
+    List<HabitDay>? habitDays,
     String? name,
     String? description,
     bool? muatable,
@@ -26,7 +55,7 @@ class HabitProgram {
     String? programEnd,
   }) {
     return HabitProgram(
-      habits: habits ?? this.habits,
+      habitDays: habitDays ?? this.habitDays,
       name: name ?? this.name,
       description: description ?? this.description,
       muatable: muatable ?? this.muatable,

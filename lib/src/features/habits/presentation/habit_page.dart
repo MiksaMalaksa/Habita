@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttericon/elusive_icons.dart';
+import 'package:habita/core/common/entities/dialog.dart';
+import 'package:habita/core/common/widgets/text_button.dart';
 import 'package:habita/core/extensions/color_rgb.dart';
+import 'package:habita/core/utils/show_dialog.dart';
 import 'package:habita/generated/l10n.dart';
+import 'package:habita/src/features/habits/presentation/bloc/habit_bloc.dart';
 import 'package:habita/src/features/habits/presentation/screens/create_program.dart';
-import 'package:habita/src/features/habits/presentation/screens/program_edit.dart';
-import 'package:habita/src/features/habits/presentation/widgets/style_picker.dart';
+import 'package:habita/src/features/habits/presentation/widgets/add_icon_button.dart';
 import 'package:habita/src/features/habits/presentation/widgets/habit_page/date_container_builder.dart';
-import 'package:habita/src/features/habits/presentation/widgets/habit_page/habit_tile.dart';
+import 'package:habita/src/features/habits/presentation/widgets/habit_page/habit_builder.dart';
 import 'package:habita/src/features/habits/presentation/widgets/habit_page/progress_indicator.dart';
 import 'package:intl/intl.dart';
 
@@ -29,97 +33,190 @@ class HabitPage extends StatefulWidget {
 }
 
 class _HabitScreenState extends State<HabitPage> {
+  int _selectedDayIndex = 0;
+  DateTime _selectedDay = DateTime.now();
+
+  void _setDay(int newDayIndex, DateTime newDay) {
+    setState(() {
+      _selectedDayIndex = newDayIndex;
+      _selectedDay = newDay;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          //!PlaceHolder
-          'Program name',
-          style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                color: Theme.of(context).primaryColorLight.desaturate(0.1),
-                fontWeight: FontWeight.bold,
-              ),
-        ),
-        centerTitle: false,
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        actions: [
-          IconButton(
-            onPressed: () => Navigator.of(context).push(ProgramEdit.route()),
-            icon: Icon(
-              Elusive.pencil,
-              color: Theme.of(context)
-                  .primaryColorLight
-                  .desaturate(0.1)
-                  .withOpacity(0.8),
-              size: MediaQuery.of(context).size.height * 0.026,
+    return BlocBuilder<HabitBloc, HabitState>(builder: (context, state) {
+      if (state.program.name.isNotEmpty) {
+        final rightPadding = MediaQuery.of(context).size.width * 0.042;
+        //!we can choose days in the range of 7
+        return Scaffold(
+          appBar: AppBar(
+            title: Text(
+              //!PlaceHolder
+              state.program.name,
+              style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                    color: Theme.of(context).primaryColorLight.desaturate(0.1),
+                    fontWeight: FontWeight.bold,
+                  ),
             ),
-          )
-        ],
-      ),
-      body: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        child: Padding(
-          padding: EdgeInsets.only(
-            left: MediaQuery.of(context).size.width * 0.042,
-            top: 10,
+            centerTitle: false,
+            backgroundColor: Colors.transparent,
+            elevation: 0,
+            actions: [
+              AppBarButtonIcon(
+                  icon: Icons.delete,
+                  iconSize: MediaQuery.of(context).size.height * 0.036,
+                  onPressed: () {
+                    dialogBuilder(
+                      context: context,
+                      atributes: DialogAtributes(
+                          label: S.of(context).warning,
+                          body: S.of(context).submitDeleting,
+                          actions: [
+                            HabitaTextButton(
+                              fontSize: 16,
+                              weight: FontWeight.w800,
+                              title: S.of(context).cancel,
+                              onPressed: () => Navigator.of(context).pop(),
+                            ),
+                            HabitaTextButton(
+                              fontSize: 16,
+                              weight: FontWeight.w800,
+                              title: S.of(context).submit,
+                              onPressed: () {
+                                context.read<HabitBloc>().add(
+                                    const HabitProgramChange(
+                                        fromScratch: true));
+                                Navigator.of(context).pop();
+                              },
+                            ),
+                          ]),
+                    );
+                  }),
+              AppBarButtonIcon(
+                icon: Elusive.pencil,
+                iconSize: MediaQuery.of(context).size.height * 0.026,
+                onPressed: () => Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => HabitProgramScreen(
+                    fromScratch: false,
+                    mutability: state.program.muatable,
+                    appBarTitle: S.of(context).change,
+                  ),
+                )),
+              ),
+            ],
           ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
+          body: SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child: Padding(
+              padding: EdgeInsets.only(
+                left: MediaQuery.of(context).size.width * 0.042,
+                top: 10,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     '${DateFormat('MMMM').format(DateTime.now())} ${DateTime.now().day}',
                     style: Theme.of(context).textTheme.headlineMedium,
                   ),
-                  const Spacer(),
-                  IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.calendar_month,
-                        color: Theme.of(context)
-                            .primaryColorLight
-                            .desaturate(0.1)
-                            .withOpacity(0.8),
-                        size: MediaQuery.of(context).size.height * 0.032,
-                      ))
+                  const SizedBox(height: 12),
+                  DateBuilder(
+                    selectedIndex: _selectedDayIndex,
+                    onChoosedDate: (newIndex, newDate) {
+                      _setDay(newIndex, newDate);
+                    },
+                  ),
+                  const SizedBox(height: 26),
+                  Padding(
+                    padding: EdgeInsets.only(
+                      right: rightPadding,
+                    ),
+                    child: const HabitProgressContainer(),
+                  ),
+                  const SizedBox(height: 26),
+                  Padding(
+                    padding: EdgeInsets.only(
+                      right: rightPadding,
+                    ),
+                    child:
+                        HabitBuilder(program: state.program, day: _selectedDay),
+                  ),
                 ],
               ),
-              const SizedBox(height: 12),
-              const DateBuilder(),
-              const SizedBox(height: 26),
-              const HabitProgressContainer(),
-              const SizedBox(height: 26),
-              const HabitTile(
-                icon: Icons.bed,
-                backColor: Color.fromARGB(255, 138, 224, 140),
+            ),
+          ),
+        );
+      } else {
+        return Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.2,
               ),
-              ElevatedButton(
-                  onPressed: () => showDialog(
-                        context: context,
-                        builder: (context) => const ColorPicker(),
-                      ),
-                  child: Container(
-                    width: 200,
-                    height: 100,
-                    color: Colors.amber,
-                  )),
-              ElevatedButton(
-                  onPressed: () => Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) =>  HabitProgramScreen(
-                          appBarTitle: S.of(context).program,
+              Text(
+                S.of(context).noProgram,
+                style: Theme.of(context).textTheme.headlineMedium!.copyWith(
+                      color: Theme.of(context).primaryColorLight,
+                    ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Row(
+                  children: [
+                    const Spacer(
+                      flex: 3,
+                    ),
+                    Flexible(
+                      flex: 1,
+                      child: AddIconButton(
+                        onPressed: () => Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => HabitProgramScreen(
+                              fromScratch: true,
+                              mutability: true,
+                              appBarTitle: S.of(context).program,
+                            ),
+                          ),
                         ),
-                      )),
-                  child: Container(
-                    width: 200,
-                    height: 100,
-                    color: Colors.red,
-                  )),
+                        icon: Icons.add,
+                      ),
+                    ),
+                  ],
+                ),
+              )
             ],
           ),
-        ),
+        );
+      }
+    });
+  }
+}
+
+class AppBarButtonIcon extends StatelessWidget {
+  final IconData icon;
+  final VoidCallback onPressed;
+  final double iconSize;
+  const AppBarButtonIcon({
+    super.key,
+    required this.icon,
+    required this.onPressed,
+    required this.iconSize,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      onPressed: onPressed,
+      icon: Icon(
+        icon,
+        color: Theme.of(context)
+            .primaryColorLight
+            .desaturate(0.1)
+            .withOpacity(0.8),
+        size: iconSize,
       ),
     );
   }

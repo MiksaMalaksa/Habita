@@ -34,6 +34,13 @@ class HabitTextField extends StatelessWidget {
             color: Theme.of(context).primaryColor,
           ),
         ),
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(20),
+          borderSide: BorderSide(
+            width: 2,
+            color: Theme.of(context).colorScheme.error,
+          ),
+        ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(20),
           borderSide: BorderSide(

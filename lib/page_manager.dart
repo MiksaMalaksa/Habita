@@ -3,7 +3,7 @@ import 'package:habita/core/common/widgets/design_icon.dart';
 import 'package:habita/generated/l10n.dart';
 import 'package:habita/src/features/habits/presentation/habit_page.dart';
 import 'package:habita/src/features/home/presentation/home_page.dart';
-import 'package:habita/src/features/settings/presentation/profile_page.dart';
+import 'package:habita/src/features/settings/presentation/settings_page.dart';
 import 'package:habita/src/features/stats/presentation/stats_page.dart';
 import 'package:fluttericon/rpg_awesome_icons.dart';
 import 'package:habita/src/features/versus/presentation/versus_page.dart';

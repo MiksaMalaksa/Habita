@@ -31,8 +31,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "account": MessageLookupByLibrary.simpleMessage("Account"),
         "additionalSettings":
             MessageLookupByLibrary.simpleMessage("Additional settings"),
+        "aim": MessageLookupByLibrary.simpleMessage("Aim"),
+        "aimOfTheProgram":
+            MessageLookupByLibrary.simpleMessage("Aim of the program"),
         "alertLogout": MessageLookupByLibrary.simpleMessage("Loggin out"),
+        "all": MessageLookupByLibrary.simpleMessage("All"),
         "almostDone": MessageLookupByLibrary.simpleMessage("Almost Done!"),
+        "atLeast1Habit":
+            MessageLookupByLibrary.simpleMessage("Must be at least 1 habit!"),
+        "atLeast7Days": MessageLookupByLibrary.simpleMessage(
+            "Program shoud last at least for 7 days!"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "cancelCapitalized": MessageLookupByLibrary.simpleMessage("CANCEL"),
         "change": MessageLookupByLibrary.simpleMessage("Change"),
@@ -42,13 +50,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "colors": MessageLookupByLibrary.simpleMessage("Colors"),
         "completedOutOf": m0,
         "create": MessageLookupByLibrary.simpleMessage("Create"),
+        "currentHabbits":
+            MessageLookupByLibrary.simpleMessage("Current habbits"),
         "customization": MessageLookupByLibrary.simpleMessage("Customization"),
         "dark": MessageLookupByLibrary.simpleMessage("Dark"),
         "description": MessageLookupByLibrary.simpleMessage("Description"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
         "endDate": MessageLookupByLibrary.simpleMessage("End date"),
+        "fDay": MessageLookupByLibrary.simpleMessage("F"),
         "forgetPassword":
             MessageLookupByLibrary.simpleMessage("Restore password"),
+        "friDay": MessageLookupByLibrary.simpleMessage("Fri"),
         "friday": MessageLookupByLibrary.simpleMessage("Friday"),
         "habitDays": MessageLookupByLibrary.simpleMessage("Habit days"),
         "habitName": MessageLookupByLibrary.simpleMessage("Habit name"),
@@ -72,9 +84,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "light": MessageLookupByLibrary.simpleMessage("Light"),
         "loginError":
             MessageLookupByLibrary.simpleMessage("No such account, try again!"),
+        "mDay": MessageLookupByLibrary.simpleMessage("M"),
         "maxValue": m2,
+        "monDay": MessageLookupByLibrary.simpleMessage("Mon"),
         "monday": MessageLookupByLibrary.simpleMessage("Monday"),
         "multiple": MessageLookupByLibrary.simpleMessage("Multiple to-do"),
+        "mutability": MessageLookupByLibrary.simpleMessage("Mutability"),
         "mutable": MessageLookupByLibrary.simpleMessage("Mutable"),
         "name": MessageLookupByLibrary.simpleMessage("Name"),
         "nameOfHabit":
@@ -85,8 +100,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Do not have an account?"),
         "noConnection":
             MessageLookupByLibrary.simpleMessage("No internet connection!"),
+        "noHabitsThisDay":
+            MessageLookupByLibrary.simpleMessage("No habits this day!"),
         "noInternet": MessageLookupByLibrary.simpleMessage(
             "Check your internet connection!"),
+        "noProgram":
+            MessageLookupByLibrary.simpleMessage("No program for now!"),
         "notes": MessageLookupByLibrary.simpleMessage("Notes"),
         "nothingDone":
             MessageLookupByLibrary.simpleMessage("Start taking actions!"),
@@ -97,12 +116,20 @@ class MessageLookup extends MessageLookupByLibrary {
         "profileEdited":
             MessageLookupByLibrary.simpleMessage("Profile edited!"),
         "program": MessageLookupByLibrary.simpleMessage("Program"),
+        "programName": MessageLookupByLibrary.simpleMessage("Program name"),
+        "sDay": MessageLookupByLibrary.simpleMessage("S"),
+        "satDay": MessageLookupByLibrary.simpleMessage("Sat"),
         "saturday": MessageLookupByLibrary.simpleMessage("Saturday"),
         "save": MessageLookupByLibrary.simpleMessage("Save"),
+        "setAtLeast1Day":
+            MessageLookupByLibrary.simpleMessage("Set at least 1 day!"),
+        "setDates": MessageLookupByLibrary.simpleMessage("Set dates"),
         "setNow": MessageLookupByLibrary.simpleMessage("Set now"),
         "setReminder": MessageLookupByLibrary.simpleMessage("Set reminder"),
         "settingsNoInternet": MessageLookupByLibrary.simpleMessage(
             "The application goes into local mode, editing mode is not available"),
+        "shouldNumeric": MessageLookupByLibrary.simpleMessage(
+            "Should be numeric value between 0 and max value"),
         "signIn": MessageLookupByLibrary.simpleMessage("Sign In!"),
         "signOut": MessageLookupByLibrary.simpleMessage("Sign out"),
         "signUp": MessageLookupByLibrary.simpleMessage("Sign Up!"),
@@ -111,21 +138,32 @@ class MessageLookup extends MessageLookupByLibrary {
         "somethingWrong":
             MessageLookupByLibrary.simpleMessage("Something went wrong!"),
         "sourceCode": MessageLookupByLibrary.simpleMessage("Source code"),
+        "stDay": MessageLookupByLibrary.simpleMessage("S"),
         "startDate": MessageLookupByLibrary.simpleMessage("Start Date"),
         "stats": MessageLookupByLibrary.simpleMessage("Stats"),
         "steps": MessageLookupByLibrary.simpleMessage("Steps"),
         "submit": MessageLookupByLibrary.simpleMessage("Submit"),
         "submitCapitalised": MessageLookupByLibrary.simpleMessage("SUBMIT"),
+        "submitDeleting": MessageLookupByLibrary.simpleMessage(
+            "You are going to delete program, later there would be no opportunity to restore it!"),
+        "sunDay": MessageLookupByLibrary.simpleMessage("Sun"),
         "sunday": MessageLookupByLibrary.simpleMessage("Sunday"),
         "system": MessageLookupByLibrary.simpleMessage("System"),
+        "tDay": MessageLookupByLibrary.simpleMessage("T"),
         "telegram": MessageLookupByLibrary.simpleMessage("Text me"),
+        "thDay": MessageLookupByLibrary.simpleMessage("T"),
+        "thuDay": MessageLookupByLibrary.simpleMessage("Thu"),
         "thursday": MessageLookupByLibrary.simpleMessage("Thursday"),
         "todo": MessageLookupByLibrary.simpleMessage("To-do"),
+        "tueDay": MessageLookupByLibrary.simpleMessage("Tue"),
         "tuesday": MessageLookupByLibrary.simpleMessage("Tuesday"),
         "versus": MessageLookupByLibrary.simpleMessage("Versus"),
+        "wDay": MessageLookupByLibrary.simpleMessage("W"),
         "wantToLogOut": MessageLookupByLibrary.simpleMessage(
             "Do you really want to log out?"),
+        "warning": MessageLookupByLibrary.simpleMessage("Warning!"),
         "water": MessageLookupByLibrary.simpleMessage("Water"),
+        "wedDay": MessageLookupByLibrary.simpleMessage("Wed"),
         "wednesday": MessageLookupByLibrary.simpleMessage("Wednesday"),
         "yes": MessageLookupByLibrary.simpleMessage("Yes")
       };

@@ -14,7 +14,7 @@ import 'package:intl/intl.dart';
 class DatePickerRow extends StatelessWidget {
   final String startDate;
   final String endDate;
-  final ProgramChanging state;
+  final HabitState state;
   const DatePickerRow({
     super.key,
     required this.startDate,
@@ -89,9 +89,9 @@ class DatePickerRow extends StatelessWidget {
     final iconContainerHeight = containerHeight / 1.3;
     DateFormat formatter = DateFormat('M/d/yyyy');
     DateTime currentStart = formatter.parse(
-      state.changeableProgram.programStart,
+      state.program.programStart,
     );
-    DateTime currentEnd = formatter.parse(state.changeableProgram.programEnd);
+    DateTime currentEnd = formatter.parse(state.program.programEnd);
     bool correctEndDate = currentEnd.isAfter(
         currentStart.add(const Duration(days: minProgramDuration - 1)));
 

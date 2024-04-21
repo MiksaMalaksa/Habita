@@ -3,17 +3,17 @@ import 'package:shared_preferences/shared_preferences.dart';
 class SharedPreferencesUtils {
   Future<void> addLang(String locale) async {
     final SharedPreferences preferences = await SharedPreferences.getInstance();
-    await preferences.setString('locale', locale);
+    preferences.setString('locale', locale);
   }
 
   Future<void> addThemeMode(String mode) async {
     final SharedPreferences preferences = await SharedPreferences.getInstance();
-    await preferences.setString('mode', mode);
+    preferences.setString('mode', mode);
   }
 
   Future<void> addThemeComb(String comb) async {
     final SharedPreferences preferences = await SharedPreferences.getInstance();
-    await preferences.setString('comb', comb);
+    preferences.setString('comb', comb);
   }
 
   Future<String> getLang() async {

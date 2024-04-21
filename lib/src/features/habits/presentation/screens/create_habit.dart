@@ -1,30 +1,30 @@
 import 'package:day_night_time_picker/day_night_time_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fluttericon/font_awesome5_icons.dart';
 import 'package:habita/core/common/widgets/action_drop_down.dart';
 import 'package:habita/core/common/widgets/app_bar.dart';
 import 'package:habita/core/common/widgets/drop_down_menu.dart';
 import 'package:habita/core/common/widgets/text_button.dart';
+import 'package:habita/core/constants/localised_days.dart';
 import 'package:habita/core/enums/habit_type.dart';
 import 'package:habita/core/extensions/color_rgb.dart';
 import 'package:habita/core/extensions/time_to_string.dart';
+import 'package:habita/core/utils/show_snackbar.dart';
 import 'package:habita/generated/l10n.dart';
 import 'package:habita/src/features/habits/domain/entities/habit.dart';
 import 'package:habita/src/features/habits/presentation/bloc/habit_bloc.dart';
 import 'package:habita/src/features/habits/presentation/widgets/check_box_dropdown.dart';
 import 'package:habita/src/features/habits/presentation/widgets/container_icon.dart';
+import 'package:habita/src/features/habits/presentation/widgets/habit_view/type_manager.dart';
 import 'package:habita/src/features/habits/presentation/widgets/style_picker.dart';
 import 'package:habita/src/features/habits/presentation/widgets/text_field.dart';
 import 'package:habita/src/themes/bloc/theme_bloc.dart';
 import 'package:uuid/uuid.dart';
 
 class HabitView extends StatefulWidget {
-  final bool showChooseDays;
   final String appBarTitle;
   const HabitView({
     super.key,
-    required this.showChooseDays,
     required this.appBarTitle,
   });
 
@@ -35,44 +35,38 @@ class HabitView extends StatefulWidget {
 class _HabitViewState extends State<HabitView> {
   final habitNameController = TextEditingController();
   final habitDescriptionEditController = TextEditingController();
+  final habitTargetController = TextEditingController();
   final newHabitId = const Uuid().v4();
   final formKey = GlobalKey<FormState>();
-  bool editingFinished = false;
+  late List<String> _daysOfWeek;
+  late List<int> _choosedDays =
+      List.generate(_daysOfWeek.length - 1, (index) => index);
 
   @override
   void dispose() {
     habitNameController.dispose();
     habitDescriptionEditController.dispose();
-    if (!editingFinished) {
-      context.read<HabitBloc>().add(HabitEditUnfinished(
-          days: const [1, 2, 3, 4, 5, 6, 7], habitId: newHabitId));
-    }
-
+    habitTargetController.dispose();
     super.dispose();
+  }
+
+  void _localisedays() {
+    _daysOfWeek = LocalisedDays.localisedBig(context, true);
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _localisedays();
   }
 
   @override
   void initState() {
-    super.initState();
     context.read<HabitBloc>().add(
-          HabitChange(
-            days: const [1, 2, 3, 4, 5, 6, 7],
-            habitId: newHabitId,
-          ),
+          HabitChange(habitId: newHabitId),
         );
+    super.initState();
   }
-
- 
-  bool readyToSubmit = false;
-
-  String? pickedTime;
-
-  HabitType currentType = HabitType.notes;
-
-  HabitIcon currentHabitIcon = const HabitIcon(
-    color: Color.fromARGB(255, 138, 224, 140),
-    icon: FontAwesome5.laptop_code,
-  );
 
   Future<void> onChangeImageChange(
       BuildContext context, IconData icon, Color color) async {
@@ -84,27 +78,13 @@ class _HabitViewState extends State<HabitView> {
       ),
     ).then((newHabitIcon) {
       if (newHabitIcon != null && newHabitIcon is HabitIcon) {
-        context.read<HabitBloc>().add(HabitProgramChange(
-              days: const [1, 2, 3, 4, 5, 6, 7],
-              habitId: newHabitId,
+        context.read<HabitBloc>().add(HabitChange(
               color: newHabitIcon.color,
               iconData: newHabitIcon.icon,
             ));
       }
     });
   }
-
-
- final List<String> _daysOfWeek = [
-    'All',
-    'Monday',
-    'Tuesday',
-    'Wednesday',
-    'Thursday',
-    'Friday',
-    'Saturday',
-    'Sunday'
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -115,18 +95,60 @@ class _HabitViewState extends State<HabitView> {
     return SafeArea(
       child: BlocBuilder<HabitBloc, HabitState>(
         builder: (context, state) {
-          if (state is ProgramChanging) {
-            Habit currentHabit = state.changeableProgram.habits[0].habits
-                .firstWhere((habit) => habit.id == newHabitId,
-                    orElse: () => Habit.base(id: newHabitId));
+          if (state is HabitChanging) {
+            Habit currentHabit = state.changeableHabit;
+            final typeRecord = HabitTypeConverter.fromTypeToColorIcon(
+                context, state.changeableHabit.habitType);
             return Scaffold(
               appBar: HabitaAppBar(
                 title: widget.appBarTitle,
                 actions: [
                   HabitaTextButton(
                     onPressed: () {
-                      editingFinished = true;
-                      Navigator.of(context).pop();
+                      if (formKey.currentState!.validate() &&
+                          _choosedDays.isNotEmpty) {
+                        int? waterTarget;
+                        int? taskTarget;
+                        int? stepsTarget;
+
+                        switch (currentHabit.habitType) {
+                          case HabitType.multiple:
+                            taskTarget = int.parse(habitTargetController.text);
+                          case HabitType.steps:
+                            stepsTarget = int.parse(habitTargetController.text);
+                          case HabitType.water:
+                            waterTarget = int.parse(habitTargetController.text);
+                          case HabitType.todo:
+                        }
+
+                        context.read<HabitBloc>().add(
+                              HabitProgramChange(
+                                habit: Habit(
+                                  id: newHabitId,
+                                  color: currentHabit.color,
+                                  description:
+                                      habitDescriptionEditController.text,
+                                  icon: currentHabit.icon,
+                                  habitType: currentHabit.habitType,
+                                  name: habitNameController.text,
+                                  isCompleted: false,
+                                  highestStreak: 0,
+                                  currentStreak: 0,
+                                  remainder: currentHabit.remainder,
+                                  waterTarget: waterTarget,
+                                  stepsTarget: stepsTarget,
+                                  taskSteps: taskTarget,
+                                ),
+                                days: _choosedDays,
+                              ),
+                            );
+                        Navigator.of(context).pop();
+                      }
+                      if (_choosedDays.isEmpty) {
+                        showSnackBar(
+                            context: context,
+                            content: S.of(context).setAtLeast1Day);
+                      }
                     },
                     title: S.of(context).submit,
                     fontSize: MediaQuery.of(context).size.height * 0.023,
@@ -153,8 +175,8 @@ class _HabitViewState extends State<HabitView> {
                             onTap: () {
                               onChangeImageChange(
                                 context,
-                                currentHabitIcon.icon,
-                                currentHabitIcon.color,
+                                state.changeableHabit.icon,
+                                state.changeableHabit.color,
                               );
                             },
                           ),
@@ -166,8 +188,8 @@ class _HabitViewState extends State<HabitView> {
                                 MediaQuery.of(context).size.height * 0.032,
                             onPressed: () => onChangeImageChange(
                               context,
-                              currentHabitIcon.icon,
-                              currentHabitIcon.color,
+                              state.changeableHabit.icon,
+                              state.changeableHabit.color,
                             ),
                             weight: FontWeight.w600,
                           ),
@@ -183,11 +205,7 @@ class _HabitViewState extends State<HabitView> {
                           height: 10,
                         ),
                         HabitTextField(
-                          onSubmitted: () => context
-                              .read<HabitBloc>()
-                              .add(HabitProgramChange(
-                                name: habitNameController.text,
-                              )),
+                          onSubmitted: () {},
                           controller: habitNameController,
                           maxChars: 15,
                           hintText: S.of(context).nameOfHabit,
@@ -200,12 +218,9 @@ class _HabitViewState extends State<HabitView> {
                           height: 10,
                         ),
                         HabitTextField(
-                          onSubmitted: () {
-                            context.read<HabitBloc>().add(HabitProgramChange(
-                                name: habitDescriptionEditController.text));
-                          },
+                          onSubmitted: () {},
                           controller: habitDescriptionEditController,
-                          maxChars: 10,
+                          maxChars: 14,
                           requireCheck: false,
                           hintText: S.of(context).smallDescription,
                         ),
@@ -219,13 +234,16 @@ class _HabitViewState extends State<HabitView> {
                         Center(
                           child: ActionDropDown(
                               icon: Icons.notification_add,
-                              color: pickedTime != null
+                              color: state.changeableHabit.remainder != null
                                   ? const Color.fromARGB(255, 138, 224, 140)
                                   : null,
-                              entrie: pickedTime == null
+                              entrie: state.changeableHabit.remainder == null
                                   ? S.of(context).off
-                                  : pickedTime.toString(),
-                              onHold: () {},
+                                  : state.changeableHabit.remainder!,
+                              onHold: () {
+                                context.read<HabitBloc>().add(const HabitChange(
+                                    remainder: null, dropReminder: true));
+                              },
                               onPressed: () {
                                 Navigator.of(context).push(showPicker(
                                   context: context,
@@ -249,10 +267,9 @@ class _HabitViewState extends State<HabitView> {
                                       ? Theme.of(context).primaryColor
                                       : Theme.of(context).primaryColorLight,
                                   onChange: (reminder) {
-                                    setState(() {
-                                      pickedTime =
-                                          reminder.timeToString(context);
-                                    });
+                                    context.read<HabitBloc>().add(HabitChange(
+                                        remainder:
+                                            reminder.timeToString(context)));
                                   },
                                 ));
                               }),
@@ -270,10 +287,19 @@ class _HabitViewState extends State<HabitView> {
                         Center(
                           child: HabitaCheckBoxDropDown(
                             entries: _daysOfWeek,
-                            initialValue: 'Monday',
-                            getInitial: () async => 'Monday',
-                            onChoosed: (value) {
-                              print('Selected: $value');
+                            initialValue: S.of(context).all,
+                            onChoosed: (values) {
+                              if (values[0] == true) {
+                                _choosedDays = List<int>.generate(
+                                    values.length - 1, (index) => index + 1);
+                              } else {
+                                _choosedDays = [];
+                                for (int i = 1; i < values.length; i++) {
+                                  if (values[i]) {
+                                    _choosedDays.add(i - 1);
+                                  }
+                                }
+                              }
                             },
                           ),
                         ),
@@ -290,15 +316,32 @@ class _HabitViewState extends State<HabitView> {
                         Center(
                           child: HabitaDropDown<String>(
                             entries: HabitTypeConverter.translatedList(context),
-                            initialValue: S.of(context).notes,
-                            getInitial: () async => S.of(context).notes,
+                            initialValue: S.of(context).todo,
                             onChoosed: (choosedType) {
-                              setState(() {
-                                currentType =
-                                    HabitTypeConverter.toHabitType(choosedType);
-                              });
+                              context.read<HabitBloc>().add(
+                                    HabitChange(
+                                      type: HabitTypeConverter.toHabitType(
+                                        context,
+                                        choosedType,
+                                      ),
+                                    ),
+                                  );
                             },
                           ),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        TypeManager(
+                          type: state.changeableHabit.habitType,
+                          icon: typeRecord.$1,
+                          text: typeRecord.$2,
+                          maxValue: typeRecord.$3,
+                          maxLength: 5,
+                          controller: habitTargetController,
+                        ),
+                        const SizedBox(
+                          height: 30,
                         ),
                       ],
                     ),
@@ -307,12 +350,7 @@ class _HabitViewState extends State<HabitView> {
               ),
             );
           } else {
-            return Center(
-              child: Text(
-                'Unexpected error',
-                style: Theme.of(context).textTheme.displayLarge,
-              ),
-            );
+            return const SizedBox();
           }
         },
       ),

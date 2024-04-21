@@ -7,7 +7,7 @@ import 'package:habita/src/features/habits/domain/entities/habit_program.dart';
 
 class HabitProgramModel extends HabitProgram {
   const HabitProgramModel({
-    required super.habits,
+    required super.habitDays,
     required super.name,
     required super.description,
     required super.muatable,
@@ -17,7 +17,7 @@ class HabitProgramModel extends HabitProgram {
 
   @override
   HabitProgramModel copyWith({
-    List<HabitDay>? habits,
+    List<HabitDay>? habitDays,
     String? name,
     String? description,
     bool? muatable,
@@ -25,7 +25,7 @@ class HabitProgramModel extends HabitProgram {
     String? programEnd,
   }) {
     return HabitProgramModel(
-      habits: habits ?? this.habits,
+      habitDays: habitDays ?? this.habitDays,
       name: name ?? this.name,
       description: description ?? this.description,
       muatable: muatable ?? this.muatable,
@@ -36,7 +36,7 @@ class HabitProgramModel extends HabitProgram {
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'habits': habits
+      'habits': habitDays
           .map((habitDay) => HabitDayModel.fromHabitDay(habitDay).toMap())
           .toList(),
       'name': name,
@@ -49,7 +49,7 @@ class HabitProgramModel extends HabitProgram {
 
   factory HabitProgramModel.fromMap(Map<String, dynamic> map) {
     return HabitProgramModel(
-      habits: List<HabitDay>.from(
+      habitDays: List<HabitDay>.from(
         (map['habits'] as List<Map<String, dynamic>>)
             .map<HabitDay>((mappedDays) => HabitDayModel.fromMap(map)),
       ),
@@ -68,6 +68,6 @@ class HabitProgramModel extends HabitProgram {
 
   @override
   String toString() {
-    return 'HabitProgram(habits: $habits, name: $name, description: $description, muatable: $muatable)';
+    return 'HabitProgram(habits: $habitDays, name: $name, description: $description, muatable: $muatable)';
   }
 }

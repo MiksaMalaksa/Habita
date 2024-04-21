@@ -21,7 +21,6 @@ import 'package:habita/src/features/settings/utils/shared_pref_utils.dart';
 import 'package:habita/src/themes/app_theme.dart';
 import 'package:habita/src/themes/bloc/theme_bloc.dart';
 
-
 class ProfilePage extends StatelessWidget {
   static route() => MaterialPageRoute(
         builder: (context) => const ProfilePage(),
@@ -30,10 +29,11 @@ class ProfilePage extends StatelessWidget {
 
   void _settingsDialog(BuildContext context) {
     dialogBuilder(
-        context: context,
-        atributes: DialogAtributes(
-            label: S.of(context).noConnection,
-            body: S.of(context).settingsNoInternet));
+      context: context,
+      atributes: DialogAtributes(
+          label: S.of(context).noConnection,
+          body: S.of(context).settingsNoInternet),
+    );
   }
 
   @override
@@ -81,9 +81,6 @@ class ProfilePage extends StatelessWidget {
                         //*color combinations
                         Center(
                             child: HabitaDropDown<String>(
-                                getInitial: () => sl
-                                    .get<SharedPreferencesUtils>()
-                                    .getThemeComb(),
                                 entries: colorCombinations,
                                 initialValue:
                                     context.read<ThemeBloc>().state.combName,
@@ -101,11 +98,6 @@ class ProfilePage extends StatelessWidget {
                             child: HabitaDropDown<Locale>(
                                 initialValue:
                                     Habita.of(context)!.currentLocale!,
-                                getInitial: () => sl
-                                    .get<SharedPreferencesUtils>()
-                                    .getLang()
-                                    .then((code) =>
-                                        Locale.fromSubtags(languageCode: code)),
                                 entries: S.delegate.supportedLocales,
                                 //*get flags based on their locale code
                                 icons: flags,
