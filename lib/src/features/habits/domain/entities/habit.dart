@@ -20,8 +20,6 @@ class Habit {
   final int? stepsProduced;
   final int? taskSteps;
   final int? completedSteps;
-  final String? taskStart;
-  final String? taskEnd;
   final String? remainder;
 
   const Habit({
@@ -40,8 +38,6 @@ class Habit {
     this.stepsProduced,
     this.taskSteps,
     this.completedSteps,
-    this.taskEnd,
-    this.taskStart,
     this.remainder,
   });
 
@@ -93,8 +89,6 @@ class Habit {
       stepsProduced: stepsProduced ?? this.stepsProduced,
       taskSteps: taskSteps ?? this.taskSteps,
       completedSteps: completedSteps ?? this.completedSteps,
-      taskStart: taskStart ?? this.taskStart,
-      taskEnd: taskEnd ?? this.taskEnd,
       remainder: remainder ?? this.remainder,
     );
   }
@@ -119,8 +113,6 @@ class Habit {
       stepsProduced: stepsProduced,
       taskSteps: taskSteps,
       completedSteps: completedSteps,
-      taskStart: taskStart,
-      taskEnd: taskEnd,
       remainder: remainder == '' ? null : this.remainder,
       stepsTarget: stepsTarget == -1 ? null : this.stepsTarget,
       description: description == '' ? null : this.description,

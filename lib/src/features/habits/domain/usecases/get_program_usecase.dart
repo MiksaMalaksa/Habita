@@ -3,7 +3,7 @@ import 'package:habita/core/failures/ifailure.dart';
 import 'package:habita/core/usecase/no_params.dart';
 import 'package:habita/core/usecase/usecase.dart';
 import 'package:habita/src/features/habits/domain/entities/habit_program.dart';
-import 'package:habita/src/features/habits/domain/repositories/habit_repository.dart';
+import 'package:habita/src/features/habits/domain/repositories/habit_repo.dart';
 
 class GetProgram implements Usecase<HabitProgram, NoParams> {
   final IHabitRepo repository;

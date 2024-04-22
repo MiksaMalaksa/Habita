@@ -87,7 +87,7 @@ class ProfileContainer extends StatelessWidget {
                 //*Picture
                 ProfilePicture(
                   size: MediaQuery.of(context).size.height * 0.15,
-                  onPressed: () => _showPicture(context),
+                  onPressed: (path) {},
                 ),
                 const SizedBox(
                   height: 15,

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:fluttericon/entypo_icons.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
 import 'package:habita/core/extensions/color_rgb.dart';
 import 'package:habita/generated/l10n.dart';
@@ -11,11 +10,11 @@ final _habitIcons = [
   FontAwesome5.laptop,
   FontAwesome5.briefcase,
   FontAwesome5.guitar,
-  Icons.brush,
+  FontAwesome5.water,
   FontAwesome5.piggy_bank,
 
   //!food-6
-  Entypo.cup,
+  FontAwesome5.mug_hot,
   FontAwesome5.egg,
   FontAwesome5.apple_alt,
   FontAwesome5.carrot,

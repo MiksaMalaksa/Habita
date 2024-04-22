@@ -1,0 +1,1 @@
+const habitBox = 'habit_box';

@@ -27,12 +27,15 @@ dependencies:
   fluttericon: ^2.0.0
   get_it: ^7.6.7
   google_fonts: ^6.2.1
-  image_picker: ^1.0.7
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+  image_picker: ^1.1.0
   internet_connection_checker: ^1.0.0+1
   intl: ^0.18.1
   loading_animation_widget: ^1.2.1
   provider: ^6.1.2
   shared_preferences: ^2.2.2
+  simple_circular_progress_bar: ^1.0.2
   supabase_flutter: ^2.3.4
   url_launcher: ^6.2.5
   uuid: ^4.4.0
@@ -53,6 +56,11 @@ flutter:
     - assets/habita_logo.png
     - assets/dart.png
     - assets/busy.png
+
+  fonts:
+    - family: FontAwesome5
+      fonts:
+        - asset: fonts/awesome5.ttf
 
 flutter_intl:
   enabled: true

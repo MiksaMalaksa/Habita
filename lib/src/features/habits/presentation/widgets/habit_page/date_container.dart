@@ -23,8 +23,9 @@ class DateContainer extends StatelessWidget {
     final borderColor =
         selected ? Theme.of(context).primaryColorLight : Colors.transparent;
     final textColor = selected
-        ? Theme.of(context).primaryColorLight
+        ? Colors.white
         : Theme.of(context).primaryColorLight.withOpacity(0.9).desaturate(0.9);
+    final weight = selected ? FontWeight.bold : FontWeight.normal;
     return Padding(
       padding: const EdgeInsets.only(right: 10),
       child: InkWell(
@@ -47,7 +48,7 @@ class DateContainer extends StatelessWidget {
                   style: Theme.of(context)
                       .textTheme
                       .titleMedium!
-                      .copyWith(color: textColor),
+                      .copyWith(color: textColor, fontWeight: weight),
                 ),
                 const SizedBox(
                   height: 3,
@@ -57,7 +58,7 @@ class DateContainer extends StatelessWidget {
                   style: Theme.of(context)
                       .textTheme
                       .titleMedium!
-                      .copyWith(color: textColor),
+                      .copyWith(color: textColor, fontWeight: weight),
                 ),
               ],
             ),

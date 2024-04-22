@@ -12,18 +12,16 @@ class HabitModel extends Habit {
     required super.icon,
     required super.habitType,
     required super.name,
-    required super.description,
     required super.isCompleted,
     required super.highestStreak,
     required super.currentStreak,
+    super.description,
     super.waterTarget,
     super.waterConsumed,
     super.stepsTarget,
     super.stepsProduced,
     super.taskSteps,
     super.completedSteps,
-    super.taskStart,
-    super.taskEnd,
     super.remainder,
   });
 
@@ -33,6 +31,7 @@ class HabitModel extends Habit {
       'color': color.value,
       'icon': icon.codePoint,
       'habitType': habitType.toShortString(),
+      'remainder': remainder,
       'name': name,
       'description': description,
       'isCompleted': isCompleted,
@@ -44,8 +43,6 @@ class HabitModel extends Habit {
       'stepsProduced': stepsProduced,
       'taskSteps': taskSteps,
       'completedSteps': completedSteps,
-      'taskStart': taskStart,
-      'taskEnd': taskEnd,
     };
   }
 
@@ -53,14 +50,15 @@ class HabitModel extends Habit {
     return HabitModel(
       id: map['id'] as String,
       color: Color(map['color'] as int),
-      icon: IconData((map['icon'] as IconData).codePoint,
-          fontFamily: 'MaterialIcons'),
+      icon: IconData((map['icon'] as int), fontFamily: 'FontAwesome5'),
       habitType: toHabitType(map['habitType']),
       name: map['name'] as String,
-      description: map['description'] as String,
       isCompleted: map['isCompleted'] as bool,
       highestStreak: map['highestStreak'] as int,
       currentStreak: map['currentStreak'] as int,
+      remainder: map['remainder'] != null ? map['remainder'] as String : null,
+      description:
+          map['description'] != null ? map['description'] as String : null,
       waterTarget:
           map['waterTarget'] != null ? map['waterTarget'] as int : null,
       waterConsumed:
@@ -72,8 +70,6 @@ class HabitModel extends Habit {
       taskSteps: map['taskSteps'] != null ? map['taskSteps'] as int : null,
       completedSteps:
           map['completedSteps'] != null ? map['completedSteps'] as int : null,
-      taskStart: map['taskStart'] != null ? map['taskStart'] as String : null,
-      taskEnd: map['taskEnd'] != null ? map['taskEnd'] as String : null,
     );
   }
 

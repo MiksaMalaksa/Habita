@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:habita/core/constants/exceptions_messages.dart';
 import 'package:habita/core/exceptions/exceptions.dart';
 import 'package:habita/core/failures/failure.dart';
 import 'package:habita/core/failures/ifailure.dart';
@@ -58,7 +59,7 @@ class AuthRepoImpl implements IAuthRepo {
   @override
   Future<Either<Failure, void>> signOut() async {
     if (!await (connectionChecker.isConnected)) {
-      return const Left(ServerFailure(message: 'No connection'));
+      return const Left(ServerFailure(message: internetIsuesMsg));
     }
 
     return Right(
@@ -68,10 +69,6 @@ class AuthRepoImpl implements IAuthRepo {
 
   @override
   Future<Either<Failure, SupaUser>> getCurrentUser() async {
-    if (!await (connectionChecker.isConnected)) {
-      return const Left(ServerFailure(message: 'No connection'));
-    }
-
     return Right(
       await datasource.getCurrentUser(),
     );
@@ -84,7 +81,7 @@ class AuthRepoImpl implements IAuthRepo {
       required String password,
       required String oldPassword}) async {
     if (!await (connectionChecker.isConnected)) {
-      return const Left(ServerFailure(message: 'No connection'));
+      return const Left(ServerFailure(message: internetIsuesMsg));
     }
 
     try {
@@ -106,7 +103,7 @@ class AuthRepoImpl implements IAuthRepo {
     try {
       //*check the internet
       if (!await (connectionChecker.isConnected)) {
-        return const Left(ServerFailure(message: 'No connection'));
+        return const Left(ServerFailure(message: internetIsuesMsg));
       }
       final result = await function();
       return Right(result);

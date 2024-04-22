@@ -35,7 +35,7 @@ class HabitDayModel extends HabitDay {
     return HabitDayModel(
       weekday: map['weekday'] as int,
       habits: List<Habit>.from(
-        (map['habits'] as List<Map<String, dynamic>>).map(
+        (map['habits'] as List<dynamic>).map(
           (mappedHabit) => HabitModel.fromMap(mappedHabit),
         ),
       ),

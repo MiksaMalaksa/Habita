@@ -4,7 +4,6 @@ import 'package:habita/generated/l10n.dart';
 import 'package:habita/src/features/habits/presentation/habit_page.dart';
 import 'package:habita/src/features/home/presentation/home_page.dart';
 import 'package:habita/src/features/settings/presentation/settings_page.dart';
-import 'package:habita/src/features/stats/presentation/stats_page.dart';
 import 'package:fluttericon/rpg_awesome_icons.dart';
 import 'package:habita/src/features/versus/presentation/versus_page.dart';
 
@@ -20,7 +19,6 @@ class PageManager extends StatefulWidget {
 class _PageManagerState extends State<PageManager> {
   final List<Widget> _pages = const [
     HomePage(),
-    StatsPage(),
     HabitPage(),
     VersusPage(),
     ProfilePage(),
@@ -45,9 +43,10 @@ class _PageManagerState extends State<PageManager> {
               Theme.of(context).bottomNavigationBarTheme.backgroundColor,
           items: [
             _bottomBarItem(label: S.of(context).home, icon: Icons.home),
-            _bottomBarItem(label: S.of(context).stats, icon: Icons.bar_chart_sharp),
-            _bottomBarItem(label: S.of(context).program, icon: Icons.calendar_month),
-            _bottomBarItem(label: S.of(context).versus, icon: RpgAwesome.broadsword),
+            _bottomBarItem(
+                label: S.of(context).program, icon: Icons.calendar_month),
+            _bottomBarItem(
+                label: S.of(context).versus, icon: RpgAwesome.broadsword),
             _bottomBarItem(label: S.of(context).profile, icon: Icons.person),
           ]),
     );

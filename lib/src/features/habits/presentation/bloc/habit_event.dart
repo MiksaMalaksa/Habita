@@ -64,3 +64,7 @@ final class HabitProgramChange extends HabitEvent {
 }
 
 final class HabitProgramFinishedEditing extends HabitEvent {}
+
+final class GetHabitProgram extends HabitEvent{}
+
+final class DeleteHabitProgram extends HabitEvent{}

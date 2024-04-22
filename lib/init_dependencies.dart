@@ -11,6 +11,15 @@ import 'package:habita/src/features/auth/domain/usecases/current_user_usecase.da
 import 'package:habita/src/features/auth/domain/usecases/login_usecase.dart';
 import 'package:habita/src/features/auth/domain/usecases/signup_usecase.dart';
 import 'package:habita/src/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:habita/src/features/habits/config/box_config.dart';
+import 'package:habita/src/features/habits/data/datasources/habit_datasource_impl.dart';
+import 'package:habita/src/features/habits/data/datasources/ihabit_datasource.dart';
+import 'package:habita/src/features/habits/data/repositories/habit_repo_impl.dart';
+import 'package:habita/src/features/habits/domain/repositories/habit_repo.dart';
+import 'package:habita/src/features/habits/domain/usecases/create_program_usecase.dart';
+import 'package:habita/src/features/habits/domain/usecases/delete_program_usecase.dart';
+import 'package:habita/src/features/habits/domain/usecases/edit_program_usecase.dart';
+import 'package:habita/src/features/habits/domain/usecases/get_program_usecase.dart';
 import 'package:habita/src/features/habits/presentation/bloc/habit_bloc.dart';
 import 'package:habita/src/features/settings/data/datasources/isettings_datasource.dart';
 import 'package:habita/src/features/settings/data/datasources/settings_datasource_impl.dart';
@@ -21,6 +30,7 @@ import 'package:habita/src/features/auth/domain/usecases/update_user_usecase.dar
 import 'package:habita/src/features/settings/presentation/bloc/settings_bloc.dart';
 import 'package:habita/src/features/settings/utils/shared_pref_utils.dart';
 import 'package:habita/src/themes/bloc/theme_bloc.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -39,6 +49,11 @@ Future<void> initialise() async {
   sl.registerFactory<IConnectionChecker>(
     () => ConnectionCheckerImpl(internetChecker: sl()),
   );
+
+  //!Hive init
+  await Hive.initFlutter();
+  final programBox = await Hive.openBox(habitBox);
+  sl.registerSingleton<Box>(programBox, instanceName: 'habit_program');
 
   //!core
   _initInternetStreamChecker();
@@ -92,5 +107,21 @@ void _initSettings() {
 }
 
 void _initHabits() {
-  sl.registerFactory<HabitBloc>(() => HabitBloc());
+  sl.registerSingleton<IHabitDataSource>(HabitDataSourceImpl(
+      box: sl.get<Box>(instanceName: 'habit_program'),
+      connectionChecker: sl()));
+  sl.registerSingleton<IHabitRepo>(HabitRepoImpl(habitDataSource: sl()));
+
+  //*Usecases
+  sl.registerSingleton<CreateProgram>(CreateProgram(repository: sl()));
+  sl.registerSingleton<DeleteProgram>(DeleteProgram(repository: sl()));
+  sl.registerSingleton<EditProgram>(EditProgram(repository: sl()));
+  sl.registerSingleton<GetProgram>(GetProgram(repository: sl()));
+
+  sl.registerFactory<HabitBloc>(() => HabitBloc(
+        createProgram: sl(),
+        deleteProgram: sl(),
+        editProgram: sl(),
+        getProgram: sl(),
+      ));
 }

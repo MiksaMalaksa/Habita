@@ -44,6 +44,12 @@ class _HabitScreenState extends State<HabitPage> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    context.read<HabitBloc>().add(GetHabitProgram());
+  }
+
+  @override
   Widget build(BuildContext context) {
     return BlocBuilder<HabitBloc, HabitState>(builder: (context, state) {
       if (state.program.name.isNotEmpty) {
@@ -84,9 +90,9 @@ class _HabitScreenState extends State<HabitPage> {
                               weight: FontWeight.w800,
                               title: S.of(context).submit,
                               onPressed: () {
-                                context.read<HabitBloc>().add(
-                                    const HabitProgramChange(
-                                        fromScratch: true));
+                                context
+                                    .read<HabitBloc>()
+                                    .add(DeleteHabitProgram());
                                 Navigator.of(context).pop();
                               },
                             ),
@@ -186,7 +192,7 @@ class _HabitScreenState extends State<HabitPage> {
                     ),
                   ],
                 ),
-              )
+              ),
             ],
           ),
         );

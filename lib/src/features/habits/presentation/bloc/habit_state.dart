@@ -65,11 +65,6 @@ final class ProgramChanging extends HabitState {
           .toList(),
       program.habitDays
           .map((days) => days.habits.map(
-                (habit) => habit.taskStart,
-              ))
-          .toList(),
-      program.habitDays
-          .map((days) => days.habits.map(
                 (habit) => habit.remainder,
               ))
           .toList(),
@@ -85,4 +80,10 @@ final class ProgramChanging extends HabitState {
           .toList(),
     ];
   }
+}
+
+final class Error extends HabitState {
+  final String message;
+
+  const Error({required this.message, required super.program});
 }

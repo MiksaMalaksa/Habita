@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:habita/core/common/blocs/bloc/internetconnection_bloc.dart';
@@ -18,6 +20,7 @@ import 'package:habita/src/features/settings/presentation/widgets/profile_edit_w
 import 'package:habita/src/features/settings/presentation/widgets/settings_widgets/profile_picture.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
 import 'package:fluttericon/entypo_icons.dart';
+import 'package:image_picker/image_picker.dart';
 
 class EditProfile extends StatefulWidget {
   const EditProfile({super.key});
@@ -35,6 +38,7 @@ class _EditProfileState extends State<EditProfile> {
   final oldPasswordController = TextEditingController();
   final newPasswordController = TextEditingController();
   final formKey = GlobalKey<FormState>();
+  File? selectedImage;
 
   @override
   void dispose() {
@@ -125,9 +129,9 @@ class _EditProfileState extends State<EditProfile> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        //!Replace it later with widget with nothing and pofile
                         Center(
                           child: ProfilePicture(
+                              image: selectedImage,
                               size: MediaQuery.of(context).size.height * 0.15),
                         ),
                         const SizedBox(height: 8),
@@ -149,6 +153,7 @@ class _EditProfileState extends State<EditProfile> {
                           style: textStyle,
                         ),
                         const SizedBox(height: 6),
+
                         ///*Name field
                         ChangeTextField(
                           controller: nameController,
@@ -160,6 +165,7 @@ class _EditProfileState extends State<EditProfile> {
                           style: textStyle,
                         ),
                         const SizedBox(height: 6),
+
                         ///*Email field
                         ChangeTextField(
                           controller: emailController,

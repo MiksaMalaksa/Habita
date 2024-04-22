@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:habita/src/themes/combinations/blumine.dart';
 import 'package:habita/src/themes/combinations/indigo.dart';
 import 'package:habita/src/themes/combinations/purple_theme.dart';
 import 'package:habita/src/themes/combinations/red_blue_theme.dart';
@@ -34,6 +35,7 @@ List<String> colorCombinations = [
   'Indigo',
   'Purple',
   'Red-Blue',
+  'Blumine'
 ];
 
 //!In drop box there aree the names of themes and + theme mode = current comb
@@ -46,4 +48,6 @@ Map<String, ThemeData> combinations = {
   '${colorCombinations[2]}Dark': purpleColoringDark,
   '${colorCombinations[3]}Light': redBlueColoringLight,
   '${colorCombinations[3]}Dark': redBlueColoringDark,
+    '${colorCombinations[4]}Light': blumineColoringLight,
+  '${colorCombinations[4]}Dark': blumineColoringDark,
 };

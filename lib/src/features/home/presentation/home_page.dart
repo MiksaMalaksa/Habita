@@ -14,10 +14,12 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Text(
-          'Home page will be here',
-          style: Theme.of(context).textTheme.titleMedium,
+      body: SafeArea(
+        child: Center(
+          child: Text(
+            'Home page will be here',
+            style: Theme.of(context).textTheme.titleMedium,
+          ),
         ),
       ),
     );
