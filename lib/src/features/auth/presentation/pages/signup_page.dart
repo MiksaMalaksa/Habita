@@ -115,11 +115,13 @@ class SignUpState extends State<SignUpPage> {
                                 ),
                                 AuthButton(
                                   showColors: state.isConnected,
-                                  onTap: () => state.isConnected
-                                      ? formValidation
-                                      : showSnackBar(
-                                          content: S.of(context).noConnection,
-                                          context: context),
+                                  onTap: formValidation
+                                  
+                                  // state.isConnected
+                                  //     ? formValidation
+                                  //     : showSnackBar(
+                                  //         content: S.of(context).noConnection,
+                                  //         context: context),
                                 ),
                                 const SizedBox(
                                   height: 20,

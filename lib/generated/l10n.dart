@@ -1149,6 +1149,46 @@ class S {
       args: [],
     );
   }
+
+  /// `To much things for today!`
+  String get toMuch {
+    return Intl.message(
+      'To much things for today!',
+      name: 'toMuch',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Loading...`
+  String get loading {
+    return Intl.message(
+      'Loading...',
+      name: 'loading',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You did it`
+  String get youDidIt {
+    return Intl.message(
+      'You did it',
+      name: 'youDidIt',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tap on the icon to open the info!`
+  String get iconTap {
+    return Intl.message(
+      'Tap on the icon to open the info!',
+      name: 'iconTap',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

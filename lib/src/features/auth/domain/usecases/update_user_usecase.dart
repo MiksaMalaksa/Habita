@@ -15,21 +15,24 @@ class UpdateUser implements Usecase<SupaUser, UpdateUserParams> {
       name: params.name,
       email: params.email,
       password: params.password,
-      oldPassword: params.oldPassword
+      oldPassword: params.oldPassword,
+      imagePath: params.imagePath,
     );
   }
 }
 
 class UpdateUserParams {
-  final String name;
-  final String password;
-  final String email;
-  final String oldPassword;
+  final String? name;
+  final String? password;
+  final String? email;
+  final String? oldPassword;
+  final String? imagePath;
 
   const UpdateUserParams({
-    required this.name,
-    required this.password,
-    required this.email,
-    required this.oldPassword,
+    this.name,
+    this.password,
+    this.email,
+    this.oldPassword,
+    this.imagePath,
   });
 }

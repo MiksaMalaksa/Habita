@@ -1,9 +1,10 @@
+import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
 
 import 'package:habita/core/enums/habit_type.dart';
 
-class Habit {
+class Habit extends Equatable {
   final String id;
   final Color color;
   final IconData icon;
@@ -18,8 +19,8 @@ class Habit {
   final int? waterConsumed;
   final int? stepsTarget;
   final int? stepsProduced;
-  final int? taskSteps;
   final int? completedSteps;
+  final int? taskSteps;
   final String? remainder;
 
   const Habit({
@@ -53,6 +54,39 @@ class Habit {
         currentStreak: 0,
       );
 
+  factory Habit.emptyCopy({required Habit habit}) => Habit(
+        id: habit.id,
+        color: habit.color,
+        icon: habit.icon,
+        habitType: habit.habitType,
+        name: habit.name,
+        description: habit.description,
+        isCompleted: false,
+        highestStreak: 0,
+        currentStreak: 0,
+        completedSteps: habit.completedSteps == null ? null : 0,
+        remainder: habit.remainder,
+        stepsProduced: habit.stepsProduced == null ? null : 0,
+        stepsTarget: habit.stepsTarget,
+        taskSteps: habit.taskSteps,
+        waterConsumed: habit.waterConsumed == null ? null : 0,
+        waterTarget: habit.waterTarget,
+      );
+
+  factory Habit.sameEmpty(Habit habit) {
+    return Habit(
+      id: habit.id,
+      color: habit.color,
+      icon: habit.icon,
+      habitType: habit.habitType,
+      name: habit.name,
+      description: habit.description,
+      isCompleted: false,
+      highestStreak: 0,
+      currentStreak: 0,
+    );
+  }
+
   Habit copyWith({
     String? id,
     Color? color,
@@ -69,8 +103,6 @@ class Habit {
     int? stepsProduced,
     int? taskSteps,
     int? completedSteps,
-    String? taskStart,
-    String? taskEnd,
     String? remainder,
   }) {
     return Habit(
@@ -119,4 +151,24 @@ class Habit {
       waterTarget: waterTarget == -1 ? null : this.waterTarget,
     );
   }
+
+  @override
+  List<Object?> get props => [
+        id,
+        color,
+        icon,
+        habitType,
+        name,
+        isCompleted,
+        highestStreak,
+        currentStreak,
+        description,
+        waterTarget,
+        waterConsumed,
+        stepsTarget,
+        stepsProduced,
+        completedSteps,
+        taskSteps,
+        remainder,
+      ];
 }

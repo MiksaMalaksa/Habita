@@ -34,15 +34,17 @@ final class AuthLoggedIn extends AuthEvent {}
 final class AuthSignOut extends AuthEvent {}
 
 final class AuthUpdateUser extends AuthEvent {
-  final String name;
-  final String email;
-  final String password;
-  final String oldPassword;
+  final String? name;
+  final String? email;
+  final String? password;
+  final String? oldPassword;
+  final String? imagePath;
 
   const AuthUpdateUser({
-    required this.name,
-    required this.email,
-    required this.password,
-    required this.oldPassword,
+    this.name,
+    this.email,
+    this.password,
+    this.oldPassword,
+    this.imagePath,
   });
 }

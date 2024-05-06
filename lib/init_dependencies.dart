@@ -12,11 +12,10 @@ import 'package:habita/src/features/auth/domain/usecases/login_usecase.dart';
 import 'package:habita/src/features/auth/domain/usecases/signup_usecase.dart';
 import 'package:habita/src/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:habita/src/features/habits/config/box_config.dart';
-import 'package:habita/src/features/habits/data/datasources/habit_datasource_impl.dart';
-import 'package:habita/src/features/habits/data/datasources/ihabit_datasource.dart';
+import 'package:habita/src/features/habits/data/datasources/local/habit_local_datasource_impl.dart';
+import 'package:habita/src/features/habits/data/datasources/local/ihabit_local_datasource.dart';
 import 'package:habita/src/features/habits/data/repositories/habit_repo_impl.dart';
 import 'package:habita/src/features/habits/domain/repositories/habit_repo.dart';
-import 'package:habita/src/features/habits/domain/usecases/create_program_usecase.dart';
 import 'package:habita/src/features/habits/domain/usecases/delete_program_usecase.dart';
 import 'package:habita/src/features/habits/domain/usecases/edit_program_usecase.dart';
 import 'package:habita/src/features/habits/domain/usecases/get_program_usecase.dart';
@@ -108,18 +107,16 @@ void _initSettings() {
 
 void _initHabits() {
   sl.registerSingleton<IHabitDataSource>(HabitDataSourceImpl(
-      box: sl.get<Box>(instanceName: 'habit_program'),
-      connectionChecker: sl()));
+    box: sl.get<Box>(instanceName: 'habit_program'),
+  ));
   sl.registerSingleton<IHabitRepo>(HabitRepoImpl(habitDataSource: sl()));
 
   //*Usecases
-  sl.registerSingleton<CreateProgram>(CreateProgram(repository: sl()));
   sl.registerSingleton<DeleteProgram>(DeleteProgram(repository: sl()));
   sl.registerSingleton<EditProgram>(EditProgram(repository: sl()));
   sl.registerSingleton<GetProgram>(GetProgram(repository: sl()));
 
   sl.registerFactory<HabitBloc>(() => HabitBloc(
-        createProgram: sl(),
         deleteProgram: sl(),
         editProgram: sl(),
         getProgram: sl(),

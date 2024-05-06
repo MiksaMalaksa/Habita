@@ -108,5 +108,9 @@
   "atLeast1Habit": "Must be at least 1 habit!",
   "atLeast7Days": "Program shoud last at least for 7 days!",
   "warning": "Warning!",
-  "submitDeleting": "You are going to delete program, later there would be no opportunity to restore it!"
+  "submitDeleting": "You are going to delete program, later there would be no opportunity to restore it!",
+  "toMuch": "To much things for today!",
+  "loading": "Loading...",
+  "youDidIt": "You did it",
+  "iconTap": "Tap on the icon to open the info!"
 }

@@ -104,8 +104,9 @@ class _HabitProgramScreenState extends State<HabitProgramScreen> {
                     difference.inDays >= 7) {
                   context.read<HabitBloc>().add(
                         HabitProgramChange(
-                            name: nameEditController.text,
-                            description: aimEditController.text),
+                          name: nameEditController.text,
+                          description: aimEditController.text,
+                        ),
                       );
                   Navigator.of(context).pop();
                 }

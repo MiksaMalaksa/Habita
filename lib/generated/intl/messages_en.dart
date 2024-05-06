@@ -70,6 +70,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Already have an account?"),
         "hintMissing": m1,
         "home": MessageLookupByLibrary.simpleMessage("Home"),
+        "iconTap": MessageLookupByLibrary.simpleMessage(
+            "Tap on the icon to open the info!"),
         "icons": MessageLookupByLibrary.simpleMessage("Icons"),
         "immutable": MessageLookupByLibrary.simpleMessage("Immutable"),
         "incorrectPassword": MessageLookupByLibrary.simpleMessage(
@@ -82,6 +84,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "invalidStartDate": MessageLookupByLibrary.simpleMessage(
             "You can not start before today :)"),
         "light": MessageLookupByLibrary.simpleMessage("Light"),
+        "loading": MessageLookupByLibrary.simpleMessage("Loading..."),
         "loginError":
             MessageLookupByLibrary.simpleMessage("No such account, try again!"),
         "mDay": MessageLookupByLibrary.simpleMessage("M"),
@@ -154,6 +157,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "thDay": MessageLookupByLibrary.simpleMessage("T"),
         "thuDay": MessageLookupByLibrary.simpleMessage("Thu"),
         "thursday": MessageLookupByLibrary.simpleMessage("Thursday"),
+        "toMuch":
+            MessageLookupByLibrary.simpleMessage("To much things for today!"),
         "todo": MessageLookupByLibrary.simpleMessage("To-do"),
         "tueDay": MessageLookupByLibrary.simpleMessage("Tue"),
         "tuesday": MessageLookupByLibrary.simpleMessage("Tuesday"),
@@ -165,6 +170,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "water": MessageLookupByLibrary.simpleMessage("Water"),
         "wedDay": MessageLookupByLibrary.simpleMessage("Wed"),
         "wednesday": MessageLookupByLibrary.simpleMessage("Wednesday"),
-        "yes": MessageLookupByLibrary.simpleMessage("Yes")
+        "yes": MessageLookupByLibrary.simpleMessage("Yes"),
+        "youDidIt": MessageLookupByLibrary.simpleMessage("You did it")
       };
 }

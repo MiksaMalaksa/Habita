@@ -22,6 +22,6 @@ class InternetConnectionBloc
       } else {
         add(InternetIsNotPresent());
       }
-    });
+    }, onError: (_) => add(InternetIsNotPresent()));
   }
 }

@@ -5,7 +5,7 @@ void showSnackBar({required BuildContext context, required String content}) {
     ..hideCurrentSnackBar()
     ..showSnackBar(SnackBar(
       duration: const Duration(seconds: 2),
-      backgroundColor: Theme.of(context).colorScheme.onPrimary,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       dismissDirection: DismissDirection.down,
         content: Text(
       content,

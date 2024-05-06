@@ -63,8 +63,58 @@ final class HabitProgramChange extends HabitEvent {
   });
 }
 
+final class ChangeHabitStats extends HabitEvent {
+  final int? habitIndex;
+  final int? dayIndex;
+  final bool? delete;
+  final int? habitId;
+  final String? name;
+  final String? reminder;
+  final String? aim;
+  final bool? muatable;
+  final String? programEnd;
+  final String? programStart;
+  final Color? habitColor;
+  final IconData? habitIcon;
+  final HabitType? habitType;
+  final String? habitName;
+  final String? habitDescription;
+  final bool? isCompletedHabit;
+  final int? waterTarget;
+  final int? waterConsumed;
+  final int? stepsTarget;
+  final int? stepsProduced;
+  final int? taskSteps;
+  final int? completedSteps;
+
+  const ChangeHabitStats({
+    this.habitIndex,
+    this.dayIndex,
+    this.delete,
+    this.habitId,
+    this.name,
+    this.reminder,
+    this.aim,
+    this.muatable,
+    this.programEnd,
+    this.programStart,
+    this.habitColor,
+    this.habitIcon,
+    this.habitType,
+    this.habitName,
+    this.habitDescription,
+    this.isCompletedHabit,
+    this.waterTarget,
+    this.waterConsumed,
+    this.stepsTarget,
+    this.stepsProduced,
+    this.taskSteps,
+    this.completedSteps,
+  });
+}
+
 final class HabitProgramFinishedEditing extends HabitEvent {}
 
-final class GetHabitProgram extends HabitEvent{}
+final class GetHabitProgram extends HabitEvent {}
 
-final class DeleteHabitProgram extends HabitEvent{}
+final class DeleteHabitProgram extends HabitEvent {}

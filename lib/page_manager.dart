@@ -13,10 +13,10 @@ class PageManager extends StatefulWidget {
   const PageManager({super.key});
 
   @override
-  State<PageManager> createState() => _PageManagerState();
+  State<PageManager> createState() => PageManagerState();
 }
 
-class _PageManagerState extends State<PageManager> {
+class PageManagerState extends State<PageManager> {
   final List<Widget> _pages = const [
     HomePage(),
     HabitPage(),

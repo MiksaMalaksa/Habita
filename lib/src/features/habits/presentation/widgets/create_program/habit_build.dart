@@ -76,12 +76,14 @@ class _ListHabitBuilderState extends State<ListHabitBuilder> {
               : Padding(
                   padding: const EdgeInsets.only(top: 14.0),
                   child: ListView.builder(
+                  
                     itemCount: program.habitDays[_choosedDay].habits.length,
                     itemBuilder: (context, index) {
                       Habit currentHabit =
                           program.habitDays[_choosedDay].habits[index];
                       return HabitTile(
-                        active: false,
+                        tapable: false,
+                        indexInList: index,
                         habit: currentHabit,
                       );
                     },

@@ -40,7 +40,7 @@ class HabitTypeConverter {
       case HabitType.todo:
         return (FontAwesome5.check, translated[0], 1);
       case HabitType.multiple:
-        return (FontAwesome5.tasks, translated[1], 10);
+        return (FontAwesome5.tasks, translated[1], 20);
       case HabitType.steps:
         return (FontAwesome5.walking, translated[2], 50000);
       case HabitType.water:

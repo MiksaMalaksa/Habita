@@ -58,7 +58,7 @@ class AuthDatasourceImpl implements IAuthDataSource {
         ..copyWith(email: currentUserSession!.user.email);
     } on ServerException {
       rethrow;
-    } catch (_) {
+    } catch (e) {
       throw ServerException(message: serverFailMsg);
     }
   }
@@ -73,11 +73,13 @@ class AuthDatasourceImpl implements IAuthDataSource {
   }
 
   @override
-  Future<UserModel> updateUser(
-      {required String name,
-      required String email,
-      required String password,
-      required String oldPassword}) async {
+  Future<UserModel> updateUser({
+    String? name,
+    String? email,
+    String? password,
+    String? oldPassword,
+    String? imagePath,
+  }) async {
     try {
       bool passwordCheck = true;
       UserResponse response;
@@ -85,7 +87,7 @@ class AuthDatasourceImpl implements IAuthDataSource {
 
       //*Check password
       //*On success renew password
-      if (password.isNotEmpty) {
+      if (password != null) {
         passwordCheck = await client.rpc(
           'check_password',
           params: {
@@ -97,19 +99,16 @@ class AuthDatasourceImpl implements IAuthDataSource {
         }
 
         response = await client.auth.updateUser(UserAttributes(
-            email: email.isEmpty ? currentUser.email : email,
+            email: email ?? currentUser.email,
             password: password,
-            data: {
-              'name': name.isEmpty ? currentUser.userMetadata!['name'] : name
-            }));
+            data: {'name': name ?? currentUser.userMetadata!['name']}));
       }
       //*No password change required
       else {
         response = await client.auth.updateUser(UserAttributes(
-            email: email.isEmpty ? currentUser.email : email,
-            data: {
-              'name': name.isEmpty ? currentUser.userMetadata!['name'] : name
-            }));
+            email: email ?? currentUser.email,
+            data: {'name': name ?? currentUser.userMetadata!['name']}));
+        
       }
 
       if (response.user == null) {
@@ -151,12 +150,11 @@ class AuthDatasourceImpl implements IAuthDataSource {
       //*session - primary unique identifier
       //!If the user is plugged in, current session would not be null
       if (currentUserSession != null) {
-        final result = await client
-            .from('profiles')
-            .select()
-            .eq('id', currentUserSession!.user.id);
-        return UserModel.fromMap(result.first)
-            .copyWith(email: currentUserSession!.user.email);
+        final result = currentUserSession!.user.toJson();
+        return UserModel.fromMap(result).copyWith(
+          email: currentUserSession!.user.email,
+          name: currentUserSession!.user.userMetadata!['name'],
+        );
       }
       return null;
     } catch (_) {

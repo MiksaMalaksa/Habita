@@ -6,7 +6,6 @@ import 'package:habita/core/common/blocs/bloc/internetconnection_bloc.dart';
 import 'package:habita/core/common/entities/dialog.dart';
 import 'package:habita/core/common/widgets/app_bar.dart';
 import 'package:habita/core/common/widgets/container_button_row_icon.dart';
-import 'package:habita/core/common/widgets/loader.dart';
 import 'package:habita/core/common/widgets/text_button.dart';
 import 'package:habita/core/constants/exceptions_messages.dart';
 import 'package:habita/core/extensions/color_rgb.dart';
@@ -49,6 +48,17 @@ class _EditProfileState extends State<EditProfile> {
     super.dispose();
   }
 
+  Future<void> _pickPicture() async {
+    final imagePath =
+        await ImagePicker().pickImage(source: ImageSource.gallery);
+
+    if (imagePath != null) {
+      setState(() {
+        selectedImage = File(imagePath.path);
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final userState = BlocProvider.of<AuthBloc>(context).state;
@@ -59,168 +69,177 @@ class _EditProfileState extends State<EditProfile> {
         );
 
     return BlocListener<AuthBloc, AuthState>(
-      listener: (context, state) {
-        if (state is AuthError) {
-          showSnackBar(
-            context: context,
-            content: ErrorsConventer()
-                .convertedMsg(context, msg: state.errorMessage),
-          );
-        }
-        if (state is AuthInitial) {
-          Navigator.of(context)
-              .pushAndRemoveUntil(LoginPage.route(), (route) => false);
-        }
-        if (state is AuthUpdated) {
-          nameController.clear();
-          emailController.clear();
-          oldPasswordController.clear();
-          newPasswordController.clear();
-          showSnackBar(
-            context: context,
-            content: S.of(context).profileEdited,
-          );
-          Navigator.of(context).pop();
-        }
-      },
-      child: userState is AuthLoaded
-          ? Scaffold(
-              appBar: HabitaAppBar(
-                title: S.of(context).account,
-                actions: [
-                  HabitaTextButton(
-                    onPressed: () {
-                      if (!BlocProvider.of<InternetConnectionBloc>(context)
-                          .state
-                          .isConnected) {
-                        dialogBuilder(
-                            context: context,
-                            atributes: DialogAtributes(
-                                label: S.of(context).noConnection,
-                                body: S.of(context).settingsNoInternet));
-                      } else if (formKey.currentState!.validate()) {
-                        if (newPasswordController.text.isNotEmpty &&
-                            oldPasswordController.text.isEmpty) {
-                          showSnackBar(
-                              context: context,
-                              content: S.of(context).checkOldPassword);
-                        } else {
-                          context.read<AuthBloc>().add(AuthUpdateUser(
-                                oldPassword: oldPasswordController.text,
-                                email: emailController.text,
-                                name: nameController.text,
-                                password: newPasswordController.text,
-                              ));
-                        }
+        listener: (context, state) {
+          if (state is AuthError) {
+            showSnackBar(
+              context: context,
+              content: ErrorsConventer()
+                  .convertedMsg(context, msg: state.errorMessage),
+            );
+          }
+          if (state is AuthInitial) {
+            Navigator.of(context)
+                .pushAndRemoveUntil(LoginPage.route(), (route) => false);
+          }
+          if (state is AuthUpdated) {
+            nameController.clear();
+            emailController.clear();
+            oldPasswordController.clear();
+            newPasswordController.clear();
+            showSnackBar(
+              context: context,
+              content: S.of(context).profileEdited,
+            );
+            Navigator.of(context).pop();
+          }
+        },
+        child: Scaffold(
+          appBar: HabitaAppBar(
+            title: S.of(context).account,
+            actions: [
+              HabitaTextButton(
+                onPressed: () {
+                  if (!BlocProvider.of<InternetConnectionBloc>(context)
+                      .state
+                      .isConnected) {
+                    dialogBuilder(
+                        context: context,
+                        atributes: DialogAtributes(
+                            label: S.of(context).noConnection,
+                            body: S.of(context).settingsNoInternet));
+                  } else if (formKey.currentState!.validate()) {
+                    if (newPasswordController.text.isNotEmpty &&
+                        oldPasswordController.text.isEmpty) {
+                      showSnackBar(
+                          context: context,
+                          content: S.of(context).checkOldPassword);
+                    } else {
+                      if (selectedImage == null &&
+                          oldPasswordController.text.isEmpty &&
+                          emailController.text.isEmpty &&
+                          newPasswordController.text.isEmpty) {
+                        Navigator.of(context).pop();
                       }
-                    },
-                    title: S.of(context).save,
-                    fontSize: MediaQuery.of(context).size.height * 0.023,
-                    weight: FontWeight.bold,
-                  )
-                ],
-              ),
-              body: SingleChildScrollView(
-                scrollDirection: Axis.vertical,
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Form(
-                    key: formKey,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Center(
-                          child: ProfilePicture(
-                              image: selectedImage,
-                              size: MediaQuery.of(context).size.height * 0.15),
-                        ),
-                        const SizedBox(height: 8),
-                        Center(
-                          child: HabitaTextButton(
-                            onPressed: () {
-                              //!Set the photo
-                            },
-                            title: S.of(context).changeAvatar,
-                            fontSize:
-                                MediaQuery.of(context).size.height * 0.020,
-                            weight: FontWeight.bold,
-                          ),
-                        ),
-                        //*fields
-                        const SizedBox(height: 10),
-                        Text(
-                          S.of(context).name,
-                          style: textStyle,
-                        ),
-                        const SizedBox(height: 6),
-
-                        ///*Name field
-                        ChangeTextField(
-                          controller: nameController,
-                          hintText: userState.user.name,
-                        ),
-                        const SizedBox(height: 12),
-                        Text(
-                          S.of(context).email,
-                          style: textStyle,
-                        ),
-                        const SizedBox(height: 6),
-
-                        ///*Email field
-                        ChangeTextField(
-                          controller: emailController,
-                          hintText: userState.user.email,
-                        ),
-                        const SizedBox(height: 12),
-                        Text(
-                          S.of(context).oldPassword,
-                          style: textStyle,
-                        ),
-                        //*old password
-                        const SizedBox(height: 6),
-                        ChangePasswordField(
-                          controller: oldPasswordController,
-                          hintText: '********',
-                        ),
-                        const SizedBox(height: 12),
-                        Text(
-                          S.of(context).newPassword,
-                          style: textStyle,
-                        ),
-                        //*new password
-                        const SizedBox(height: 6),
-                        ChangePasswordField(
-                          controller: newPasswordController,
-                          hintText: S.of(context).password,
-                        ),
-                        const SizedBox(height: 30),
-                        //*Forget password
-                        ContainerButtonRowIcon(
-                          backColor:
-                              Theme.of(context).colorScheme.secondaryContainer,
-                          content: S.of(context).forgetPassword,
-                          fontSize: MediaQuery.of(context).size.width * 0.05,
-                          onPressed: () {},
-                          icon: Entypo.key,
-                        ),
-                        //*Sign out
-                        const SizedBox(height: 15),
-                        ContainerButtonRowIcon(
-                          backColor: const Color.fromARGB(255, 201, 78, 69),
-                          content: S.of(context).signOut,
-                          fontSize: MediaQuery.of(context).size.width * 0.05,
-                          onPressed: () {
-                            context.read<AuthBloc>().add(AuthSignOut());
-                          },
-                          icon: FontAwesome5.sign_out_alt,
-                        )
-                      ],
+                      context.read<AuthBloc>().add(AuthUpdateUser(
+                            oldPassword: oldPasswordController.text.isEmpty
+                                ? null
+                                : oldPasswordController.text,
+                            email: emailController.text.isEmpty
+                                ? null
+                                : emailController.text,
+                            name: nameController.text.isEmpty
+                                ? null
+                                : nameController.text,
+                            password: newPasswordController.text.isEmpty
+                                ? null
+                                : newPasswordController.text,
+                            imagePath: selectedImage?.path,
+                          ));
+                    }
+                  }
+                },
+                title: S.of(context).save,
+                fontSize: MediaQuery.of(context).size.height * 0.023,
+                weight: FontWeight.bold,
+              )
+            ],
+          ),
+          body: SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Form(
+                key: formKey,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Center(
+                      child: ProfilePicture(
+                          image: selectedImage,
+                          size: MediaQuery.of(context).size.height * 0.15),
                     ),
-                  ),
+                    const SizedBox(height: 8),
+                    Center(
+                      child: HabitaTextButton(
+                        onPressed: () => _pickPicture(),
+                        title: S.of(context).changeAvatar,
+                        fontSize: MediaQuery.of(context).size.height * 0.020,
+                        weight: FontWeight.bold,
+                      ),
+                    ),
+                    //*fields
+                    const SizedBox(height: 10),
+                    Text(
+                      S.of(context).name,
+                      style: textStyle,
+                    ),
+                    const SizedBox(height: 6),
+
+                    ///*Name field
+                    ChangeTextField(
+                      controller: nameController,
+                      hintText: userState.user?.name ?? '',
+                    ),
+                    const SizedBox(height: 12),
+                    Text(
+                      S.of(context).email,
+                      style: textStyle,
+                    ),
+                    const SizedBox(height: 6),
+
+                    ///*Email field
+                    ChangeTextField(
+                      controller: emailController,
+                      hintText: userState.user?.email ?? '',
+                    ),
+                    const SizedBox(height: 12),
+                    Text(
+                      S.of(context).oldPassword,
+                      style: textStyle,
+                    ),
+                    //*old password
+                    const SizedBox(height: 6),
+                    ChangePasswordField(
+                      controller: oldPasswordController,
+                      hintText: '********',
+                    ),
+                    const SizedBox(height: 12),
+                    Text(
+                      S.of(context).newPassword,
+                      style: textStyle,
+                    ),
+                    //*new password
+                    const SizedBox(height: 6),
+                    ChangePasswordField(
+                      controller: newPasswordController,
+                      hintText: S.of(context).password,
+                    ),
+                    const SizedBox(height: 30),
+                    //*Forget password
+                    ContainerButtonRowIcon(
+                      backColor:
+                          Theme.of(context).colorScheme.secondaryContainer,
+                      content: S.of(context).forgetPassword,
+                      fontSize: MediaQuery.of(context).size.width * 0.05,
+                      onPressed: () {},
+                      icon: Entypo.key,
+                    ),
+                    //*Sign out
+                    const SizedBox(height: 15),
+                    ContainerButtonRowIcon(
+                      backColor: const Color.fromARGB(255, 201, 78, 69),
+                      content: S.of(context).signOut,
+                      fontSize: MediaQuery.of(context).size.width * 0.05,
+                      onPressed: () {
+                        context.read<AuthBloc>().add(AuthSignOut());
+                      },
+                      icon: FontAwesome5.sign_out_alt,
+                    )
+                  ],
                 ),
               ),
-            )
-          : const Loader(),
-    );
+            ),
+          ),
+        ));
   }
 }

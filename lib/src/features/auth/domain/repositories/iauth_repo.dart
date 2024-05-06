@@ -19,10 +19,11 @@ abstract interface class IAuthRepo {
   Future<Either<Failure, void>> signOut();
 
   Future<Either<Failure, SupaUser>> updateUser({
-    required String name,
-    required String password,
-    required String oldPassword,
-    required String email,
+     String? name,
+     String? password,
+     String? oldPassword,
+     String? email,
+     String? imagePath,
   });
 
   Future<Either<Failure, SupaUser>> getCurrentUser();

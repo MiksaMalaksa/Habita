@@ -31,16 +31,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "account": MessageLookupByLibrary.simpleMessage("Аккаунт"),
         "additionalSettings":
             MessageLookupByLibrary.simpleMessage("Дополнительно"),
-        "aim": MessageLookupByLibrary.simpleMessage("Aim"),
+        "aim": MessageLookupByLibrary.simpleMessage("Цель"),
         "aimOfTheProgram":
-            MessageLookupByLibrary.simpleMessage("Aim of the program"),
+            MessageLookupByLibrary.simpleMessage("Цель программы"),
         "alertLogout": MessageLookupByLibrary.simpleMessage("Выход с аккаунта"),
-        "all": MessageLookupByLibrary.simpleMessage("All"),
+        "all": MessageLookupByLibrary.simpleMessage("Все"),
         "almostDone": MessageLookupByLibrary.simpleMessage("Почти все!"),
-        "atLeast1Habit":
-            MessageLookupByLibrary.simpleMessage("Must be at least 1 habit!"),
+        "atLeast1Habit": MessageLookupByLibrary.simpleMessage(
+            "Должна быть хотя-бы 1 привычка!"),
         "atLeast7Days": MessageLookupByLibrary.simpleMessage(
-            "Program shoud last at least for 7 days!"),
+            "Программа должна длиться хотя-бы 7 дней!"),
         "cancel": MessageLookupByLibrary.simpleMessage("Отменить"),
         "cancelCapitalized": MessageLookupByLibrary.simpleMessage("ОТМЕНИТЬ"),
         "change": MessageLookupByLibrary.simpleMessage("Изменить"),
@@ -51,18 +51,18 @@ class MessageLookup extends MessageLookupByLibrary {
         "completedOutOf": m0,
         "create": MessageLookupByLibrary.simpleMessage("Создать"),
         "currentHabbits":
-            MessageLookupByLibrary.simpleMessage("Current habbits"),
+            MessageLookupByLibrary.simpleMessage("Нынешние привычки"),
         "customization": MessageLookupByLibrary.simpleMessage("Кастомизация"),
         "dark": MessageLookupByLibrary.simpleMessage("Темная"),
         "description": MessageLookupByLibrary.simpleMessage("Описание"),
         "email": MessageLookupByLibrary.simpleMessage("Электронная почта"),
         "endDate": MessageLookupByLibrary.simpleMessage("Конец"),
-        "fDay": MessageLookupByLibrary.simpleMessage("F"),
+        "fDay": MessageLookupByLibrary.simpleMessage("П"),
         "forgetPassword":
             MessageLookupByLibrary.simpleMessage("Восстановить пароль"),
-        "friDay": MessageLookupByLibrary.simpleMessage("Fri"),
-        "friday": MessageLookupByLibrary.simpleMessage("Friday"),
-        "habitDays": MessageLookupByLibrary.simpleMessage("Habit days"),
+        "friDay": MessageLookupByLibrary.simpleMessage("Пят"),
+        "friday": MessageLookupByLibrary.simpleMessage("Пятница"),
+        "habitDays": MessageLookupByLibrary.simpleMessage("Дни привычек"),
         "habitName": MessageLookupByLibrary.simpleMessage("Привычка"),
         "habitType": MessageLookupByLibrary.simpleMessage("Тип привычки"),
         "halfDone": MessageLookupByLibrary.simpleMessage("На пол пути!"),
@@ -70,6 +70,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Уже существует аккаунт?"),
         "hintMissing": m1,
         "home": MessageLookupByLibrary.simpleMessage("Главная"),
+        "iconTap": MessageLookupByLibrary.simpleMessage(
+            "Tap on the icon to open the info!"),
         "icons": MessageLookupByLibrary.simpleMessage("Иконки"),
         "immutable": MessageLookupByLibrary.simpleMessage("Неизменяемая"),
         "incorrectPassword": MessageLookupByLibrary.simpleMessage(
@@ -83,14 +85,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "invalidStartDate": MessageLookupByLibrary.simpleMessage(
             "Вы не можете начать вчера :)"),
         "light": MessageLookupByLibrary.simpleMessage("Светлая"),
+        "loading": MessageLookupByLibrary.simpleMessage("Грузится..."),
         "loginError": MessageLookupByLibrary.simpleMessage(
             "Такого аккаунта нет, попробуйте еще раз!"),
-        "mDay": MessageLookupByLibrary.simpleMessage("M"),
+        "mDay": MessageLookupByLibrary.simpleMessage("П"),
         "maxValue": m2,
-        "monDay": MessageLookupByLibrary.simpleMessage("Mon"),
-        "monday": MessageLookupByLibrary.simpleMessage("Monday"),
+        "monDay": MessageLookupByLibrary.simpleMessage("Пон"),
+        "monday": MessageLookupByLibrary.simpleMessage("Понедельник"),
         "multiple": MessageLookupByLibrary.simpleMessage("Множественное ту-ду"),
-        "mutability": MessageLookupByLibrary.simpleMessage("Mutability"),
+        "mutability": MessageLookupByLibrary.simpleMessage("Изменяемость"),
         "mutable": MessageLookupByLibrary.simpleMessage("Изменяемая"),
         "name": MessageLookupByLibrary.simpleMessage("Имя"),
         "nameOfHabit":
@@ -101,11 +104,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "noConnection": MessageLookupByLibrary.simpleMessage(
             "Нет подключения к интернету!"),
         "noHabitsThisDay":
-            MessageLookupByLibrary.simpleMessage("No habits this day!"),
+            MessageLookupByLibrary.simpleMessage("Сегодня без привычек!"),
         "noInternet": MessageLookupByLibrary.simpleMessage(
             "Проверьте ваше соединение с интернетом!"),
-        "noProgram":
-            MessageLookupByLibrary.simpleMessage("No program for now!"),
+        "noProgram": MessageLookupByLibrary.simpleMessage("Пока ничего нет!"),
         "notes": MessageLookupByLibrary.simpleMessage("Заметки"),
         "nothingDone":
             MessageLookupByLibrary.simpleMessage("Начните действовать!"),
@@ -116,21 +118,22 @@ class MessageLookup extends MessageLookupByLibrary {
         "profileEdited":
             MessageLookupByLibrary.simpleMessage("Профиль отредактирован!"),
         "program": MessageLookupByLibrary.simpleMessage("Программа"),
-        "programName": MessageLookupByLibrary.simpleMessage("Program name"),
-        "sDay": MessageLookupByLibrary.simpleMessage("S"),
-        "satDay": MessageLookupByLibrary.simpleMessage("Sat"),
-        "saturday": MessageLookupByLibrary.simpleMessage("Saturday"),
+        "programName":
+            MessageLookupByLibrary.simpleMessage("Название программы"),
+        "sDay": MessageLookupByLibrary.simpleMessage("В"),
+        "satDay": MessageLookupByLibrary.simpleMessage("Суб"),
+        "saturday": MessageLookupByLibrary.simpleMessage("Суббота"),
         "save": MessageLookupByLibrary.simpleMessage("Сохранить"),
         "setAtLeast1Day":
-            MessageLookupByLibrary.simpleMessage("Set at least 1 day!"),
-        "setDates": MessageLookupByLibrary.simpleMessage("Set dates"),
+            MessageLookupByLibrary.simpleMessage("Выберете хоть 1 день!"),
+        "setDates": MessageLookupByLibrary.simpleMessage("Длительность"),
         "setNow": MessageLookupByLibrary.simpleMessage("Установить"),
         "setReminder":
             MessageLookupByLibrary.simpleMessage("Установить напоминание"),
         "settingsNoInternet": MessageLookupByLibrary.simpleMessage(
             "Приложение переходит в локальный режим, режим редактирования недоступен"),
         "shouldNumeric": MessageLookupByLibrary.simpleMessage(
-            "Should be numeric value between 0 and max value"),
+            "Числовое значение от 0 до максимума"),
         "signIn": MessageLookupByLibrary.simpleMessage("Войти!"),
         "signOut": MessageLookupByLibrary.simpleMessage("Выйти с аккаунта"),
         "signUp": MessageLookupByLibrary.simpleMessage("Регистрация!"),
@@ -139,7 +142,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "somethingWrong":
             MessageLookupByLibrary.simpleMessage("Что-то пошло не так!"),
         "sourceCode": MessageLookupByLibrary.simpleMessage("Код проекта"),
-        "stDay": MessageLookupByLibrary.simpleMessage("S"),
+        "stDay": MessageLookupByLibrary.simpleMessage("С"),
         "startDate": MessageLookupByLibrary.simpleMessage("Старт"),
         "stats": MessageLookupByLibrary.simpleMessage("Статистика"),
         "steps": MessageLookupByLibrary.simpleMessage("Шаги"),
@@ -147,26 +150,27 @@ class MessageLookup extends MessageLookupByLibrary {
         "submitCapitalised":
             MessageLookupByLibrary.simpleMessage("ПОДТВЕРДИТЬ"),
         "submitDeleting": MessageLookupByLibrary.simpleMessage(
-            "You are going to delete program, later there would be no opportunity to restore it!"),
-        "sunDay": MessageLookupByLibrary.simpleMessage("Sun"),
-        "sunday": MessageLookupByLibrary.simpleMessage("Sunday"),
+            "Вы собираетесь удалить программу, позже не будет никакой вохможности ее восстановить!"),
+        "sunDay": MessageLookupByLibrary.simpleMessage("Вос"),
+        "sunday": MessageLookupByLibrary.simpleMessage("Воскресенье"),
         "system": MessageLookupByLibrary.simpleMessage("Системная"),
-        "tDay": MessageLookupByLibrary.simpleMessage("T"),
+        "tDay": MessageLookupByLibrary.simpleMessage("В"),
         "telegram": MessageLookupByLibrary.simpleMessage("Написать мне"),
-        "thDay": MessageLookupByLibrary.simpleMessage("T"),
-        "thuDay": MessageLookupByLibrary.simpleMessage("Thu"),
-        "thursday": MessageLookupByLibrary.simpleMessage("Thursday"),
+        "thDay": MessageLookupByLibrary.simpleMessage("Ч"),
+        "thuDay": MessageLookupByLibrary.simpleMessage("Чет"),
+        "thursday": MessageLookupByLibrary.simpleMessage("Четверг"),
+        "toMuch": MessageLookupByLibrary.simpleMessage("Уже выполнили!"),
         "todo": MessageLookupByLibrary.simpleMessage("Ту-ду"),
-        "tueDay": MessageLookupByLibrary.simpleMessage("Tue"),
-        "tuesday": MessageLookupByLibrary.simpleMessage("Tuesday"),
+        "tueDay": MessageLookupByLibrary.simpleMessage("Вто"),
+        "tuesday": MessageLookupByLibrary.simpleMessage("Вторник"),
         "versus": MessageLookupByLibrary.simpleMessage("Против"),
-        "wDay": MessageLookupByLibrary.simpleMessage("W"),
+        "wDay": MessageLookupByLibrary.simpleMessage("С"),
         "wantToLogOut": MessageLookupByLibrary.simpleMessage(
             "Вы точно хотите выйти с аккаунта?"),
-        "warning": MessageLookupByLibrary.simpleMessage("Warning!"),
+        "warning": MessageLookupByLibrary.simpleMessage("Предупреждение!"),
         "water": MessageLookupByLibrary.simpleMessage("Вода"),
-        "wedDay": MessageLookupByLibrary.simpleMessage("Wed"),
-        "wednesday": MessageLookupByLibrary.simpleMessage("Wednesday"),
+        "wedDay": MessageLookupByLibrary.simpleMessage("Сре"),
+        "wednesday": MessageLookupByLibrary.simpleMessage("Среда"),
         "yes": MessageLookupByLibrary.simpleMessage("Да")
       };
 }

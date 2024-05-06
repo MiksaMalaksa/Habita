@@ -1,9 +1,11 @@
-import 'package:habita/core/common/widgets/date_picker_configes.dart';
+import 'package:equatable/equatable.dart';
 import 'package:intl/intl.dart';
+
+import 'package:habita/core/common/widgets/date_picker_configes.dart';
 
 import 'habit_day.dart';
 
-class HabitProgram {
+class HabitProgram extends Equatable {
   final List<HabitDay> habitDays;
   final String name;
   final String description;
@@ -63,4 +65,14 @@ class HabitProgram {
       programEnd: programEnd ?? this.programEnd,
     );
   }
+
+  @override
+  List<Object?> get props => [
+        habitDays,
+        name,
+        description,
+        muatable,
+        programStart,
+        programEnd,
+      ];
 }

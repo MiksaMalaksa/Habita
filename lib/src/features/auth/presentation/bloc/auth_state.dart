@@ -1,31 +1,40 @@
 part of 'auth_bloc.dart';
 
 sealed class AuthState extends Equatable {
-  const AuthState();
+  final SupaUser? user;
+  const AuthState(this.user);
 
   @override
-  List<Object> get props => [];
+  List<Object?> get props => [];
 }
 
 class AuthInitial extends AuthState {
+  const AuthInitial(super.user);
+
   @override
   List<Object> get props => [];
 }
 
 //!Habita logo
 class AuthGreet extends AuthState {
+  const AuthGreet(super.user);
+
   @override
   List<Object> get props => [];
 }
 
 //!App states
 class AuthUserLogged extends AuthState {
+  const AuthUserLogged(super.user);
+
   @override
   List<Object> get props => [];
 }
 
 //*Default states
 class AuthProcessing extends AuthState {
+  const AuthProcessing(super.user);
+
   @override
   List<Object> get props => [];
 }
@@ -33,19 +42,24 @@ class AuthProcessing extends AuthState {
 class AuthError extends AuthState {
   final String errorMessage;
 
-  const AuthError({required this.errorMessage});
+  const AuthError(super.user, {required this.errorMessage});
 
   @override
   List<Object> get props => [errorMessage];
 }
 
 class AuthLoaded extends AuthState {
-  final SupaUser user;
-
-  const AuthLoaded({required this.user});
+  const AuthLoaded(super.user);
 
   @override
-  List<Object> get props => [user];
+  List<Object?> get props => [
+        user?.email,
+        user?.id,
+        user?.name,
+        user?.imagePath,
+      ];
 }
 
-class AuthUpdated extends AuthState {}
+class AuthUpdated extends AuthState {
+  const AuthUpdated(super.user);
+}

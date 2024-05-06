@@ -110,15 +110,23 @@ class _HabitViewState extends State<HabitView> {
                         int? waterTarget;
                         int? taskTarget;
                         int? stepsTarget;
+                        int? waterConsumed;
+                        int? taskCompletedSteps;
+                        int? stepsProduced;
 
                         switch (currentHabit.habitType) {
                           case HabitType.multiple:
                             taskTarget = int.parse(habitTargetController.text);
+                            taskCompletedSteps = 0;
                           case HabitType.steps:
                             stepsTarget = int.parse(habitTargetController.text);
+                            stepsProduced = 0;
                           case HabitType.water:
                             waterTarget = int.parse(habitTargetController.text);
+                            waterConsumed = 0;
                           case HabitType.todo:
+                            taskCompletedSteps = 0;
+                            taskTarget = 1;
                         }
 
                         context.read<HabitBloc>().add(
@@ -126,18 +134,26 @@ class _HabitViewState extends State<HabitView> {
                                 habit: Habit(
                                   id: newHabitId,
                                   color: currentHabit.color,
-                                  description:
-                                      habitDescriptionEditController.text,
+                                  description: habitDescriptionEditController
+                                          .text
+                                          .trim()
+                                          .isEmpty
+                                      ? null
+                                      : habitDescriptionEditController.text
+                                          .trim(),
                                   icon: currentHabit.icon,
                                   habitType: currentHabit.habitType,
-                                  name: habitNameController.text,
+                                  name: habitNameController.text.trim(),
                                   isCompleted: false,
                                   highestStreak: 0,
                                   currentStreak: 0,
                                   remainder: currentHabit.remainder,
+                                  waterConsumed: waterConsumed,
                                   waterTarget: waterTarget,
                                   stepsTarget: stepsTarget,
+                                  stepsProduced: stepsProduced,
                                   taskSteps: taskTarget,
+                                  completedSteps: taskCompletedSteps,
                                 ),
                                 days: _choosedDays,
                               ),

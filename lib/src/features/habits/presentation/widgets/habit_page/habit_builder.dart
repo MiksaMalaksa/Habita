@@ -3,27 +3,30 @@ import 'package:habita/core/constants/date_format.dart';
 import 'package:habita/generated/l10n.dart';
 import 'package:habita/src/features/habits/domain/entities/habit.dart';
 import 'package:habita/src/features/habits/domain/entities/habit_program.dart';
+import 'package:habita/src/features/habits/presentation/screens/habit_info.dart';
 import 'package:habita/src/features/habits/presentation/widgets/habit_page/habit_tile.dart';
 import 'package:intl/intl.dart';
 
+bool _compareDates(DateTime date1, DateTime date2) {
+  return date1.year == date2.year &&
+      date1.month == date2.month &&
+      date1.day == date2.day;
+}
+
 class HabitBuilder extends StatelessWidget {
-  final HabitProgram program;
   final DateTime day;
-  const HabitBuilder({
-    super.key,
-    required this.program,
-    required this.day,
-  });
+  final HabitProgram program;
+  const HabitBuilder({super.key, required this.day, required this.program});
 
   @override
   Widget build(BuildContext context) {
     final diffrenceInDays = day
         .difference(DateFormat(dateFormat).parse(program.programStart))
         .inDays;
-
+    final pickedToday = _compareDates(day, DateTime.now());
     return diffrenceInDays < 0
         ? SizedBox(
-            height: MediaQuery.of(context).size.height * 0.3,
+            height: MediaQuery.of(context).size.height * 0.4,
             child: Center(
                 child: Text(
               'Program will start in ${-diffrenceInDays} days!',
@@ -40,7 +43,7 @@ class HabitBuilder extends StatelessWidget {
                 )),
               )
             : SizedBox(
-                height: MediaQuery.of(context).size.height * 0.3,
+                height: MediaQuery.of(context).size.height * 0.4,
                 width: double.infinity,
                 child: program.habitDays.isEmpty
                     ? Center(
@@ -72,7 +75,14 @@ class HabitBuilder extends StatelessWidget {
                                         .headlineSmall,
                                   ))
                                 : HabitTile(
-                                    active: false,
+                                    onPressed: () => Navigator.of(context).push(
+                                      MaterialPageRoute(
+                                        builder: (context) => HabitinfoScreen(
+                                            habit: currentHabit),
+                                      ),
+                                    ),
+                                    tapable: pickedToday,
+                                    indexInList: index,
                                     habit: currentHabit,
                                   );
                           },

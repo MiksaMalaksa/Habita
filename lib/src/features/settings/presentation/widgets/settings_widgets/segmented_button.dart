@@ -6,35 +6,8 @@ import 'package:habita/src/features/settings/utils/shared_pref_utils.dart';
 import 'package:habita/src/themes/app_theme.dart';
 import 'package:habita/src/themes/bloc/theme_bloc.dart';
 
-//!Fix colors in profile
-//!OnTapped show titles
-
-class ThemeSelector extends StatefulWidget {
+class ThemeSelector extends StatelessWidget {
   const ThemeSelector({super.key});
-
-  @override
-  State<ThemeSelector> createState() => _ThemeSelectorState();
-}
-
-class _ThemeSelectorState extends State<ThemeSelector> {
-  Set<ThemeMode>? selections;
-
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      sl.get<SharedPreferencesUtils>().getThemeMode().then((mode) {
-        ThemeMode currentMode = mode == 'dark'
-            ? ThemeMode.dark
-            : mode == 'light'
-                ? ThemeMode.light
-                : ThemeMode.system;
-        setState(() {
-          selections = {currentMode};
-        });
-      });
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -71,14 +44,12 @@ class _ThemeSelectorState extends State<ThemeSelector> {
                   ),
                 ),
               ],
-              selected:
-                  selections ?? {context.read<ThemeBloc>().state.currentMode},
+              selected: {context.read<ThemeBloc>().state.currentMode},
               selectedIcon: null,
               onSelectionChanged: (Set<ThemeMode> newSelection) {
                 context
                     .read<ThemeBloc>()
                     .add(ThemeChangeTheme(themeMode: newSelection.first));
-                selections = newSelection;
                 final themeExtractor = newSelection.first.toString().split('.');
                 sl
                     .get<SharedPreferencesUtils>()

@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:habita/core/constants/date_format.dart';
 import 'package:habita/core/constants/exceptions_messages.dart';
 import 'package:habita/core/enums/habit_type.dart';
+import 'package:habita/core/extensions/substruct_dates.dart';
 import 'package:habita/core/usecase/no_params.dart';
 import 'package:habita/src/features/habits/domain/entities/habit.dart';
 import 'package:habita/src/features/habits/domain/entities/habit_day.dart';
 import 'package:habita/src/features/habits/domain/entities/habit_program.dart';
-import 'package:habita/src/features/habits/domain/usecases/create_program_usecase.dart';
 import 'package:habita/src/features/habits/domain/usecases/delete_program_usecase.dart';
 import 'package:habita/src/features/habits/domain/usecases/edit_program_usecase.dart';
 import 'package:habita/src/features/habits/domain/usecases/get_program_usecase.dart';
@@ -17,28 +17,32 @@ import 'package:intl/intl.dart';
 part 'habit_event.dart';
 part 'habit_state.dart';
 
+//!Usecase сохранения
+//!Выполнение привычки
+//!Разобраться как искать permissons у приложения
+//!Yandex биндинги и yandex trees
+//!залогировать сегодня и сделать план на завтра
+
 class HabitBloc extends Bloc<HabitEvent, HabitState> {
   //*Usecases
   final GetProgram _getProgram;
   final DeleteProgram _deleteProgram;
   final EditProgram _editProgram;
-  final CreateProgram _createProgram;
 
-  HabitBloc(
-      {required GetProgram getProgram,
-      required DeleteProgram deleteProgram,
-      required EditProgram editProgram,
-      required CreateProgram createProgram})
-      : _getProgram = getProgram,
+  HabitBloc({
+    required GetProgram getProgram,
+    required DeleteProgram deleteProgram,
+    required EditProgram editProgram,
+  })  : _getProgram = getProgram,
         _deleteProgram = deleteProgram,
         _editProgram = editProgram,
-        _createProgram = createProgram,
-        super(HabitInitial(program: HabitProgram.base())) {
+        super(HabitLoading(program: HabitProgram.base())) {
     on<HabitProgramChange>(_programChangedHandler);
     on<HabitChange>(_habitChangeHandler);
     on<HabitProgramFinishedEditing>(_finishedHandler);
     on<GetHabitProgram>(_getProgramHandler);
     on<DeleteHabitProgram>(_deleteProgramHandler);
+    on<ChangeHabitStats>(_editHabitStatsHandler);
   }
 
   Future<void> _deleteProgramHandler(
@@ -52,42 +56,110 @@ class HabitBloc extends Bloc<HabitEvent, HabitState> {
     );
   }
 
-  Future<void> _getProgramHandler(
-      GetHabitProgram event, Emitter<HabitState> emit) async {
-    final result = await _getProgram(NoParams());
-    result.fold(
-      (_) => Error(message: serverFailMsg, program: state.program),
-      (program) {
-        emit(HabitInitial(program: program));
-      },
-    );
-  }
-
-  //!Create additional event to highlight habitDay copy logic
-  Future<void> _finishedHandler(
-      HabitProgramFinishedEditing event, Emitter<HabitState> emit) async {
-    final currentProgram = state.program;
-
-    final dateFormatter = DateFormat(dateFormat);
-    final startDays = dateFormatter
-        .parse(currentProgram.programStart)
-        .add(const Duration(days: 7));
-    int copyDifference = dateFormatter
-        .parse(currentProgram.programEnd)
-        .difference(startDays)
-        .inDays;
-
-    for (int i = 0; copyDifference > 0; i++) {
-      currentProgram.habitDays
-          .add(currentProgram.habitDays[i % currentProgram.habitDays.length]);
-      copyDifference--;
+  //!Change only 1 habit stats, not global editing
+  Future<void> _editHabitStatsHandler(
+      ChangeHabitStats event, Emitter<HabitState> emit) async {
+    final newDays = state.program.habitDays;
+    if (event.habitId != null && event.dayIndex != null) {
+      newDays[event.dayIndex!].habits[event.habitId!] =
+          newDays[event.dayIndex!].habits[event.habitId!].copyWith(
+                color: event.habitColor,
+                completedSteps: event.completedSteps,
+                description: event.habitDescription,
+                habitType: event.habitType,
+                icon: event.habitIcon,
+                name: event.habitName,
+                remainder: event.reminder,
+                stepsProduced: event.stepsProduced,
+                taskSteps: event.taskSteps,
+                waterConsumed: event.waterConsumed,
+                waterTarget: event.waterTarget,
+              );
     }
 
+    if (event.habitId != null && event.dayIndex != null) {
+      final changeableDay = newDays[event.dayIndex!].habits[event.habitId!];
+      //*water
+      if (changeableDay.waterConsumed != null &&
+          changeableDay.waterConsumed! >= changeableDay.waterTarget!) {
+        newDays[event.dayIndex!].habits[event.habitId!] =
+            changeableDay.copyWith(
+          isCompleted: true,
+        );
+      }
+      //*steps
+      if (changeableDay.stepsProduced != null &&
+          changeableDay.stepsProduced! >= changeableDay.stepsTarget!) {
+        newDays[event.dayIndex!].habits[event.habitId!] =
+            changeableDay.copyWith(isCompleted: true);
+      }
+      //*task steps
+      if (changeableDay.completedSteps != null &&
+          changeableDay.completedSteps! >= changeableDay.taskSteps!) {
+        newDays[event.dayIndex!].habits[event.habitId!] =
+            changeableDay.copyWith(isCompleted: true);
+      }
+
+      final newProgram = state.program.copyWith(
+        description: event.aim,
+        muatable: event.muatable,
+        habitDays: newDays,
+        name: event.name,
+        programEnd: event.programEnd,
+        programStart: event.programStart,
+      );
+      final result = await _editProgram(EditProgramParams(
+        program: newProgram,
+      ));
+      result.fold(
+        (_) => Error(message: serverFailMsg, program: state.program),
+        (_) {
+          if (state is ProgramChanging) {
+            emit(HabitInitial(program: newProgram));
+          } else {
+            emit(ProgramChanging(program: newProgram));
+          }
+        },
+      );
+    }
+  }
+
+  Future<void> _getProgramHandler(
+      GetHabitProgram event, Emitter<HabitState> emit) async {
+    if (state.program.name.isEmpty) {
+      final result = await _getProgram(NoParams());
+      result.fold(
+        (_) => Error(message: serverFailMsg, program: state.program),
+        (program) {
+          final currentDay = DateTime.now();
+          final parsedDay = DateFormat(dateFormat).format(currentDay);
+          //! 2 cases: on week beyond week
+          int emptyDays = 7 -
+              (program.habitDays.length -
+                  parsedDay.dateDifference(program.programStart));
+
+          for (int i = 0; emptyDays > 0; i %= 7, emptyDays--) {
+            program.habitDays.add(HabitDay(
+                weekday: i + 1,
+                habits: program.habitDays[i].habits
+                    .map((habitToCopy) => Habit.emptyCopy(habit: habitToCopy))
+                    .toList()));
+            i++;
+          }
+
+          emit(HabitInitial(program: program));
+        },
+      );
+    }
+  }
+
+  Future<void> _finishedHandler(
+      HabitProgramFinishedEditing event, Emitter<HabitState> emit) async {
     final result =
-        await _createProgram(CreateProgramParams(program: currentProgram));
+        await _editProgram(EditProgramParams(program: state.program));
     result.fold(
-      (_) => Error(message: serverFailMsg, program: currentProgram),
-      (_) => ProgramChanging(program: currentProgram),
+      (_) => Error(message: serverFailMsg, program: state.program),
+      (_) => ProgramChanging(program: state.program),
     );
   }
 
@@ -110,8 +182,6 @@ class HabitBloc extends Bloc<HabitEvent, HabitState> {
           name: event.habitName,
           remainder: event.remainder,
           stepsTarget: event.stepsTarget,
-          taskStart: event.taskStart,
-          taskEnd: event.taskEnd,
           waterTarget: event.waterTarget,
           taskSteps: event.stepsTarget,
         );
@@ -131,7 +201,6 @@ class HabitBloc extends Bloc<HabitEvent, HabitState> {
     );
   }
 
-  //!Case when we edit, but not submit changes
   void _programChangedHandler(
     HabitProgramChange event,
     Emitter<HabitState> emit,
@@ -156,9 +225,11 @@ class HabitBloc extends Bloc<HabitEvent, HabitState> {
     if (event.fromScratch != null && event.fromScratch == true) {
       currChangeableProgram = HabitProgram.base();
     }
+
     if (currChangeableProgram.name.isNotEmpty) {
       add(HabitProgramFinishedEditing());
     }
+
     if (event.habitDays != null) {
       currChangeableProgram =
           currChangeableProgram.copyWith(habitDays: event.habitDays);

@@ -75,11 +75,13 @@ class AuthRepoImpl implements IAuthRepo {
   }
 
   @override
-  Future<Either<Failure, SupaUser>> updateUser(
-      {required String email,
-      required String name,
-      required String password,
-      required String oldPassword}) async {
+  Future<Either<Failure, SupaUser>> updateUser({
+    String? email,
+    String? name,
+    String? password,
+    String? oldPassword,
+    String? imagePath,
+  }) async {
     if (!await (connectionChecker.isConnected)) {
       return const Left(ServerFailure(message: internetIsuesMsg));
     }
@@ -91,6 +93,7 @@ class AuthRepoImpl implements IAuthRepo {
           name: name,
           password: password,
           oldPassword: oldPassword,
+
         ),
       );
     } catch (e) {

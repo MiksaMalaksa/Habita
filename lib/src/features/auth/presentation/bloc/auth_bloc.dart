@@ -30,7 +30,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         _currentUser = currentUser,
         _userSignOut = userSignOut,
         _updateUser = updateUser,
-        super(AuthGreet()) {
+        super(const AuthGreet(null)) {
     on<AuthSignUp>(_signUpHandler);
     on<AuthSignIn>(_signInHandler);
     on<AuthSignOut>(_signOutHandler);
@@ -39,29 +39,31 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   }
 
   Future<void> _signUpHandler(AuthSignUp event, Emitter<AuthState> emit) async {
-    emit(AuthProcessing());
+    emit(AuthProcessing(state.user));
 
     final result = await _userSignUp(UserSignUpParams(
       name: event.name,
       email: event.email,
       password: event.password,
     ));
-    result.fold((fail) => emit(AuthError(errorMessage: fail.message)),
-        (success) {
+    result
+        .fold((fail) => emit(AuthError(state.user, errorMessage: fail.message)),
+            (success) {
       _userState(user: success, emit: emit);
-      emit(AuthLoaded(user: success));
+      emit(AuthLoaded(success));
     });
   }
 
   Future<void> _signInHandler(AuthSignIn event, Emitter<AuthState> emit) async {
-    emit(AuthProcessing());
+    emit(AuthProcessing(state.user));
 
     final result = await _userSignIn(
         UserSignInParams(email: event.email, password: event.password));
-    result.fold((fail) => emit(AuthError(errorMessage: fail.message)),
-        (success) {
+    result
+        .fold((fail) => emit(AuthError(state.user, errorMessage: fail.message)),
+            (success) {
       _userState(user: success, emit: emit);
-      emit(AuthLoaded(user: success));
+      emit(AuthLoaded(success));
     });
   }
 
@@ -69,7 +71,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       AuthSignOut event, Emitter<AuthState> emit) async {
     final result = await _userSignOut(NoParams());
     result.fold(
-      (fail) => emit(AuthError(errorMessage: fail.message)),
+      (fail) => emit(AuthError(state.user, errorMessage: fail.message)),
       (_) {
         _userState(user: null, emit: emit);
       },
@@ -87,16 +89,13 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
     result.fold(
       (fail) {
-        final currentState = state;
-        emit(AuthError(errorMessage: fail.message));
-        if (currentState is AuthLoaded) {
-          emit(AuthLoaded(user: currentState.user));
-        }
+        emit(AuthError(state.user, errorMessage: fail.message));
+        emit(AuthLoaded(state.user));
       },
       (user) {
         _userState(user: user, emit: emit);
-        emit(AuthUpdated());
-        emit(AuthLoaded(user: user));
+        emit(AuthUpdated(user));
+        emit(AuthLoaded(user));
       },
     );
   }
@@ -107,9 +106,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     Emitter<AuthState> emit,
   ) async {
     final result = await _currentUser(NoParams());
-    result.fold((_) => emit(AuthInitial()), (success) {
+    result.fold((_) => emit(const AuthInitial(null)), (success) {
       _userState(user: success, emit: emit);
-      emit(AuthLoaded(user: success));
+      emit(AuthLoaded(success));
     });
   }
 
@@ -120,9 +119,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   }) {
     //!Check User
     if (user == null) {
-      emit(AuthInitial());
+      emit(const AuthInitial(null));
     } else {
-      emit(AuthUserLogged());
+      emit(AuthUserLogged(user));
     }
   }
 }

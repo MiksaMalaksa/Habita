@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:habita/generated/l10n.dart';
 
-const oldPasswordIncorrectMsg = 'Confirm old password befor submitting!';
+const oldPasswordIncorrectMsg = 'Confirm old password before submitting!';
 const serverFailMsg = 'Something went wrong!';
 const internetIsuesMsg = 'Check your internet connection!';
 

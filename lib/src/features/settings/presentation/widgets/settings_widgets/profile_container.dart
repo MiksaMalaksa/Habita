@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:habita/core/common/widgets/container_button.dart';
@@ -26,6 +27,7 @@ class ProfileContainer extends StatelessWidget {
               backgroundColor: Theme.of(context).primaryColor.withOpacity(0.05),
               child: Center(
                 child: ProfilePicture(
+                    onPressed: () {},
                     size: MediaQuery.of(context).size.height * 0.3),
               ),
             ));
@@ -35,9 +37,7 @@ class ProfileContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     final themeState = BlocProvider.of<ThemeBloc>(context).state;
     return SafeArea(
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 200),
-        curve: Curves.easeIn,
+      child: Container(
         width: double.infinity,
         height: MediaQuery.of(context).size.height * 0.37,
         decoration: BoxDecoration(
@@ -87,7 +87,7 @@ class ProfileContainer extends StatelessWidget {
                 //*Picture
                 ProfilePicture(
                   size: MediaQuery.of(context).size.height * 0.15,
-                  onPressed: (path) {},
+                  onPressed: () => _showPicture(context),
                 ),
                 const SizedBox(
                   height: 15,

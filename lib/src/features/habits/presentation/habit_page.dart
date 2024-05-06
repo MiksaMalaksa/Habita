@@ -3,8 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttericon/elusive_icons.dart';
 import 'package:habita/core/common/entities/dialog.dart';
 import 'package:habita/core/common/widgets/text_button.dart';
+import 'package:habita/core/constants/exceptions_messages.dart';
 import 'package:habita/core/extensions/color_rgb.dart';
 import 'package:habita/core/utils/show_dialog.dart';
+import 'package:habita/core/utils/show_snackbar.dart';
 import 'package:habita/generated/l10n.dart';
 import 'package:habita/src/features/habits/presentation/bloc/habit_bloc.dart';
 import 'package:habita/src/features/habits/presentation/screens/create_program.dart';
@@ -13,14 +15,6 @@ import 'package:habita/src/features/habits/presentation/widgets/habit_page/date_
 import 'package:habita/src/features/habits/presentation/widgets/habit_page/habit_builder.dart';
 import 'package:habita/src/features/habits/presentation/widgets/habit_page/progress_indicator.dart';
 import 'package:intl/intl.dart';
-
-//!App bar with program name and action like edit (drop down button with edit program or habits)
-//!Today(label) calendar icon button which allows to check future day and check it habits
-//!The same date thing but now like a scrollable thing
-//!Coontainer which tells how many habits today where done
-//!habits itself
-//!By tapping on their labale new screen appeared with more info and circular indicator of how much of this
-//!should be done
 
 class HabitPage extends StatefulWidget {
   static route() => MaterialPageRoute(
@@ -51,15 +45,20 @@ class _HabitScreenState extends State<HabitPage> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<HabitBloc, HabitState>(builder: (context, state) {
-      if (state.program.name.isNotEmpty) {
+    return BlocConsumer<HabitBloc, HabitState>(listener: (context, state) {
+      if (state is Error) {
+        showSnackBar(context: context, content: serverFailMsg);
+      }
+    }, builder: (context, state) {
+      if (state.program.name.isNotEmpty || state is HabitLoading) {
         final rightPadding = MediaQuery.of(context).size.width * 0.042;
+        bool display = state is! HabitLoading;
         //!we can choose days in the range of 7
         return Scaffold(
           appBar: AppBar(
             title: Text(
               //!PlaceHolder
-              state.program.name,
+              display ? state.program.name : S.of(context).loading,
               style: Theme.of(context).textTheme.titleLarge!.copyWith(
                     color: Theme.of(context).primaryColorLight.desaturate(0.1),
                     fontWeight: FontWeight.bold,
@@ -68,49 +67,53 @@ class _HabitScreenState extends State<HabitPage> {
             centerTitle: false,
             backgroundColor: Colors.transparent,
             elevation: 0,
-            actions: [
-              AppBarButtonIcon(
-                  icon: Icons.delete,
-                  iconSize: MediaQuery.of(context).size.height * 0.036,
-                  onPressed: () {
-                    dialogBuilder(
-                      context: context,
-                      atributes: DialogAtributes(
-                          label: S.of(context).warning,
-                          body: S.of(context).submitDeleting,
-                          actions: [
-                            HabitaTextButton(
-                              fontSize: 16,
-                              weight: FontWeight.w800,
-                              title: S.of(context).cancel,
-                              onPressed: () => Navigator.of(context).pop(),
-                            ),
-                            HabitaTextButton(
-                              fontSize: 16,
-                              weight: FontWeight.w800,
-                              title: S.of(context).submit,
-                              onPressed: () {
-                                context
-                                    .read<HabitBloc>()
-                                    .add(DeleteHabitProgram());
-                                Navigator.of(context).pop();
-                              },
-                            ),
-                          ]),
-                    );
-                  }),
-              AppBarButtonIcon(
-                icon: Elusive.pencil,
-                iconSize: MediaQuery.of(context).size.height * 0.026,
-                onPressed: () => Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => HabitProgramScreen(
-                    fromScratch: false,
-                    mutability: state.program.muatable,
-                    appBarTitle: S.of(context).change,
-                  ),
-                )),
-              ),
-            ],
+            actions: display
+                ? [
+                    AppBarButtonIcon(
+                        icon: Icons.delete,
+                        iconSize: MediaQuery.of(context).size.height * 0.036,
+                        onPressed: () {
+                          dialogBuilder(
+                            context: context,
+                            atributes: DialogAtributes(
+                                label: S.of(context).warning,
+                                body: S.of(context).submitDeleting,
+                                actions: [
+                                  HabitaTextButton(
+                                    fontSize: 16,
+                                    weight: FontWeight.w800,
+                                    title: S.of(context).cancel,
+                                    onPressed: () =>
+                                        Navigator.of(context).pop(),
+                                  ),
+                                  HabitaTextButton(
+                                    fontSize: 16,
+                                    weight: FontWeight.w800,
+                                    title: S.of(context).submit,
+                                    onPressed: () {
+                                      context
+                                          .read<HabitBloc>()
+                                          .add(DeleteHabitProgram());
+                                      Navigator.of(context).pop();
+                                    },
+                                  ),
+                                ]),
+                          );
+                        }),
+                    AppBarButtonIcon(
+                      icon: Elusive.pencil,
+                      iconSize: MediaQuery.of(context).size.height * 0.026,
+                      onPressed: () =>
+                          Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => HabitProgramScreen(
+                          fromScratch: false,
+                          mutability: state.program.muatable,
+                          appBarTitle: S.of(context).change,
+                        ),
+                      )),
+                    ),
+                  ]
+                : [],
           ),
           body: SingleChildScrollView(
             scrollDirection: Axis.vertical,
@@ -138,15 +141,23 @@ class _HabitScreenState extends State<HabitPage> {
                     padding: EdgeInsets.only(
                       right: rightPadding,
                     ),
-                    child: const HabitProgressContainer(),
+                    child: HabitProgressContainer(
+                      program: state.program,
+                      day: _selectedDay,
+                      display: display,
+                    ),
                   ),
                   const SizedBox(height: 26),
                   Padding(
                     padding: EdgeInsets.only(
                       right: rightPadding,
                     ),
-                    child:
-                        HabitBuilder(program: state.program, day: _selectedDay),
+                    child: display
+                        ? HabitBuilder(
+                            program: state.program,
+                            day: _selectedDay,
+                          )
+                        : null,
                   ),
                 ],
               ),

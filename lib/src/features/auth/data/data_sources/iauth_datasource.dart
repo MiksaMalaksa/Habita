@@ -18,12 +18,13 @@ abstract interface class IAuthDataSource {
   });
 
   Future<UserModel> updateUser({
-    required String name,
-    required String email,
-    required String password,
-    required String oldPassword,
+    String? name,
+    String? email,
+    String? password,
+    String? oldPassword,
+    String? imagePath,
   });
   Future<void> signOut();
-  
+
   Future<UserModel> getCurrentUser();
 }

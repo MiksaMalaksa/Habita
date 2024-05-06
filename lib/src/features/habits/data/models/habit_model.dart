@@ -88,6 +88,13 @@ class HabitModel extends Habit {
         isCompleted: habit.isCompleted,
         highestStreak: habit.highestStreak,
         currentStreak: habit.currentStreak,
+        completedSteps: habit.completedSteps,
+        remainder: habit.remainder,
+        stepsProduced: habit.stepsProduced,
+        stepsTarget: habit.stepsTarget,
+        taskSteps: habit.taskSteps,
+        waterConsumed: habit.waterConsumed,
+        waterTarget: habit.waterTarget,
       );
 
   @override
