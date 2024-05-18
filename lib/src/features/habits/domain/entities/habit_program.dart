@@ -36,7 +36,8 @@ class HabitProgram extends Equatable {
         weekdays.length,
         (index) => HabitDay(
           weekday: weekdays[index],
-          habits: [],
+          // ignore: prefer_const_literals_to_create_immutables
+          habits:  [],
         ),
       ),
       name: '',

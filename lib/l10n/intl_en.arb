@@ -112,5 +112,12 @@
   "toMuch": "To much things for today!",
   "loading": "Loading...",
   "youDidIt": "You did it",
-  "iconTap": "Tap on the icon to open the info!"
+  "iconTap": "Tap on the icon to open the info!",
+  "progressToday": "Progress today:",
+  "generalStatistic": "General statistic:",
+  "yourCurrentStreak": "Your current streak:",
+  "failed": "Failed",
+  "completed": "Completed",
+  "streak": "Streak",
+  "deleteAccount": "Delete account"
 }

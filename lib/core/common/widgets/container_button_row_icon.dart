@@ -6,6 +6,7 @@ class ContainerButtonRowIcon extends StatelessWidget {
   final VoidCallback onPressed;
   final IconData icon;
   final double fontSize;
+  final double? iconSize;
   const ContainerButtonRowIcon({
     super.key,
     required this.backColor,
@@ -13,6 +14,7 @@ class ContainerButtonRowIcon extends StatelessWidget {
     required this.onPressed,
     required this.icon,
     required this.fontSize,
+    this.iconSize,
   });
 
   @override
@@ -45,7 +47,7 @@ class ContainerButtonRowIcon extends StatelessWidget {
               padding: const EdgeInsets.all(8),
               child: Icon(
                 icon,
-                size: MediaQuery.of(context).size.width * 0.10,
+                size: iconSize ??  MediaQuery.of(context).size.width * 0.10,
                 color: Colors.white,
               ),
             ))

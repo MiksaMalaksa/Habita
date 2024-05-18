@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:habita/core/constants/exceptions_messages.dart';
 import 'package:habita/core/exceptions/exceptions.dart';
 import 'package:habita/src/features/auth/data/data_sources/iauth_datasource.dart';
@@ -46,7 +48,6 @@ class AuthDatasourceImpl implements IAuthDataSource {
       final response = await client.auth.signUp(
         password: password,
         email: email,
-        emailRedirectTo: 'io.supabase.flutterquickstart://login-callback/',
         data: {'name': name},
       );
 
@@ -73,18 +74,47 @@ class AuthDatasourceImpl implements IAuthDataSource {
   }
 
   @override
+  Future<void> deleteAccount({required String email}) async {
+    try {
+      await client.rpc(
+        'delete_user_by_email',
+        params: {'delete_email': email},
+      );
+    } catch (e) {
+      throw ServerException(message: serverFailMsg);
+    }
+  }
+
+  @override
   Future<UserModel> updateUser({
     String? name,
     String? email,
     String? password,
     String? oldPassword,
     String? imagePath,
+    File? imageFile,
   }) async {
     try {
       bool passwordCheck = true;
       UserResponse response;
       final currentUser = currentUserSession!.user;
+      String? currentAvatarPath;
 
+      if (imageFile != null && imagePath != null) {
+        final imageBytes = await imageFile.readAsBytes();
+        await client.storage.from('profiles').uploadBinary(
+              imagePath,
+              imageBytes,
+            );
+        await client.from('profiles').update({'avatar_url': imagePath}).eq(
+            'id', currentUserSession!.user.id);
+      }
+      final mappedPath = await client
+          .from('profiles')
+          .select('avatar_url')
+          .eq('id', currentUserSession!.user.id)
+          .single();
+      currentAvatarPath = mappedPath['avatar_url'] as String;
       //*Check password
       //*On success renew password
       if (password != null) {
@@ -98,17 +128,23 @@ class AuthDatasourceImpl implements IAuthDataSource {
           throw ServerException(message: oldPasswordIncorrectMsg);
         }
 
-        response = await client.auth.updateUser(UserAttributes(
+        response = await client.auth.updateUser(
+          UserAttributes(
             email: email ?? currentUser.email,
             password: password,
-            data: {'name': name ?? currentUser.userMetadata!['name']}));
+            data: {
+              'name': name ?? currentUser.userMetadata!['name'],
+              'image_path':
+                  imagePath ?? currentUser.userMetadata!['image_path'],
+            },
+          ),
+        );
       }
       //*No password change required
       else {
         response = await client.auth.updateUser(UserAttributes(
             email: email ?? currentUser.email,
             data: {'name': name ?? currentUser.userMetadata!['name']}));
-        
       }
 
       if (response.user == null) {
@@ -116,7 +152,9 @@ class AuthDatasourceImpl implements IAuthDataSource {
       }
 
       final UserModel user = UserModel.fromMap(response.user!.toJson())
-          .copyWith(name: response.user!.userMetadata!['name']);
+          .copyWith(
+              name: response.user!.userMetadata!['name'],
+              imagePath: currentAvatarPath);
       return user;
     } catch (e) {
       throw ServerException(message: e.toString());

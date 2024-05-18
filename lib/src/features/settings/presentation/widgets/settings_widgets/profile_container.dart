@@ -1,3 +1,4 @@
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,25 +13,30 @@ import 'package:habita/src/themes/bloc/theme_bloc.dart';
 class ProfileContainer extends StatelessWidget {
   final String name;
   final String email;
+  final String? avatarPath;
   const ProfileContainer({
     super.key,
     required this.name,
     required this.email,
+    this.avatarPath,
   });
 
   Future<void> _showPicture(
     BuildContext context,
   ) {
     return showDialog(
-        context: context,
-        builder: (context) => Dialog.fullscreen(
-              backgroundColor: Theme.of(context).primaryColor.withOpacity(0.05),
-              child: Center(
-                child: ProfilePicture(
-                    onPressed: () {},
-                    size: MediaQuery.of(context).size.height * 0.3),
-              ),
-            ));
+      context: context,
+      builder: (context) => Dialog.fullscreen(
+        backgroundColor: Theme.of(context).primaryColor.withOpacity(0.05),
+        child: Center(
+          child: ProfilePicture(
+            onPressed: () {},
+            size: MediaQuery.of(context).size.height * 0.3,
+            image: avatarPath == null ? null : File(avatarPath!),
+          ),
+        ),
+      ),
+    );
   }
 
   @override
@@ -76,7 +82,7 @@ class ProfileContainer extends StatelessWidget {
                           .withOpacity(0.8),
                       iconColor: Colors.white,
                       onPressed: () => Navigator.of(context).push(
-                        EditProfile.route(),
+                        EditProfile.route(avatarPath),
                       ),
                     ),
                   ],
@@ -87,6 +93,7 @@ class ProfileContainer extends StatelessWidget {
                 //*Picture
                 ProfilePicture(
                   size: MediaQuery.of(context).size.height * 0.15,
+                  image: avatarPath == null ? null : File(avatarPath!),
                   onPressed: () => _showPicture(context),
                 ),
                 const SizedBox(

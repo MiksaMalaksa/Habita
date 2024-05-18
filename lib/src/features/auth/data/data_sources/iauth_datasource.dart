@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:habita/src/features/auth/data/models/user_model.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -23,8 +25,12 @@ abstract interface class IAuthDataSource {
     String? password,
     String? oldPassword,
     String? imagePath,
+    File? imageFile,
   });
+
   Future<void> signOut();
+
+  Future<void> deleteAccount({required String email});
 
   Future<UserModel> getCurrentUser();
 }

@@ -48,20 +48,25 @@ class MessageLookup extends MessageLookupByLibrary {
         "checkOldPassword": MessageLookupByLibrary.simpleMessage(
             "Надо подтвердить свой старый пароль!"),
         "colors": MessageLookupByLibrary.simpleMessage("Цвета"),
+        "completed": MessageLookupByLibrary.simpleMessage("Completed"),
         "completedOutOf": m0,
         "create": MessageLookupByLibrary.simpleMessage("Создать"),
         "currentHabbits":
             MessageLookupByLibrary.simpleMessage("Нынешние привычки"),
         "customization": MessageLookupByLibrary.simpleMessage("Кастомизация"),
         "dark": MessageLookupByLibrary.simpleMessage("Темная"),
+        "deleteAccount": MessageLookupByLibrary.simpleMessage("Delete account"),
         "description": MessageLookupByLibrary.simpleMessage("Описание"),
         "email": MessageLookupByLibrary.simpleMessage("Электронная почта"),
         "endDate": MessageLookupByLibrary.simpleMessage("Конец"),
         "fDay": MessageLookupByLibrary.simpleMessage("П"),
+        "failed": MessageLookupByLibrary.simpleMessage("Failed"),
         "forgetPassword":
             MessageLookupByLibrary.simpleMessage("Восстановить пароль"),
         "friDay": MessageLookupByLibrary.simpleMessage("Пят"),
         "friday": MessageLookupByLibrary.simpleMessage("Пятница"),
+        "generalStatistic":
+            MessageLookupByLibrary.simpleMessage("General statistic:"),
         "habitDays": MessageLookupByLibrary.simpleMessage("Дни привычек"),
         "habitName": MessageLookupByLibrary.simpleMessage("Привычка"),
         "habitType": MessageLookupByLibrary.simpleMessage("Тип привычки"),
@@ -120,6 +125,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "program": MessageLookupByLibrary.simpleMessage("Программа"),
         "programName":
             MessageLookupByLibrary.simpleMessage("Название программы"),
+        "progressToday": MessageLookupByLibrary.simpleMessage("Progress today"),
         "sDay": MessageLookupByLibrary.simpleMessage("В"),
         "satDay": MessageLookupByLibrary.simpleMessage("Суб"),
         "saturday": MessageLookupByLibrary.simpleMessage("Суббота"),
@@ -146,6 +152,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "startDate": MessageLookupByLibrary.simpleMessage("Старт"),
         "stats": MessageLookupByLibrary.simpleMessage("Статистика"),
         "steps": MessageLookupByLibrary.simpleMessage("Шаги"),
+        "streak": MessageLookupByLibrary.simpleMessage("Streak"),
         "submit": MessageLookupByLibrary.simpleMessage("Подтвердить"),
         "submitCapitalised":
             MessageLookupByLibrary.simpleMessage("ПОДТВЕРДИТЬ"),
@@ -171,6 +178,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "water": MessageLookupByLibrary.simpleMessage("Вода"),
         "wedDay": MessageLookupByLibrary.simpleMessage("Сре"),
         "wednesday": MessageLookupByLibrary.simpleMessage("Среда"),
-        "yes": MessageLookupByLibrary.simpleMessage("Да")
+        "yes": MessageLookupByLibrary.simpleMessage("Да"),
+        "yourCurrentStreak":
+            MessageLookupByLibrary.simpleMessage("Your current streak:")
       };
 }

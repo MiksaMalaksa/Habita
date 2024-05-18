@@ -52,8 +52,10 @@ class PageManagerState extends State<PageManager> {
     );
   }
 
-  BottomNavigationBarItem _bottomBarItem(
-      {required String label, required IconData icon}) {
+  BottomNavigationBarItem _bottomBarItem({
+    required String label,
+    required IconData icon,
+  }) {
     return BottomNavigationBarItem(
       label: label,
       icon: DesignedIcon(

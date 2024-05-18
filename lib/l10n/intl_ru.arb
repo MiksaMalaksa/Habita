@@ -111,5 +111,12 @@
   "submitDeleting": "Вы собираетесь удалить программу, позже не будет никакой вохможности ее восстановить!",
   "toMuch": "Уже выполнили!",
   "loading": "Грузится...",
-  "iconTap": "Tap on the icon to open the info!"
+  "iconTap": "Tap on the icon to open the info!",
+  "progressToday": "Progress today",
+  "generalStatistic": "General statistic:",
+  "yourCurrentStreak": "Your current streak:",
+  "failed": "Failed",
+  "completed": "Completed",
+  "streak": "Streak",
+  "deleteAccount": "Delete account"
 }

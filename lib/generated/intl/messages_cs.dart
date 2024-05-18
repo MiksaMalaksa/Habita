@@ -48,19 +48,24 @@ class MessageLookup extends MessageLookupByLibrary {
         "checkOldPassword": MessageLookupByLibrary.simpleMessage(
             "Musíte potvrdit své staré heslo!"),
         "colors": MessageLookupByLibrary.simpleMessage("Colors"),
+        "completed": MessageLookupByLibrary.simpleMessage("Completed"),
         "completedOutOf": m0,
         "create": MessageLookupByLibrary.simpleMessage("Create"),
         "currentHabbits":
             MessageLookupByLibrary.simpleMessage("Current habbits"),
         "customization": MessageLookupByLibrary.simpleMessage("Přizpůsobení"),
         "dark": MessageLookupByLibrary.simpleMessage("Temný"),
+        "deleteAccount": MessageLookupByLibrary.simpleMessage("Delete account"),
         "description": MessageLookupByLibrary.simpleMessage("Description"),
         "email": MessageLookupByLibrary.simpleMessage("E-mailem"),
         "endDate": MessageLookupByLibrary.simpleMessage("End date"),
         "fDay": MessageLookupByLibrary.simpleMessage("F"),
+        "failed": MessageLookupByLibrary.simpleMessage("Failed"),
         "forgetPassword": MessageLookupByLibrary.simpleMessage("Obnovit heslo"),
         "friDay": MessageLookupByLibrary.simpleMessage("Fri"),
         "friday": MessageLookupByLibrary.simpleMessage("Friday"),
+        "generalStatistic":
+            MessageLookupByLibrary.simpleMessage("General statistic:"),
         "habitDays": MessageLookupByLibrary.simpleMessage("Habit days"),
         "habitName": MessageLookupByLibrary.simpleMessage("Habit name"),
         "habitType": MessageLookupByLibrary.simpleMessage("Typ zvyku"),
@@ -116,6 +121,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Profil byl upraven!"),
         "program": MessageLookupByLibrary.simpleMessage("Program"),
         "programName": MessageLookupByLibrary.simpleMessage("Program name"),
+        "progressToday": MessageLookupByLibrary.simpleMessage("Progress today"),
         "sDay": MessageLookupByLibrary.simpleMessage("S"),
         "satDay": MessageLookupByLibrary.simpleMessage("Sat"),
         "saturday": MessageLookupByLibrary.simpleMessage("Saturday"),
@@ -142,6 +148,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "startDate": MessageLookupByLibrary.simpleMessage("Start Date"),
         "stats": MessageLookupByLibrary.simpleMessage("Statistiky"),
         "steps": MessageLookupByLibrary.simpleMessage("kroky"),
+        "streak": MessageLookupByLibrary.simpleMessage("Streak"),
         "submit": MessageLookupByLibrary.simpleMessage("Potvrďte"),
         "submitCapitalised": MessageLookupByLibrary.simpleMessage("SUBMIT"),
         "submitDeleting": MessageLookupByLibrary.simpleMessage(
@@ -168,6 +175,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "wedDay": MessageLookupByLibrary.simpleMessage("Wed"),
         "wednesday": MessageLookupByLibrary.simpleMessage("Wednesday"),
         "yes": MessageLookupByLibrary.simpleMessage("Ano"),
-        "youDidIt": MessageLookupByLibrary.simpleMessage("You did it")
+        "youDidIt": MessageLookupByLibrary.simpleMessage("You did it"),
+        "yourCurrentStreak":
+            MessageLookupByLibrary.simpleMessage("Your current streak:")
       };
 }

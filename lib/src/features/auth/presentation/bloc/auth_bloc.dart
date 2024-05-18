@@ -1,8 +1,11 @@
+import 'dart:io';
+
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:habita/core/usecase/no_params.dart';
 import 'package:habita/src/features/auth/domain/entities/user.dart';
 import 'package:habita/src/features/auth/domain/usecases/current_user_usecase.dart';
+import 'package:habita/src/features/auth/domain/usecases/delete_account.dart';
 import 'package:habita/src/features/auth/domain/usecases/login_usecase.dart';
 import 'package:habita/src/features/auth/domain/usecases/signup_usecase.dart';
 import 'package:habita/src/features/auth/domain/usecases/signout_usecase.dart';
@@ -18,6 +21,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final UserSignUp _userSignUp;
   final UserSignIn _userSignIn;
   final CurrentUser _currentUser;
+  final DeleteUserAccount _deleteUser;
 
   AuthBloc({
     required UserSignUp userSignUp,
@@ -25,17 +29,28 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     required CurrentUser currentUser,
     required UserSignOut userSignOut,
     required UpdateUser updateUser,
+    required DeleteUserAccount deleteUser,
   })  : _userSignUp = userSignUp,
         _userSignIn = userSignIn,
         _currentUser = currentUser,
         _userSignOut = userSignOut,
         _updateUser = updateUser,
+        _deleteUser = deleteUser,
         super(const AuthGreet(null)) {
     on<AuthSignUp>(_signUpHandler);
     on<AuthSignIn>(_signInHandler);
     on<AuthSignOut>(_signOutHandler);
     on<AuthUpdateUser>(_updateHandler);
     on<AuthLoggedIn>(_userLoggedHandler);
+    on<DeleteUserEvent>(_deleteUserHandler);
+  }
+
+  Future<void> _deleteUserHandler(
+      DeleteUserEvent event, Emitter<AuthState> emit) async {
+    final result = await _deleteUser(state.user!.email);
+    result.fold(
+        (fail) => emit(AuthError(state.user, errorMessage: fail.message)),
+        (_) => _userState(user: null, emit: emit));
   }
 
   Future<void> _signUpHandler(AuthSignUp event, Emitter<AuthState> emit) async {
@@ -85,6 +100,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       password: event.password,
       oldPassword: event.oldPassword,
       email: event.email,
+      imagePath: event.imagePath,
+      imageFile: event.imageFile
+      
     ));
 
     result.fold(

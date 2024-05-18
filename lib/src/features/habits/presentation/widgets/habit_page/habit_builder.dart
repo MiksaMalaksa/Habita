@@ -24,6 +24,7 @@ class HabitBuilder extends StatelessWidget {
         .difference(DateFormat(dateFormat).parse(program.programStart))
         .inDays;
     final pickedToday = _compareDates(day, DateTime.now());
+    bool noHabits = program.habitDays[diffrenceInDays].habits.isEmpty;
     return diffrenceInDays < 0
         ? SizedBox(
             height: MediaQuery.of(context).size.height * 0.4,
@@ -58,23 +59,20 @@ class HabitBuilder extends StatelessWidget {
                       )
                     : Padding(
                         padding: const EdgeInsets.only(top: 14.0),
-                        child: ListView.builder(
-                          itemCount:
-                              program.habitDays[diffrenceInDays].habits.length,
-                          itemBuilder: (context, index) {
-                            bool noHabits = program
-                                .habitDays[diffrenceInDays].habits.isEmpty;
-                            Habit currentHabit = program
-                                .habitDays[diffrenceInDays].habits[index];
-                            return noHabits
-                                ? Center(
-                                    child: Text(
-                                    'No habits this day!',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .headlineSmall,
-                                  ))
-                                : HabitTile(
+                        child: noHabits
+                            ? Center(
+                                child: Text(
+                                'No habits this day!',
+                                style:
+                                    Theme.of(context).textTheme.headlineSmall,
+                              ))
+                            : ListView.builder(
+                                itemCount: program
+                                    .habitDays[diffrenceInDays].habits.length,
+                                itemBuilder: (context, index) {
+                                  Habit currentHabit = program
+                                      .habitDays[diffrenceInDays].habits[index];
+                                  return HabitTile(
                                     onPressed: () => Navigator.of(context).push(
                                       MaterialPageRoute(
                                         builder: (context) => HabitinfoScreen(
@@ -85,8 +83,8 @@ class HabitBuilder extends StatelessWidget {
                                     indexInList: index,
                                     habit: currentHabit,
                                   );
-                          },
-                        ),
+                                },
+                              ),
                       ),
               );
   }

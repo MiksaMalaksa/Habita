@@ -18,17 +18,19 @@ import 'package:habita/src/features/settings/presentation/widgets/profile_edit_w
 import 'package:habita/src/features/settings/presentation/widgets/profile_edit_widgets/change_text_field.dart';
 import 'package:habita/src/features/settings/presentation/widgets/settings_widgets/profile_picture.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
-import 'package:fluttericon/entypo_icons.dart';
 import 'package:image_picker/image_picker.dart';
 
 class EditProfile extends StatefulWidget {
-  const EditProfile({super.key});
+  final String? initialPath;
+  const EditProfile({super.key, this.initialPath});
 
   @override
   State<EditProfile> createState() => _EditProfileState();
 
-  static route() =>
-      MaterialPageRoute(builder: (context) => const EditProfile());
+  static route(String? initialPath) => MaterialPageRoute(
+      builder: (context) => EditProfile(
+            initialPath: initialPath,
+          ));
 }
 
 class _EditProfileState extends State<EditProfile> {
@@ -37,7 +39,7 @@ class _EditProfileState extends State<EditProfile> {
   final oldPasswordController = TextEditingController();
   final newPasswordController = TextEditingController();
   final formKey = GlobalKey<FormState>();
-  File? selectedImage;
+  XFile? selectedImage;
 
   @override
   void dispose() {
@@ -49,12 +51,11 @@ class _EditProfileState extends State<EditProfile> {
   }
 
   Future<void> _pickPicture() async {
-    final imagePath =
-        await ImagePicker().pickImage(source: ImageSource.gallery);
+    final image = await ImagePicker().pickImage(source: ImageSource.gallery);
 
-    if (imagePath != null) {
+    if (image != null && mounted) {
       setState(() {
-        selectedImage = File(imagePath.path);
+        selectedImage = image;
       });
     }
   }
@@ -120,21 +121,25 @@ class _EditProfileState extends State<EditProfile> {
                           newPasswordController.text.isEmpty) {
                         Navigator.of(context).pop();
                       }
-                      context.read<AuthBloc>().add(AuthUpdateUser(
-                            oldPassword: oldPasswordController.text.isEmpty
-                                ? null
-                                : oldPasswordController.text,
-                            email: emailController.text.isEmpty
-                                ? null
-                                : emailController.text,
-                            name: nameController.text.isEmpty
-                                ? null
-                                : nameController.text,
-                            password: newPasswordController.text.isEmpty
-                                ? null
-                                : newPasswordController.text,
-                            imagePath: selectedImage?.path,
-                          ));
+                      context.read<AuthBloc>().add(
+                            AuthUpdateUser(
+                                oldPassword: oldPasswordController.text.isEmpty
+                                    ? null
+                                    : oldPasswordController.text,
+                                email: emailController.text.isEmpty
+                                    ? null
+                                    : emailController.text,
+                                name: nameController.text.isEmpty
+                                    ? null
+                                    : nameController.text,
+                                password: newPasswordController.text.isEmpty
+                                    ? null
+                                    : newPasswordController.text,
+                                imagePath: selectedImage?.path,
+                                imageFile: selectedImage == null
+                                    ? null
+                                    : File(selectedImage!.path)),
+                          );
                     }
                   }
                 },
@@ -155,8 +160,14 @@ class _EditProfileState extends State<EditProfile> {
                   children: [
                     Center(
                       child: ProfilePicture(
-                          image: selectedImage,
-                          size: MediaQuery.of(context).size.height * 0.15),
+                        image:
+                            selectedImage == null && widget.initialPath == null
+                                ? null
+                                : widget.initialPath != null
+                                    ? File(widget.initialPath!)
+                                    : File(selectedImage!.path),
+                        size: MediaQuery.of(context).size.height * 0.15,
+                      ),
                     ),
                     const SizedBox(height: 8),
                     Center(
@@ -215,14 +226,17 @@ class _EditProfileState extends State<EditProfile> {
                       hintText: S.of(context).password,
                     ),
                     const SizedBox(height: 30),
-                    //*Forget password
+                    //*Delete account
                     ContainerButtonRowIcon(
                       backColor:
                           Theme.of(context).colorScheme.secondaryContainer,
-                      content: S.of(context).forgetPassword,
+                      content: S.of(context).deleteAccount,
                       fontSize: MediaQuery.of(context).size.width * 0.05,
-                      onPressed: () {},
-                      icon: Entypo.key,
+                      onPressed: () {
+                        context.read<AuthBloc>().add(DeleteUserEvent());
+                      },
+                      icon: FontAwesome5.trash,
+                      iconSize: MediaQuery.of(context).size.width * 0.07,
                     ),
                     //*Sign out
                     const SizedBox(height: 15),
@@ -234,6 +248,7 @@ class _EditProfileState extends State<EditProfile> {
                         context.read<AuthBloc>().add(AuthSignOut());
                       },
                       icon: FontAwesome5.sign_out_alt,
+                      iconSize: MediaQuery.of(context).size.width * 0.07,
                     )
                   ],
                 ),

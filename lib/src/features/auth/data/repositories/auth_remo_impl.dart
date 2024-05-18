@@ -1,19 +1,18 @@
+import 'dart:io';
+
 import 'package:dartz/dartz.dart';
-import 'package:habita/core/constants/exceptions_messages.dart';
 import 'package:habita/core/exceptions/exceptions.dart';
 import 'package:habita/core/failures/failure.dart';
 import 'package:habita/core/failures/ifailure.dart';
-import 'package:habita/core/network/connection_checker.dart';
 import 'package:habita/src/features/auth/data/data_sources/iauth_datasource.dart';
 import 'package:habita/src/features/auth/domain/entities/user.dart';
 import 'package:habita/src/features/auth/domain/repositories/iauth_repo.dart';
 
 class AuthRepoImpl implements IAuthRepo {
   final IAuthDataSource datasource;
-  final IConnectionChecker connectionChecker;
 
   const AuthRepoImpl(
-      {required this.datasource, required this.connectionChecker});
+      {required this.datasource, });
 
   @override
   Future<Either<Failure, SupaUser>> currentUser() async {
@@ -58,13 +57,23 @@ class AuthRepoImpl implements IAuthRepo {
 
   @override
   Future<Either<Failure, void>> signOut() async {
-    if (!await (connectionChecker.isConnected)) {
-      return const Left(ServerFailure(message: internetIsuesMsg));
-    }
 
-    return Right(
-      await datasource.signOut(),
-    );
+    try {
+      await datasource.signOut();
+      return const Right(null);
+    } on ServerException catch (e) {
+      return Left(ServerFailure.fromException(e));
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> deleteAccount({required String email}) async {
+    try {
+      await datasource.deleteAccount(email: email);
+      return const Right(null);
+    } on ServerException catch (e) {
+      return Left(ServerFailure.fromException(e));
+    }
   }
 
   @override
@@ -81,21 +90,18 @@ class AuthRepoImpl implements IAuthRepo {
     String? password,
     String? oldPassword,
     String? imagePath,
+    File? imageFile,
   }) async {
-    if (!await (connectionChecker.isConnected)) {
-      return const Left(ServerFailure(message: internetIsuesMsg));
-    }
-
     try {
-      return Right(
-        await datasource.updateUser(
-          email: email,
-          name: name,
-          password: password,
-          oldPassword: oldPassword,
-
-        ),
+      final result = await datasource.updateUser(
+        email: email,
+        name: name,
+        password: password,
+        oldPassword: oldPassword,
+        imageFile: imageFile,
+        imagePath: imagePath,
       );
+      return Right(result);
     } catch (e) {
       return Left(ServerFailure(message: e.toString()));
     }
@@ -104,10 +110,6 @@ class AuthRepoImpl implements IAuthRepo {
   Future<Either<Failure, SupaUser>> _getUser(
       {required Future<SupaUser> Function() function}) async {
     try {
-      //*check the internet
-      if (!await (connectionChecker.isConnected)) {
-        return const Left(ServerFailure(message: internetIsuesMsg));
-      }
       final result = await function();
       return Right(result);
     } on ServerException catch (e) {

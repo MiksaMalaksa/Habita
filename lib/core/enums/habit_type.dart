@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
 import 'package:habita/generated/l10n.dart';
+import 'package:habita/src/features/habits/domain/entities/habit.dart';
 
 enum HabitType {
   multiple,
@@ -45,6 +46,19 @@ class HabitTypeConverter {
         return (FontAwesome5.walking, translated[2], 50000);
       case HabitType.water:
         return (FontAwesome5.water, translated[3], 10000);
+    }
+  }
+
+  static (int, int) targetAndCurrent(Habit habit) {
+    switch (habit.habitType) {
+      case HabitType.todo:
+        return (habit.completedSteps!, 1);
+      case HabitType.multiple:
+        return (habit.completedSteps!, habit.taskSteps!);
+      case HabitType.steps:
+        return (habit.stepsProduced!, habit.stepsTarget!);
+      case HabitType.water:
+        return (habit.waterConsumed!, habit.waterTarget!);
     }
   }
 }

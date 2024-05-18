@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dartz/dartz.dart';
 import 'package:habita/core/failures/ifailure.dart';
 import 'package:habita/core/usecase/usecase.dart';
@@ -17,6 +19,7 @@ class UpdateUser implements Usecase<SupaUser, UpdateUserParams> {
       password: params.password,
       oldPassword: params.oldPassword,
       imagePath: params.imagePath,
+      imageFile: params.imageFile,
     );
   }
 }
@@ -27,6 +30,7 @@ class UpdateUserParams {
   final String? email;
   final String? oldPassword;
   final String? imagePath;
+  final File? imageFile;
 
   const UpdateUserParams({
     this.name,
@@ -34,5 +38,6 @@ class UpdateUserParams {
     this.email,
     this.oldPassword,
     this.imagePath,
+    this.imageFile,
   });
 }

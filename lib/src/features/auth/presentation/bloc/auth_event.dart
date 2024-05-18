@@ -33,12 +33,15 @@ final class AuthLoggedIn extends AuthEvent {}
 
 final class AuthSignOut extends AuthEvent {}
 
+final class DeleteUserEvent extends AuthEvent {}
+
 final class AuthUpdateUser extends AuthEvent {
   final String? name;
   final String? email;
   final String? password;
   final String? oldPassword;
   final String? imagePath;
+  final File? imageFile;
 
   const AuthUpdateUser({
     this.name,
@@ -46,5 +49,6 @@ final class AuthUpdateUser extends AuthEvent {
     this.password,
     this.oldPassword,
     this.imagePath,
+    this.imageFile,
   });
 }

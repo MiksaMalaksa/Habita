@@ -1189,6 +1189,76 @@ class S {
       args: [],
     );
   }
+
+  /// `Progress today:`
+  String get progressToday {
+    return Intl.message(
+      'Progress today:',
+      name: 'progressToday',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `General statistic:`
+  String get generalStatistic {
+    return Intl.message(
+      'General statistic:',
+      name: 'generalStatistic',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your current streak:`
+  String get yourCurrentStreak {
+    return Intl.message(
+      'Your current streak:',
+      name: 'yourCurrentStreak',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Failed`
+  String get failed {
+    return Intl.message(
+      'Failed',
+      name: 'failed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Completed`
+  String get completed {
+    return Intl.message(
+      'Completed',
+      name: 'completed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Streak`
+  String get streak {
+    return Intl.message(
+      'Streak',
+      name: 'streak',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete account`
+  String get deleteAccount {
+    return Intl.message(
+      'Delete account',
+      name: 'deleteAccount',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

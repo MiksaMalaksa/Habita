@@ -65,6 +65,7 @@ class ProfilePage extends StatelessWidget {
                 ProfileContainer(
                   name: state.user?.name ?? 'Unknown',
                   email: state.user?.email ?? 'Unknown',
+                  avatarPath: state.user?.imagePath,
                 ),
                 const SizedBox(height: 20),
                 //*customization
