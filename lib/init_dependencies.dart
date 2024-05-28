@@ -14,11 +14,20 @@ import 'package:habita/src/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:habita/src/features/habits/config/box_config.dart';
 import 'package:habita/src/features/habits/data/datasources/local/habit_local_datasource_impl.dart';
 import 'package:habita/src/features/habits/data/datasources/local/ihabit_local_datasource.dart';
+import 'package:habita/src/features/habits/data/datasources/remote/habit_remote_datasource.dart';
+import 'package:habita/src/features/habits/data/datasources/remote/ihabit_remote_datasource.dart';
 import 'package:habita/src/features/habits/data/repositories/habit_repo_impl.dart';
+import 'package:habita/src/features/habits/data/repositories/remote_habit_repo_impl.dart';
 import 'package:habita/src/features/habits/domain/repositories/habit_repo.dart';
-import 'package:habita/src/features/habits/domain/usecases/delete_program_usecase.dart';
-import 'package:habita/src/features/habits/domain/usecases/edit_program_usecase.dart';
-import 'package:habita/src/features/habits/domain/usecases/get_program_usecase.dart';
+import 'package:habita/src/features/habits/domain/repositories/remote_repo.dart';
+import 'package:habita/src/features/habits/domain/usecases/local_usecases/delete_program_usecase.dart';
+import 'package:habita/src/features/habits/domain/usecases/local_usecases/edit_program_usecase.dart';
+import 'package:habita/src/features/habits/domain/usecases/local_usecases/get_program_usecase.dart';
+import 'package:habita/src/features/habits/domain/usecases/remote_usecases/delete_habit_usecase.dart';
+import 'package:habita/src/features/habits/domain/usecases/remote_usecases/delete_program_usecase.dart';
+import 'package:habita/src/features/habits/domain/usecases/remote_usecases/edit_habit_usecase.dart';
+import 'package:habita/src/features/habits/domain/usecases/remote_usecases/edit_program_usecase.dart';
+import 'package:habita/src/features/habits/domain/usecases/remote_usecases/get_program_usecase.dart';
 import 'package:habita/src/features/habits/presentation/bloc/habit_bloc.dart';
 import 'package:habita/src/features/settings/data/datasources/isettings_datasource.dart';
 import 'package:habita/src/features/settings/data/datasources/settings_datasource_impl.dart';
@@ -100,16 +109,34 @@ void _initHabits() {
   sl.registerSingleton<IHabitDataSource>(HabitDataSourceImpl(
     box: sl.get<Box>(instanceName: 'habit_program'),
   ));
-  sl.registerSingleton<IHabitRepo>(HabitRepoImpl(habitDataSource: sl()));
+  sl.registerSingleton<IRemoteHabitDataSource>(
+    HabitRemoteDataSourceImpl(client: sl()),
+  );
 
-  //*Usecases
+  sl.registerSingleton<IHabitRepo>(HabitRepoImpl(habitDataSource: sl()));
+  sl.registerSingleton<IRemoteHabitRepo>(RemoteHabitRepoImpl(dataSource: sl()));
+
+  //*hive Usecases
   sl.registerSingleton<DeleteProgram>(DeleteProgram(repository: sl()));
   sl.registerSingleton<EditProgram>(EditProgram(repository: sl()));
   sl.registerSingleton<GetProgram>(GetProgram(repository: sl()));
+
+  //*supa Usecases
+  sl.registerSingleton<DeleteProgramRemote>(
+      DeleteProgramRemote(repository: sl()));
+  sl.registerSingleton<EditProgramRemote>(EditProgramRemote(repository: sl()));
+  sl.registerSingleton<GetProgramRemote>(GetProgramRemote(repository: sl()));
+  sl.registerSingleton<DeleteHabitRemote>(DeleteHabitRemote(repository: sl()));
+  sl.registerSingleton<EditHabitRemote>(EditHabitRemote(repository: sl()));
 
   sl.registerFactory<HabitBloc>(() => HabitBloc(
         deleteProgram: sl(),
         editProgram: sl(),
         getProgram: sl(),
+        deleteHabitRemote: sl(),
+        deleteProgramRemote: sl(),
+        editHabitRemote: sl(),
+        editProgramRemote: sl(),
+        getProgramRemote: sl(),
       ));
 }

@@ -6,6 +6,7 @@ import 'package:habita/core/enums/habit_type.dart';
 
 class Habit extends Equatable {
   final String id;
+  final String habitId;
   final Color color;
   final IconData icon;
   final HabitType habitType;
@@ -25,6 +26,7 @@ class Habit extends Equatable {
 
   const Habit({
     required this.id,
+    required this.habitId,
     required this.color,
     required this.icon,
     required this.habitType,
@@ -42,8 +44,9 @@ class Habit extends Equatable {
     this.remainder,
   });
 
-  factory Habit.base({required String id}) => Habit(
+  factory Habit.base({required String id, required String habitId}) => Habit(
         id: id,
+        habitId: habitId,
         color: const Color.fromARGB(255, 138, 224, 140),
         icon: FontAwesome5.laptop,
         habitType: HabitType.todo,
@@ -56,6 +59,7 @@ class Habit extends Equatable {
 
   factory Habit.emptyCopy({required Habit habit}) => Habit(
         id: habit.id,
+        habitId: habit.habitId,
         color: habit.color,
         icon: habit.icon,
         habitType: habit.habitType,
@@ -75,6 +79,7 @@ class Habit extends Equatable {
 
   factory Habit.sameEmpty(Habit habit) {
     return Habit(
+      habitId: habit.habitId,
       id: habit.id,
       color: habit.color,
       icon: habit.icon,
@@ -107,6 +112,7 @@ class Habit extends Equatable {
   }) {
     return Habit(
       id: id ?? this.id,
+      habitId: habitId,
       color: color ?? this.color,
       icon: icon ?? this.icon,
       habitType: habitType ?? this.habitType,
@@ -134,6 +140,7 @@ class Habit extends Equatable {
   }) {
     return Habit(
       id: id,
+      habitId: habitId,
       color: color,
       icon: icon,
       habitType: habitType,

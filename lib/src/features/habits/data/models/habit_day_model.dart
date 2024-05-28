@@ -8,23 +8,23 @@ class HabitDayModel extends HabitDay {
   const HabitDayModel({
     required super.weekday,
     required super.habits,
+    required super.id,
   });
 
   HabitDayModel copyWith({
     int? weekday,
     List<Habit>? habits,
-    bool? isCompleted,
-    double? successProcentage,
-    String? id,
   }) {
     return HabitDayModel(
       weekday: weekday ?? this.weekday,
       habits: habits ?? this.habits,
+      id: id,
     );
   }
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
+      'id': id,
       'weekday': weekday,
       'habits':
           habits.map((habit) => HabitModel.fromHabit(habit).toMap()).toList(),
@@ -33,6 +33,7 @@ class HabitDayModel extends HabitDay {
 
   factory HabitDayModel.fromMap(Map<String, dynamic> map) {
     return HabitDayModel(
+      id: map['id'] as String,
       weekday: map['weekday'] as int,
       habits: List<Habit>.from(
         (map['habits'] as List<dynamic>).map(
@@ -48,6 +49,7 @@ class HabitDayModel extends HabitDay {
       HabitDayModel.fromMap(json.decode(source) as Map<String, dynamic>);
 
   factory HabitDayModel.fromHabitDay(HabitDay day) => HabitDayModel(
+        id: day.id,
         weekday: day.weekday,
         habits: day.habits,
       );

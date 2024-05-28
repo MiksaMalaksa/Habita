@@ -17,6 +17,7 @@ final class HabitChange extends HabitEvent {
   final String? taskEnd;
   final String? remainder;
   final String? habitId;
+  final String? id;
   final Color? color;
   final IconData? iconData;
   final HabitType? type;
@@ -24,6 +25,7 @@ final class HabitChange extends HabitEvent {
 
   const HabitChange({
     this.habitName,
+    this.id,
     this.habitDescription,
     this.waterTarget,
     this.stepsTarget,

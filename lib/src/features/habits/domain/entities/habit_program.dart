@@ -2,12 +2,14 @@ import 'package:equatable/equatable.dart';
 import 'package:intl/intl.dart';
 
 import 'package:habita/core/common/widgets/date_picker_configes.dart';
+import 'package:uuid/uuid.dart';
 
 import 'habit_day.dart';
 
 class HabitProgram extends Equatable {
   final List<HabitDay> habitDays;
   final String name;
+  final String id;
   final String description;
   final bool muatable;
   final String programStart;
@@ -20,6 +22,7 @@ class HabitProgram extends Equatable {
     required this.muatable,
     required this.programStart,
     required this.programEnd,
+    required this.id,
   });
 
   int programLength() {
@@ -32,12 +35,14 @@ class HabitProgram extends Equatable {
   factory HabitProgram.base() {
     final weekdays = [1, 2, 3, 4, 5, 6, 7];
     return HabitProgram(
+      id: const Uuid().v4(),
       habitDays: List.generate(
         weekdays.length,
         (index) => HabitDay(
+          id: const Uuid().v4(),
           weekday: weekdays[index],
           // ignore: prefer_const_literals_to_create_immutables
-          habits:  [],
+          habits: [],
         ),
       ),
       name: '',
@@ -64,6 +69,7 @@ class HabitProgram extends Equatable {
       muatable: muatable ?? this.muatable,
       programStart: programStart ?? this.programStart,
       programEnd: programEnd ?? this.programEnd,
+      id: id,
     );
   }
 

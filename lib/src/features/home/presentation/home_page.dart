@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:habita/init_dependencies.dart';
 import 'package:habita/page_manager.dart';
 import 'package:habita/src/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:habita/src/features/habits/data/repositories/remote_habit_repo_impl.dart';
 import 'package:habita/src/features/settings/presentation/widgets/settings_widgets/profile_picture.dart';
 
 class HomePage extends StatefulWidget {
@@ -58,14 +60,15 @@ class _HomePageState extends State<HomePage> {
                 const SizedBox(
                   height: 60,
                 ),
-                // Center(
-                //     child: HabitaCircularIndicator(
-                //   textStyle: Theme.of(context).textTheme.titleLarge!,
-                //   size: 200,
-                //   value: 20,
-                //   maxValue: 100,
-                //   width: 10,
-                // ))
+                Center(
+                    child: ElevatedButton(
+                        onPressed: () {
+                          final ok = RemoteHabitRepoImpl(dataSource: sl());
+                        },
+                        child: Container(
+                          width: 60,
+                          height: 20,
+                        )))
               ],
             ),
           ),

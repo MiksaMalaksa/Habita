@@ -6,6 +6,7 @@ import 'package:habita/src/features/habits/domain/entities/habit_program.dart';
 
 class HabitProgramModel extends HabitProgram {
   const HabitProgramModel({
+    required super.id,
     required super.habitDays,
     required super.name,
     required super.description,
@@ -24,6 +25,7 @@ class HabitProgramModel extends HabitProgram {
     String? programEnd,
   }) {
     return HabitProgramModel(
+      id: id,
       habitDays: habitDays ?? this.habitDays,
       name: name ?? this.name,
       description: description ?? this.description,
@@ -43,6 +45,7 @@ class HabitProgramModel extends HabitProgram {
       'muatable': muatable,
       'programStart': programStart,
       'programEnd': programEnd,
+      'id': id,
     };
   }
 
@@ -57,6 +60,7 @@ class HabitProgramModel extends HabitProgram {
       muatable: map['muatable'] as bool,
       programStart: map['programStart'] as String,
       programEnd: map['programEnd'] as String,
+      id: map['id'] as String,
     );
   }
 
@@ -64,6 +68,7 @@ class HabitProgramModel extends HabitProgram {
 
   factory HabitProgramModel.fromEntity(HabitProgram program) =>
       HabitProgramModel(
+          id: program.id,
           habitDays: program.habitDays,
           name: program.name,
           description: program.description,

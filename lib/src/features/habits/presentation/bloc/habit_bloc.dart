@@ -9,10 +9,17 @@ import 'package:habita/core/usecase/no_params.dart';
 import 'package:habita/src/features/habits/domain/entities/habit.dart';
 import 'package:habita/src/features/habits/domain/entities/habit_day.dart';
 import 'package:habita/src/features/habits/domain/entities/habit_program.dart';
-import 'package:habita/src/features/habits/domain/usecases/delete_program_usecase.dart';
-import 'package:habita/src/features/habits/domain/usecases/edit_program_usecase.dart';
-import 'package:habita/src/features/habits/domain/usecases/get_program_usecase.dart';
+import 'package:habita/src/features/habits/domain/usecases/local_usecases/delete_program_usecase.dart';
+import 'package:habita/src/features/habits/domain/usecases/local_usecases/edit_program_usecase.dart';
+import 'package:habita/src/features/habits/domain/usecases/local_usecases/get_program_usecase.dart';
+import 'package:habita/src/features/habits/domain/usecases/remote_usecases/delete_habit_usecase.dart';
+import 'package:habita/src/features/habits/domain/usecases/remote_usecases/delete_program_usecase.dart';
+import 'package:habita/src/features/habits/domain/usecases/remote_usecases/edit_habit_usecase.dart';
+import 'package:habita/src/features/habits/domain/usecases/remote_usecases/edit_program_usecase.dart';
+import 'package:habita/src/features/habits/domain/usecases/remote_usecases/get_program_usecase.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:intl/intl.dart';
+import 'package:uuid/uuid.dart';
 
 part 'habit_event.dart';
 part 'habit_state.dart';
@@ -24,18 +31,35 @@ part 'habit_state.dart';
 //!залогировать сегодня и сделать план на завтра
 
 class HabitBloc extends Bloc<HabitEvent, HabitState> {
-  //*Usecases
+  //*hive Usecases
   final GetProgram _getProgram;
   final DeleteProgram _deleteProgram;
   final EditProgram _editProgram;
+
+  //*supa Usecases
+  final DeleteHabitRemote _deleteHabitRemote;
+  final DeleteProgramRemote _deleteProgramRemote;
+  final EditHabitRemote _editHabitRemote;
+  final EditProgramRemote _editProgramRemote;
+  final GetProgramRemote _getProgramRemote;
 
   HabitBloc({
     required GetProgram getProgram,
     required DeleteProgram deleteProgram,
     required EditProgram editProgram,
+    required DeleteHabitRemote deleteHabitRemote,
+    required DeleteProgramRemote deleteProgramRemote,
+    required EditHabitRemote editHabitRemote,
+    required EditProgramRemote editProgramRemote,
+    required GetProgramRemote getProgramRemote,
   })  : _getProgram = getProgram,
         _deleteProgram = deleteProgram,
         _editProgram = editProgram,
+        _deleteHabitRemote = deleteHabitRemote,
+        _deleteProgramRemote = deleteProgramRemote,
+        _editHabitRemote = editHabitRemote,
+        _editProgramRemote = editProgramRemote,
+        _getProgramRemote = getProgramRemote,
         super(HabitLoading(program: HabitProgram.base())) {
     on<HabitProgramChange>(_programChangedHandler);
     on<HabitChange>(_habitChangeHandler);
@@ -48,6 +72,11 @@ class HabitBloc extends Bloc<HabitEvent, HabitState> {
   Future<void> _deleteProgramHandler(
       DeleteHabitProgram event, Emitter<HabitState> emit) async {
     final result = await _deleteProgram(NoParams());
+
+    if (await InternetConnectionChecker().hasConnection) {
+      await _deleteProgramRemote(state.program.id);
+    }
+
     result.fold(
       (_) => Error(message: serverFailMsg, program: state.program),
       (program) {
@@ -140,6 +169,7 @@ class HabitBloc extends Bloc<HabitEvent, HabitState> {
 
           for (int i = 0; emptyDays > 0; i %= 7, emptyDays--) {
             program.habitDays.add(HabitDay(
+                id: const Uuid().v4(),
                 weekday: i + 1,
                 habits: program.habitDays[i].habits
                     .map((habitToCopy) => Habit.emptyCopy(habit: habitToCopy))
@@ -157,6 +187,17 @@ class HabitBloc extends Bloc<HabitEvent, HabitState> {
       HabitProgramFinishedEditing event, Emitter<HabitState> emit) async {
     final result =
         await _editProgram(EditProgramParams(program: state.program));
+
+    if (await InternetConnectionChecker().hasConnection) {
+      final program = state.program;
+      await _editProgramRemote(
+        EditProgramRemoteParams(
+          id: program.id,
+          program: program,
+        ),
+      );
+    }
+
     result.fold(
       (_) => Error(message: serverFailMsg, program: state.program),
       (_) => ProgramChanging(program: state.program),
@@ -169,9 +210,11 @@ class HabitBloc extends Bloc<HabitEvent, HabitState> {
     late Habit currChangeableHabit;
 
     if (currentState is HabitChanging) {
-      if (event.habitId != null &&
-          event.habitId != currentState.changeableHabit.id) {
-        currChangeableHabit = Habit.base(id: event.habitId!);
+      if (event.id != null &&
+          event.habitId != null &&
+          event.id != currentState.changeableHabit.id) {
+        currChangeableHabit =
+            Habit.base(id: event.id!, habitId: event.habitId!);
       } else {
         currChangeableHabit = currentState.changeableHabit;
         currChangeableHabit = currChangeableHabit.copyWith(
@@ -190,7 +233,8 @@ class HabitBloc extends Bloc<HabitEvent, HabitState> {
         }
       }
     } else {
-      currChangeableHabit = Habit.base(id: event.habitId!);
+      currChangeableHabit =
+          Habit.base(id: event.habitId!, habitId: event.habitId!);
     }
 
     emit(
@@ -210,7 +254,8 @@ class HabitBloc extends Bloc<HabitEvent, HabitState> {
 
     if (event.habit != null && event.days != null) {
       for (var day in event.days!) {
-        currChangeableProgram.habitDays[day].habits.add(event.habit!);
+        final copyHabit = event.habit!.copyWith(id: const Uuid().v4());
+        currChangeableProgram.habitDays[day].habits.add(copyHabit);
       }
     }
 

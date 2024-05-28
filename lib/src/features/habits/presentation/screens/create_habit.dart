@@ -132,7 +132,9 @@ class _HabitViewState extends State<HabitView> {
                         context.read<HabitBloc>().add(
                               HabitProgramChange(
                                 habit: Habit(
+                                  //!habitId - more global then id
                                   id: newHabitId,
+                                  habitId: const Uuid().v4(), 
                                   color: currentHabit.color,
                                   description: habitDescriptionEditController
                                           .text

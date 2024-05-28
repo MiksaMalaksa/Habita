@@ -8,7 +8,6 @@ class HabitDataSourceImpl implements IHabitDataSource {
 
   const HabitDataSourceImpl({required this.box});
 
-
   @override
   Future<void> deleteHabitProgram() async {
     await box.delete('program');
@@ -23,7 +22,7 @@ class HabitDataSourceImpl implements IHabitDataSource {
 
   @override
   Future<HabitProgram> getHabitProgram() async {
-    final program = await box.get('program');
+    final program = await box.get('program'); 
     if (program == null) {
       return HabitProgram.base();
     }

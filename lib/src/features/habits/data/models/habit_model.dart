@@ -7,6 +7,7 @@ import 'package:habita/src/features/habits/domain/entities/habit.dart';
 
 class HabitModel extends Habit {
   const HabitModel({
+    required super.habitId,
     required super.id,
     required super.color,
     required super.icon,
@@ -27,6 +28,7 @@ class HabitModel extends Habit {
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
+      'habitId': habitId,
       'id': id,
       'color': color.value,
       'icon': icon.codePoint,
@@ -48,6 +50,7 @@ class HabitModel extends Habit {
 
   factory HabitModel.fromMap(Map<String, dynamic> map) {
     return HabitModel(
+      habitId: map['habitId'] as String,
       id: map['id'] as String,
       color: Color(map['color'] as int),
       icon: IconData((map['icon'] as int), fontFamily: 'FontAwesome5'),
@@ -79,6 +82,7 @@ class HabitModel extends Habit {
       HabitModel.fromMap(json.decode(source) as Map<String, dynamic>);
 
   factory HabitModel.fromHabit(Habit habit) => HabitModel(
+        habitId: habit.habitId,
         id: habit.id,
         color: habit.color,
         icon: habit.icon,
