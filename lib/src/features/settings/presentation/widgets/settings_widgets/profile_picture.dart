@@ -30,13 +30,6 @@ class ProfilePicture extends StatelessWidget {
           child: ClipOval(
             child: Container(
               decoration: BoxDecoration(
-                border: showBorder
-                    ? Border.all(
-                        color: Theme.of(context).primaryColorDark,
-                        width: image == null ? 4 : 0,
-                        style: BorderStyle.solid,
-                      )
-                    : null,
                 color: Theme.of(context).primaryColorLight,
               ),
               child: image == null

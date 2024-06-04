@@ -57,6 +57,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "dark": MessageLookupByLibrary.simpleMessage("Dark"),
         "deleteAccount": MessageLookupByLibrary.simpleMessage("Delete account"),
         "description": MessageLookupByLibrary.simpleMessage("Description"),
+        "doneToday": MessageLookupByLibrary.simpleMessage("Done today:"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
         "endDate": MessageLookupByLibrary.simpleMessage("End date"),
         "fDay": MessageLookupByLibrary.simpleMessage("F"),
@@ -108,6 +109,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Do not have an account?"),
         "noConnection":
             MessageLookupByLibrary.simpleMessage("No internet connection!"),
+        "noHabitsForNow":
+            MessageLookupByLibrary.simpleMessage("No habits for now!"),
         "noHabitsThisDay":
             MessageLookupByLibrary.simpleMessage("No habits this day!"),
         "noInternet": MessageLookupByLibrary.simpleMessage(
@@ -127,6 +130,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "programName": MessageLookupByLibrary.simpleMessage("Program name"),
         "progressToday":
             MessageLookupByLibrary.simpleMessage("Progress today:"),
+        "remain": MessageLookupByLibrary.simpleMessage("Remain:"),
         "sDay": MessageLookupByLibrary.simpleMessage("S"),
         "satDay": MessageLookupByLibrary.simpleMessage("Sat"),
         "saturday": MessageLookupByLibrary.simpleMessage("Saturday"),

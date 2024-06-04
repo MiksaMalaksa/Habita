@@ -67,6 +67,7 @@ class HabitBuilder extends StatelessWidget {
                                     Theme.of(context).textTheme.headlineSmall,
                               ))
                             : ListView.builder(
+                              itemExtent: MediaQuery.of(context).size.height*0.07,
                                 itemCount: program
                                     .habitDays[diffrenceInDays].habits.length,
                                 itemBuilder: (context, index) {

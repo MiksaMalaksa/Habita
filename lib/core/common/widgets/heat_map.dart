@@ -12,9 +12,7 @@ class HabitaHeatMap extends StatelessWidget {
     final lastDay = DateTime(currentYear, currentMonth + 1, 0).day;
     return HeatMap(
       defaultColor: Theme.of(context).primaryColorLight.withOpacity(0.1),
-      size: 30,
-  
-      
+      size: 40,
       colorMode: ColorMode.color,
       startDate: DateTime(DateTime.now().year, currentMonth, 5),
       endDate: DateTime(DateTime.now().year, currentMonth, lastDay),
@@ -24,9 +22,9 @@ class HabitaHeatMap extends StatelessWidget {
       colorsets: {
         1: Theme.of(context).primaryColor.withAlpha(60),
         3: Theme.of(context).primaryColor.withAlpha(90),
-        6: Theme.of(context).primaryColor.withAlpha(120),
+        5: Theme.of(context).primaryColor.withAlpha(120),
         8: Theme.of(context).primaryColor.withAlpha(150),
-        11: Theme.of(context).primaryColor,
+        10: Theme.of(context).primaryColor,
       },
     );
   }

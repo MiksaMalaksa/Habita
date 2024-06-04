@@ -119,5 +119,8 @@
   "failed": "Failed",
   "completed": "Completed",
   "streak": "Streak",
-  "deleteAccount": "Delete account"
+  "deleteAccount": "Delete account",
+  "remain": "Remain:",
+  "doneToday": "Done today:",
+  "noHabitsForNow": "No habits for now!"
 }

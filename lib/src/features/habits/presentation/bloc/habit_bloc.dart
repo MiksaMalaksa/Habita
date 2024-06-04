@@ -20,15 +20,11 @@ import 'package:habita/src/features/habits/domain/usecases/remote_usecases/get_p
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:intl/intl.dart';
 import 'package:uuid/uuid.dart';
+import 'package:pedometer/pedometer.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 part 'habit_event.dart';
 part 'habit_state.dart';
-
-//!Usecase сохранения
-//!Выполнение привычки
-//!Разобраться как искать permissons у приложения
-//!Yandex биндинги и yandex trees
-//!залогировать сегодня и сделать план на завтра
 
 class HabitBloc extends Bloc<HabitEvent, HabitState> {
   //*hive Usecases
@@ -67,6 +63,13 @@ class HabitBloc extends Bloc<HabitEvent, HabitState> {
     on<GetHabitProgram>(_getProgramHandler);
     on<DeleteHabitProgram>(_deleteProgramHandler);
     on<ChangeHabitStats>(_editHabitStatsHandler);
+
+    Pedometer.stepCountStream.listen((event) async {
+      var status = Permission.activityRecognition;
+      if (!(await status.isDenied)) {
+
+      }
+    });
   }
 
   Future<void> _deleteProgramHandler(

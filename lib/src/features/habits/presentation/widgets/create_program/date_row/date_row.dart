@@ -22,8 +22,6 @@ class DatePickerRow extends StatelessWidget {
     required this.state,
   });
 
-  //!Make 2 seperate methods because of if check,
-  //!Do not want to make complex check with large amount of if statements
   Future<void> _chooseStartDate(
     BuildContext context, {
     required String message,

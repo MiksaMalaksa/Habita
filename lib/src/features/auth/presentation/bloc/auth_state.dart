@@ -54,7 +54,6 @@ class AuthLoaded extends AuthState {
   @override
   List<Object?> get props => [
         user?.email,
-        user?.id,
         user?.name,
         user?.imagePath,
       ];

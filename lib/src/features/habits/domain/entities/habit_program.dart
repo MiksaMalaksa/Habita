@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:habita/core/constants/date_format.dart';
 import 'package:intl/intl.dart';
 
 import 'package:habita/core/common/widgets/date_picker_configes.dart';
@@ -48,8 +49,8 @@ class HabitProgram extends Equatable {
       name: '',
       description: '',
       muatable: false,
-      programStart: DateFormat.yMd().format(DateTime.now()),
-      programEnd: DateFormat.yMd()
+      programStart: DateFormat(dateFormat).format(DateTime.now()),
+      programEnd: DateFormat(dateFormat)
           .format(DateTime.now().add(const Duration(days: minProgramDuration))),
     );
   }

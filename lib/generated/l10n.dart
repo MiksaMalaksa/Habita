@@ -1259,6 +1259,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Remain:`
+  String get remain {
+    return Intl.message(
+      'Remain:',
+      name: 'remain',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Done today:`
+  String get doneToday {
+    return Intl.message(
+      'Done today:',
+      name: 'doneToday',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No habits for now!`
+  String get noHabitsForNow {
+    return Intl.message(
+      'No habits for now!',
+      name: 'noHabitsForNow',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

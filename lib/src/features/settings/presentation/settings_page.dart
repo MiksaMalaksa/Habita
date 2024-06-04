@@ -10,13 +10,13 @@ import 'package:habita/core/utils/show_dialog.dart';
 import 'package:habita/core/utils/show_snackbar.dart';
 import 'package:habita/generated/l10n.dart';
 import 'package:habita/init_dependencies.dart';
-import 'package:habita/main.dart';
 import 'package:habita/src/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:habita/src/features/settings/presentation/bloc/settings_bloc.dart';
 import 'package:habita/core/common/widgets/drop_down_menu.dart';
 import 'package:habita/src/features/settings/presentation/widgets/settings_widgets/profile_container.dart';
 import 'package:habita/src/features/settings/presentation/widgets/settings_widgets/segmented_button.dart';
 import 'package:habita/src/features/settings/utils/shared_pref_utils.dart';
+import 'package:habita/main.dart';
 import 'package:habita/src/themes/app_theme.dart';
 import 'package:habita/src/themes/bloc/theme_bloc.dart';
 

@@ -111,12 +111,15 @@
   "submitDeleting": "Вы собираетесь удалить программу, позже не будет никакой вохможности ее восстановить!",
   "toMuch": "Уже выполнили!",
   "loading": "Грузится...",
-  "iconTap": "Tap on the icon to open the info!",
-  "progressToday": "Progress today",
-  "generalStatistic": "General statistic:",
-  "yourCurrentStreak": "Your current streak:",
-  "failed": "Failed",
-  "completed": "Completed",
-  "streak": "Streak",
-  "deleteAccount": "Delete account"
+  "iconTap": "Для статистики нажмите на иконку!",
+  "progressToday": "Прогресс сегодня",
+  "generalStatistic": "Общая статистика:",
+  "yourCurrentStreak": "Текущая серия:",
+  "failed": "Провалено",
+  "completed": "Выполнено",
+  "streak": "Серия",
+  "deleteAccount": "Удалить",
+  "remain": "Осталось:",
+  "doneToday": "Выполнено сегодня:",
+  "noHabitsForNow": "Пока нет привычек!"
 }
